@@ -1,5 +1,9 @@
 extends TileMapLayer
 
+var wrongLetterCol: String = Color(1, 0, 0).to_html()
+var wrongWhitespaceCol: String = Color(1, 0.0, 0.0, 0.3).to_html()
+var untypedCol: String = Color(1, 1, 1, 0.3).to_html()
+
 @onready var previewNode: RichTextLabel = $Preview
 @onready var initialText: String = tabs_to_spaces(previewNode.text)
 @onready var inputNode: CodeEdit = $Input
@@ -23,18 +27,39 @@ func tabs_to_spaces(text: String) -> String:
 	return newText
 
 func _on_input_text_changed() -> void:
+	previewNode.clear()
+	previewNode.append_text("[color=#%s]" % untypedCol)
 	var input_text: String = tabs_to_spaces(inputNode.text)
 	var line_indices: Array[int] = [0]
+	var line_lengths: Array[int] = []
 	for line in initialText.split("\n"):
-		line_indices.append(line_indices.back() + line.length())
+		line_indices.append(line_indices.back() + line.length() + 1)
+		line_lengths.append(line.length() + 1)
 	line_indices.pop_back()
 	var lines: PackedStringArray = input_text.split("\n")
 	for line_index in range(lines.size()):
 		if line_index < line_indices.size():
 			for index in range(lines[line_index].length()):
-				var actualIndex: int = line_indices[line_index] + index + line_index
+				var actualIndex: int = line_indices[line_index] + index
 				var curChar: String = initialText.substr(actualIndex, 1)
+				var curInputChar: String = lines[line_index].substr(index, 1)
 				if curChar == "\n":
 					break
-				if !(lines[line_index].substr(index, 1) in [" ", "\t", "\n", "	"]):
-					previewNode.text = previewNode.text.substr(0, actualIndex) + " " + initialText.substr(actualIndex + 1)
+				if curInputChar != " ":
+					if curInputChar != curChar:
+						previewNode.append_text("[color=#%s]" % wrongLetterCol + curInputChar + "[color=#%s]" % untypedCol)
+					else:
+						#inputWrongs.append_text(" ")
+						previewNode.append_text(" ")
+				else:
+					if curInputChar != curChar:
+						previewNode.append_text("[color=#%s]" % wrongWhitespaceCol + curChar + "[color=#%s]" % untypedCol)
+					else:
+						previewNode.append_text(curChar)
+			if lines[line_index].length() < line_lengths[line_index]:
+				previewNode.append_text(initialText.substr(line_indices[line_index] + lines[line_index].length(), line_lengths[line_index] - lines[line_index].length()))
+			else:
+				previewNode.append_text("\n")
+	
+	if lines.size() < line_indices.size():
+		previewNode.append_text(initialText.substr(line_indices[lines.size()]))

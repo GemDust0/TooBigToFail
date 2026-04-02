@@ -70,22 +70,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAA
 tile_set = SubResource("TileSet_spdhl")
 script = ExtResource("2_ax3lw")
 
-[node name="Preview" type="RichTextLabel" parent="." unique_id=1942559894]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 389.0
-offset_bottom = 117.0
-theme = ExtResource("2_4ussd")
-text = "private static void main(){
-	if (submission.owner == \"GemDust\"){
-		return submission.owner;
-	else{
-		System.out.println(\"Lol, lmao even\"};
-	}
-}"
-scroll_active = false
-shortcut_keys_enabled = false
-
 [node name="Input" type="CodeEdit" parent="." unique_id=1458409027]
 offset_left = -1.0
 offset_top = 1.0
@@ -93,8 +77,6 @@ offset_right = 383.0
 offset_bottom = 113.0
 theme = ExtResource("2_4ussd")
 theme_override_constants/line_spacing = 0
-placeholder_text = "private static void main(){
-	if (submission.owner == \"GemDust\")"
 context_menu_enabled = false
 shortcut_keys_enabled = false
 drag_and_drop_selection_enabled = false
@@ -102,5 +84,23 @@ middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 caret_blink = true
 auto_brace_completion_highlight_matching = true
+
+[node name="Preview" type="RichTextLabel" parent="." unique_id=1942559894]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 389.0
+offset_bottom = 117.0
+theme = ExtResource("2_4ussd")
+theme_override_colors/default_color = Color(1, 1, 1, 0.3019608)
+bbcode_enabled = true
+text = "private static void main(){
+	if (submission.owner == \"GemDust\"){
+		return submission.owner;
+	else{
+		System.out.println(\"Lol, lmao even\");
+	}
+}"
+scroll_active = false
+shortcut_keys_enabled = false
 
 [connection signal="text_changed" from="Input" to="." method="_on_input_text_changed"]

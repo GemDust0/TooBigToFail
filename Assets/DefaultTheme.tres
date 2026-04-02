@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://cwud24p851mkn"]
+
+[resource]
+default_font_size = 11
+/constants/line_spacing = 0

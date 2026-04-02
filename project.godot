@@ -11,11 +11,24 @@ config_version=5
 [application]
 
 config/name="TooBigToFail"
+run/main_scene="uid://bbn43ldrrpynk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=450
+window/stretch/mode="viewport"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
+
 [gui]
 
+theme/custom="uid://cwud24p851mkn"
 theme/custom_font="uid://biu7hc6hfy1vj"
 
 [physics]
@@ -26,3 +39,5 @@ theme/custom_font="uid://biu7hc6hfy1vj"
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -96,8 +96,11 @@ theme_override_constants/line_spacing = 0
 placeholder_text = "private static void main(){
 	if (submission.owner == \"GemDust\")"
 context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
 caret_blink = true
-indent_automatic = true
 auto_brace_completion_highlight_matching = true
 
 [connection signal="text_changed" from="Input" to="." method="_on_input_text_changed"]

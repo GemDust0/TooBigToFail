@@ -36,4 +36,5 @@ func _on_input_text_changed() -> void:
 				var curChar: String = initialText.substr(actualIndex, 1)
 				if curChar == "\n":
 					break
-				previewNode.text = previewNode.text.substr(0, actualIndex) + " " + initialText.substr(actualIndex + 1)
+				if !(lines[line_index].substr(index, 1) in [" ", "\t", "\n", "	"]):
+					previewNode.text = previewNode.text.substr(0, actualIndex) + " " + initialText.substr(actualIndex + 1)

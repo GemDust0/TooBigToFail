@@ -3,13 +3,16 @@ extends TileMapLayer
 var wrongLetterCol: String = Color(1, 0, 0).to_html()
 var wrongWhitespaceCol: String = Color(1, 0.0, 0.0, 0.3).to_html()
 var untypedCol: String = Color(1, 1, 1, 0.3).to_html()
+var prevText: String = ""
+var prevColumn: int = 0
 
 @onready var previewNode: RichTextLabel = $Preview
 @onready var initialText: String = tabs_to_spaces(previewNode.text)
-@onready var inputNode: CodeEdit = $Input
+@onready var inputNode: CodeEdit = $Preview/Input
 
 func _ready() -> void: # func _process(delta: float) -> void:
 	inputNode.grab_focus()
+	inputNode.size.x += inputNode.position.x + 5
 
 func tabs_to_spaces(text: String) -> String:
 	var newText: String = text
@@ -27,6 +30,17 @@ func tabs_to_spaces(text: String) -> String:
 	return newText
 
 func _on_input_text_changed() -> void:
+	@warning_ignore("int_as_enum_without_cast")
+	if (previewNode.get_theme_font("font").get_string_size(inputNode.text.split("\n")[inputNode.get_caret_line()], 0, -1, previewNode.get_theme_font_size("normal_font_size")).x > previewNode.size.x) or (inputNode.text.split("\n").size() > (previewNode.text.count("\n")+1)):
+		var caret_line: int = inputNode.get_caret_line()
+		inputNode.text = prevText
+		inputNode.set_caret_line(caret_line)
+		inputNode.set_caret_column(prevColumn)
+		
+	#for i in range(inputNode.text.split("\n").size(), previewNode.text.count("\n")+1, -1):
+		#inputNode.text = inputNode.text.substr(0, inputNode.text.rfind("\n"))
+		#inputNode.set_caret_line(i)
+		#inputNode.set_caret_column(inputNode.text.split("\n")[i-2].length())
 	previewNode.clear()
 	previewNode.append_text("[color=#%s]" % untypedCol)
 	var input_text: String = tabs_to_spaces(inputNode.text)
@@ -44,18 +58,21 @@ func _on_input_text_changed() -> void:
 				var curChar: String = initialText.substr(actualIndex, 1)
 				var curInputChar: String = lines[line_index].substr(index, 1)
 				if curChar == "\n":
+					previewNode.append_text("[color=#%s]" % wrongLetterCol + lines[line_index].substr(index) + "[color=#%s]" % untypedCol)
 					break
 				if curInputChar != " ":
 					if curInputChar != curChar:
 						previewNode.append_text("[color=#%s]" % wrongLetterCol + curInputChar + "[color=#%s]" % untypedCol)
 					else:
-						#inputWrongs.append_text(" ")
-						previewNode.append_text(" ")
+						previewNode.append_text(curInputChar)
 				else:
 					if curInputChar != curChar:
 						previewNode.append_text("[color=#%s]" % wrongWhitespaceCol + curChar + "[color=#%s]" % untypedCol)
 					else:
 						previewNode.append_text(curChar)
+				@warning_ignore("int_as_enum_without_cast")
+				if previewNode.get_theme_font("font").get_string_size(previewNode.get_parsed_text().substr(previewNode.get_parsed_text().rfind("\n")) + " ", 0, -1, previewNode.get_theme_font_size("normal_font_size")).x > previewNode.size.x:
+					previewNode.append_text("\n")
 			if lines[line_index].length() < line_lengths[line_index]:
 				previewNode.append_text(initialText.substr(line_indices[line_index] + lines[line_index].length(), line_lengths[line_index] - lines[line_index].length()))
 			else:
@@ -63,3 +80,8 @@ func _on_input_text_changed() -> void:
 	
 	if lines.size() < line_indices.size():
 		previewNode.append_text(initialText.substr(line_indices[lines.size()]))
+	prevText = inputNode.text
+	prevColumn = inputNode.get_caret_column()
+
+func _on_input_caret_changed() -> void:
+	prevColumn = inputNode.get_caret_column()

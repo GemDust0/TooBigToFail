@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://biu7hc6hfy1vj"
-path="res://.godot/imported/DepartureMono-Regular.otf-9e69b2b20e218d43e0513b9e5e11f4c7.fontdata"
+path="res://.godot/imported/DepartureMono-Regular.otf-d3226e043b5e3d4d87645d382692ad34.fontdata"
 
 [deps]
 
-source_file="res://Assets/DepartureMono-Regular.otf"
-dest_files=["res://.godot/imported/DepartureMono-Regular.otf-9e69b2b20e218d43e0513b9e5e11f4c7.fontdata"]
+source_file="res://Assets/Text/DepartureMono-Regular.otf"
+dest_files=["res://.godot/imported/DepartureMono-Regular.otf-d3226e043b5e3d4d87645d382692ad34.fontdata"]
 
 [params]
 

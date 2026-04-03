@@ -11,16 +11,19 @@ var prevColumn: int = 0
 @onready var inputNode: CodeEdit = $Preview/Input
 
 func _ready() -> void: # func _process(delta: float) -> void:
-	inputNode.grab_focus()
+	focus()
 	inputNode.size.x += inputNode.position.x + 5
+
+func focus() -> void:
+	inputNode.grab_focus()
 
 func tabs_to_spaces(text: String) -> String:
 	var newText: String = text
 	var lines: PackedStringArray = text.split("\n")
 	var line_offset: int = 0
-	for line_index in range(lines.size()):
+	for line_index: int in range(lines.size()):
 		var offset: int = 0
-		for index in range(lines[line_index].length()):
+		for index: int in range(lines[line_index].length()):
 			if lines[line_index].substr(index, 1) == "\t":
 				var actualIndex: int = index + offset + line_offset
 				var offsetIndex: int = index + offset

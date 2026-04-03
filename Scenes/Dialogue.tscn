@@ -1,0 +1,117 @@
+[gd_scene format=4 uid="uid://d0l8cldmt5055"]
+
+[ext_resource type="Script" uid="uid://kb1td46jhvet" path="res://Scripts/Dialogue.gd" id="1_cq6to"]
+[ext_resource type="Texture2D" uid="uid://dfqwt14p6s58j" path="res://Assets/MenuBase.png" id="2_vqc68"]
+[ext_resource type="Theme" uid="uid://cwud24p851mkn" path="res://Assets/DefaultTheme.tres" id="3_yfiq0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gexym"]
+texture = ExtResource("2_vqc68")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/right_side = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/left_side = 0
+2:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_2etbf"]
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Menu"
+terrain_set_0/terrain_0/color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+sources/0 = SubResource("TileSetAtlasSource_gexym")
+
+[node name="Dialogue" type="Control" unique_id=1803881885]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cq6to")
+dialogue = PackedStringArray("There is no god amongst man. Yet in spite of that we continue to suffer? I find it a fool\'s game quite honestly, whomever would subject themselves to such a fate. Only a moron I say would even consider such a thing.")
+
+[node name="Background" type="TileMapLayer" parent="." unique_id=440475166]
+tile_map_data = PackedByteArray("AAAHAAIAAAABAAEAAAAHAAEAAAABAAEAAAAHAAAAAAABAAAAAAAGAAIAAAABAAEAAAAGAAEAAAABAAEAAAAGAAAAAAABAAAAAAAFAAIAAAABAAEAAAAFAAEAAAABAAEAAAAFAAAAAAABAAAAAAAEAAIAAAABAAEAAAAEAAEAAAABAAEAAAAEAAAAAAABAAAAAAADAAIAAAABAAEAAAADAAEAAAABAAEAAAADAAAAAAABAAAAAAACAAIAAAABAAEAAAACAAEAAAABAAEAAAACAAAAAAABAAAAAAABAAIAAAABAAEAAAABAAEAAAABAAEAAAABAAAAAAABAAAAAAAAAAIAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAgAAMAAAACAAIAAAAgAAIAAAACAAEAAAAgAAEAAAACAAEAAAAgAAAAAAACAAAAAAAfAAMAAAABAAIAAAAfAAIAAAABAAEAAAAfAAEAAAABAAEAAAAfAAAAAAABAAAAAAAeAAMAAAABAAIAAAAeAAIAAAABAAEAAAAeAAEAAAABAAEAAAAeAAAAAAABAAAAAAAdAAMAAAABAAIAAAAdAAIAAAABAAEAAAAdAAEAAAABAAEAAAAdAAAAAAABAAAAAAAcAAMAAAABAAIAAAAcAAIAAAABAAEAAAAcAAEAAAABAAEAAAAcAAAAAAABAAAAAAAbAAMAAAABAAIAAAAbAAIAAAABAAEAAAAbAAEAAAABAAEAAAAbAAAAAAABAAAAAAAaAAMAAAABAAIAAAAaAAIAAAABAAEAAAAaAAEAAAABAAEAAAAaAAAAAAABAAAAAAAZAAMAAAABAAIAAAAZAAIAAAABAAEAAAAZAAEAAAABAAEAAAAZAAAAAAABAAAAAAAYAAMAAAABAAIAAAAYAAIAAAABAAEAAAAYAAEAAAABAAEAAAAYAAAAAAABAAAAAAAXAAMAAAABAAIAAAAXAAIAAAABAAEAAAAXAAEAAAABAAEAAAAXAAAAAAABAAAAAAAWAAMAAAABAAIAAAAWAAIAAAABAAEAAAAWAAEAAAABAAEAAAAWAAAAAAABAAAAAAAVAAMAAAABAAIAAAAVAAIAAAABAAEAAAAVAAEAAAABAAEAAAAVAAAAAAABAAAAAAAUAAMAAAABAAIAAAAUAAIAAAABAAEAAAAUAAEAAAABAAEAAAAUAAAAAAABAAAAAAATAAMAAAABAAIAAAATAAIAAAABAAEAAAATAAEAAAABAAEAAAATAAAAAAABAAAAAAASAAMAAAABAAIAAAASAAIAAAABAAEAAAASAAEAAAABAAEAAAASAAAAAAABAAAAAAARAAMAAAABAAIAAAARAAIAAAABAAEAAAARAAEAAAABAAEAAAARAAAAAAABAAAAAAAQAAMAAAABAAIAAAAQAAIAAAABAAEAAAAQAAEAAAABAAEAAAAQAAAAAAABAAAAAAAPAAMAAAABAAIAAAAPAAIAAAABAAEAAAAPAAEAAAABAAEAAAAPAAAAAAABAAAAAAAOAAMAAAABAAIAAAAOAAIAAAABAAEAAAAOAAEAAAABAAEAAAAOAAAAAAABAAAAAAANAAMAAAABAAIAAAANAAIAAAABAAEAAAANAAEAAAABAAEAAAANAAAAAAABAAAAAAAMAAMAAAABAAIAAAAMAAIAAAABAAEAAAAMAAEAAAABAAEAAAAMAAAAAAABAAAAAAALAAMAAAABAAIAAAALAAIAAAABAAEAAAALAAEAAAABAAEAAAALAAAAAAABAAAAAAAKAAMAAAABAAIAAAAKAAIAAAABAAEAAAAKAAEAAAABAAEAAAAKAAAAAAABAAAAAAAJAAMAAAABAAIAAAAJAAIAAAABAAEAAAAJAAEAAAABAAEAAAAJAAAAAAABAAAAAAAIAAMAAAABAAIAAAAIAAIAAAABAAEAAAAIAAEAAAABAAEAAAAIAAAAAAABAAAAAAAHAAMAAAABAAIAAAAGAAMAAAABAAIAAAAFAAMAAAABAAIAAAAEAAMAAAABAAIAAAADAAMAAAABAAIAAAACAAMAAAABAAIAAAABAAMAAAABAAIAAAAAAAMAAAAAAAIAAAA=")
+tile_set = SubResource("TileSet_2etbf")
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1155815120]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 524.0
+offset_bottom = 62.0
+theme = ExtResource("3_yfiq0")
+text = "There is no god amongst man. Yet in spite of that we continue to suffer? I find it a fool's game quite honestly, whomever would subject themselves to such a fate. Only a moron I say would even consider such a thing."
+visible_characters_behavior = 1
+
+[node name="CharacterTimer" type="Timer" parent="." unique_id=2000829238]
+wait_time = 0.04
+one_shot = true
+autostart = true
+
+[node name="SpaceTimer" type="Timer" parent="." unique_id=818275861]
+wait_time = 0.06
+one_shot = true
+
+[node name="PeriodTimer" type="Timer" parent="." unique_id=1952700349]
+wait_time = 0.1
+one_shot = true
+
+[node name="Continue" type="Label" parent="." unique_id=475869957]
+visible = false
+layout_mode = 0
+offset_left = 344.0
+offset_top = 48.0
+offset_right = 526.0
+offset_bottom = 62.0
+theme = ExtResource("3_yfiq0")
+theme_override_colors/font_color = Color(1, 1, 1, 0.27450982)
+text = "Press enter to continue..."
+
+[connection signal="timeout" from="CharacterTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SpaceTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="PeriodTimer" to="." method="_on_timer_timeout"]

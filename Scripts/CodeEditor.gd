@@ -46,14 +46,14 @@ func _on_input_text_changed() -> void:
 	var input_text: String = tabs_to_spaces(inputNode.text)
 	var line_indices: Array[int] = [0]
 	var line_lengths: Array[int] = []
-	for line in initialText.split("\n"):
+	for line: String in initialText.split("\n"):
 		line_indices.append(line_indices.back() + line.length() + 1)
 		line_lengths.append(line.length() + 1)
 	line_indices.pop_back()
 	var lines: PackedStringArray = input_text.split("\n")
-	for line_index in range(lines.size()):
+	for line_index: int in range(lines.size()):
 		if line_index < line_indices.size():
-			for index in range(lines[line_index].length()):
+			for index: int in range(lines[line_index].length()):
 				var actualIndex: int = line_indices[line_index] + index
 				var curChar: String = initialText.substr(actualIndex, 1)
 				var curInputChar: String = lines[line_index].substr(index, 1)

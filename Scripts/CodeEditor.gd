@@ -36,11 +36,8 @@ func _on_input_text_changed() -> void:
 		inputNode.text = prevText
 		inputNode.set_caret_line(caret_line)
 		inputNode.set_caret_column(prevColumn)
-		
-	#for i in range(inputNode.text.split("\n").size(), previewNode.text.count("\n")+1, -1):
-		#inputNode.text = inputNode.text.substr(0, inputNode.text.rfind("\n"))
-		#inputNode.set_caret_line(i)
-		#inputNode.set_caret_column(inputNode.text.split("\n")[i-2].length())
+		return
+	
 	previewNode.clear()
 	previewNode.append_text("[color=#%s]" % untypedCol)
 	var input_text: String = tabs_to_spaces(inputNode.text)

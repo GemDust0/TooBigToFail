@@ -38,7 +38,7 @@ wait_time = 0.06
 one_shot = true
 
 [node name="PeriodTimer" type="Timer" parent="." unique_id=1952700349]
-wait_time = 0.1
+wait_time = 0.25
 one_shot = true
 
 [node name="Continue" type="Label" parent="." unique_id=475869957]

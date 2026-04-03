@@ -79,6 +79,7 @@ func _on_input_text_changed() -> void:
 		previewNode.append_text(initialText.substr(line_indices[lines.size()]))
 	prevText = inputNode.text
 	prevColumn = inputNode.get_caret_column()
+	previewNode.append_text("\n%f" % get_correctness())
 
 func _on_input_caret_changed() -> void:
 	prevColumn = inputNode.get_caret_column()
@@ -91,9 +92,11 @@ func change_code(new_code: String) -> void:
 	_on_input_text_changed()
 
 func get_correctness() -> float:
+	if inputNode.text.length() == 0:
+		return -1.0
 	var input_text: String = tabs_to_spaces(inputNode.text)
 	var count: int = 0
 	for index: int in range(input_text.length()):
 		if input_text.substr(index, 1) == initialText.substr(index, 1):
 			count += 1
-	return float(count)/input_text.length()
+	return float(count)/initialText.length()

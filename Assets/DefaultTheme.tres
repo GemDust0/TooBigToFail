@@ -1,5 +1,20 @@
 [gd_resource type="Theme" format=3 uid="uid://cwud24p851mkn"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i5sur"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_emot1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7whhf"]
+
 [resource]
 default_font_size = 11
 /constants/line_spacing = 0
+Button/colors/font_color = Color(0.75, 0.75, 0.75, 1)
+Button/colors/font_focus_color = Color(0.5, 0.5, 0.5, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.5, 0.5, 0.5, 1)
+Button/styles/disabled = SubResource("StyleBoxEmpty_i5sur")
+Button/styles/focus = SubResource("StyleBoxEmpty_emot1")
+Button/styles/hover = SubResource("StyleBoxEmpty_i5sur")
+Button/styles/normal = SubResource("StyleBoxEmpty_i5sur")
+Button/styles/pressed = SubResource("StyleBoxEmpty_7whhf")

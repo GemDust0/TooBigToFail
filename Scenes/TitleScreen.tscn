@@ -24,4 +24,49 @@ offset_right = -261.5
 offset_bottom = -70.0
 grow_vertical = 0
 
+[node name="NewGame" type="Button" parent="CanvasLayer" unique_id=489960652]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -11.0
+offset_right = 32.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "New Game"
+
+[node name="ContinueGame" type="Button" parent="CanvasLayer" unique_id=656783921]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = 19.0
+offset_right = 90.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Continue Game"
+
+[node name="ExitGame" type="Button" parent="CanvasLayer" unique_id=1492597337]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = 52.0
+offset_right = 63.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Quit Game"
+
 [node name="CodeEditor" parent="." unique_id=682737360 instance=ExtResource("3_n15yj")]

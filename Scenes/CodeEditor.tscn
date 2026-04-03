@@ -24,16 +24,25 @@ script = ExtResource("2_ax3lw")
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 709.0
-offset_bottom = 249.0
+offset_bottom = 445.0
 theme = ExtResource("2_4ussd")
 theme_override_colors/default_color = Color(1, 1, 1, 0.3019608)
 bbcode_enabled = true
-text = "private static void main(){
-	if (code.isBugged()){
-		code.unbug();
-	}else{
-		System.out.println(\"Error, unexpected behavior: No bugs found, terminating program.\");
-	}
+text = "public void DoFizzBuzz(int target){
+    for (int i = 1; i <= target; i++){
+        bool fizz = i % 3 == 0;
+        bool buzz = i % 5 == 0;
+        if (fizz){
+            Console.Write(\"Fizz\");
+		}
+        if (buzz){
+            Console.Write(\"Buzz\");
+		}
+        if (!(fizz || buzz)){
+            Console.Write(i);
+		}
+		Console.Write(\"\\n\");
+    }
 }"
 scroll_active = false
 shortcut_keys_enabled = false

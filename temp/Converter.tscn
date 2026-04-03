@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b2ikej5aubs2q"]
+
+[ext_resource type="Script" uid="uid://bgs2jr24cjhi" path="res://temp/Converter.gd" id="1_javoe"]
+
+[node name="Converter" type="RichTextLabel" unique_id=1678192672]
+offset_right = 721.0
+offset_bottom = 451.0
+text = "using System;
+
+class Program{
+	static void Main(string[] args){
+    	Console.WriteLine(\"Hello World!\");
+	}
+}"
+script = ExtResource("1_javoe")

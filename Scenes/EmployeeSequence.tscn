@@ -5,7 +5,7 @@
 
 [node name="EmployeeSequence" type="Node" unique_id=595623739]
 script = ExtResource("1_56010")
-codeArray = PackedStringArray("private static void main(){if (code.isBugged()){code.unbug();}else{System.out.println(\"Error, unexpected behavior: No bugs found, terminating program.\");}}")
+codeArray = PackedStringArray("public void DoFizzBuzz(int target){[\\n]    for (int i = 1; i <= target; i++){[\\n]        bool fizz = i % 3 == 0;[\\n]        bool buzz = i % 5 == 0;[\\n]        if (fizz){[\\n]            Console.Write(\"Fizz\");[\\n][\\t][\\t]}[\\n]        if (buzz){[\\n]            Console.Write(\"Buzz\");[\\n][\\t][\\t]}[\\n]        if (!(fizz || buzz)){[\\n]            Console.Write(i);[\\n][\\t][\\t]}[\\n][\\t][\\t]Console.Write(\"\\n\");[\\n]    }[\\n]}", "public void DoFizzBuzz(int target){[\\n]    for (int i=1; i <= target; i++){[\\n]        bool fizz = i % 3 == 0;[\\n]        bool buzz = i % 5 == 0;[\\n]        if (fizz){[\\n]            Console.Write(\"Fizz\");[\\n][\\t][\\t]}[\\n]        if (buzz){[\\n]            Console.Write(\"Buzz\");[\\n][\\t][\\t]}[\\n]        if (!(fizz || buzz)){[\\n]            Console.Write(i);[\\n][\\t][\\t]}[\\n][\\t][\\t]Console.Write(\"\\n\");[\\n]    }[\\n]}")
 
 [node name="CodeEditor" parent="." unique_id=682737360 instance=ExtResource("1_uqm28")]
 

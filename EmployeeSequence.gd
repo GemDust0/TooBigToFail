@@ -11,7 +11,7 @@ func _ready() -> void:
 func _on_submit_pressed() -> void:
 	print(codeEditor.get_correctness())
 	if code_index < codeArray.size():
-		codeEditor.change_code(codeArray[code_index])
+		codeEditor.change_code(codeArray[code_index].replace("[\\n]", "\n").replace("[\\t]", "\t"))
 		code_index += 1
 	else:
 		get_tree().change_scene_to_file("res://Scenes/TitleScreen.tscn")

@@ -1,0 +1,1 @@
+using System;[\n][\n]class Program{[\n][\t]static void Main(string[] args){[\n]    [\t]Console.WriteLine("Hello World!");[\n][\t]}[\n]}

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dubt5l8dwh388"]
+
+[ext_resource type="PackedScene" uid="uid://d0l8cldmt5055" path="res://Scenes/Dialogue.tscn" id="1_1srds"]
+
+[node name="Cutscene" type="Node" unique_id=1404501526]
+
+[node name="Dialogue" parent="." unique_id=1803881885 instance=ExtResource("1_1srds")]

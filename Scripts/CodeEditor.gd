@@ -1,4 +1,4 @@
-extends TileMapLayer
+class_name CodeEditor extends TileMapLayer
 
 var wrongLetterCol: String = Color(1, 0, 0).to_html()
 var wrongWhitespaceCol: String = Color(1, 0.0, 0.0, 0.3).to_html()
@@ -82,3 +82,18 @@ func _on_input_text_changed() -> void:
 
 func _on_input_caret_changed() -> void:
 	prevColumn = inputNode.get_caret_column()
+
+func change_code(new_code: String) -> void:
+	prevText = ""
+	prevColumn = 0
+	initialText = tabs_to_spaces(new_code)
+	inputNode.text = ""
+	_on_input_text_changed()
+
+func get_correctness() -> float:
+	var input_text: String = tabs_to_spaces(inputNode.text)
+	var count: int = 0
+	for index: int in range(input_text.length()):
+		if input_text.substr(index, 1) == initialText.substr(index, 1):
+			count += 1
+	return float(count)/input_text.length()

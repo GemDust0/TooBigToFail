@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://clie5hddnjaqy"]
+
+[ext_resource type="Texture2D" uid="uid://dyn1kh55ty4du" path="res://Assets/StarryBackground.png" id="1_uebgo"]
+[ext_resource type="PackedScene" uid="uid://d0l8cldmt5055" path="res://Scenes/Dialogue.tscn" id="2_8l4an"]
+[ext_resource type="PackedScene" uid="uid://bbn43ldrrpynk" path="res://Scenes/CodeEditor.tscn" id="3_n15yj"]
+
+[node name="TitleScreen" type="Node" unique_id=2004643761]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1715195476]
+offset_right = 720.0
+offset_bottom = 450.0
+texture = ExtResource("1_uebgo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=380490029]
+
+[node name="Dialogue" parent="CanvasLayer" unique_id=1803881885 instance=ExtResource("2_8l4an")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -261.5
+offset_top = -70.0
+offset_right = -261.5
+offset_bottom = -70.0
+grow_vertical = 0
+
+[node name="CodeEditor" parent="." unique_id=682737360 instance=ExtResource("3_n15yj")]

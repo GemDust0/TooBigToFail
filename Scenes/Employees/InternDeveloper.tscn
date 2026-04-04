@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://c5uabqwgjomsa"]
 
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_686db"]
-[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_f2rck"]
 
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
 
 [node name="TextureRect" parent="." index="0" unique_id=854379618]
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("2_f2rck")
+
+[node name="ProductionTimer" parent="." index="1" unique_id=8388997]
+wait_time = 5.0

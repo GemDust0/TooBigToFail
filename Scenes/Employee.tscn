@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://bkds4gjqq4ydo"]
 
 [ext_resource type="Script" uid="uid://caadxuwb72if1" path="res://Scripts/Employee.gd" id="1_yw33p"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8hse0"]
-size = Vector2(32, 32)
+[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_7jby3"]
 
 [node name="Employee" type="Button" unique_id=1534399525]
 offset_right = 40.0
@@ -15,4 +13,10 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
-texture = SubResource("PlaceholderTexture2D_8hse0")
+texture = ExtResource("2_7jby3")
+
+[node name="ProductionTimer" type="Timer" parent="." unique_id=8388997]
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="timeout" from="ProductionTimer" to="." method="produce"]

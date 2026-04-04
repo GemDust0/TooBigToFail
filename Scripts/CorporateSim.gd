@@ -1,9 +1,14 @@
 extends Node
 
 @export var employeeContainer: PackedScene
-
 var gridSize: int = 10
+var money: int = 0:
+	set(value):
+		money = value
+		moneyLabel.text = str(money)
+
 @onready var employeeGrid: EmployeeGrid = $PanelContainer/EmployeeGrid
+@onready var moneyLabel: Label = $HUD/MoneyCount
 
 func _ready() -> void:
 	employeeGrid.create_grid(5)

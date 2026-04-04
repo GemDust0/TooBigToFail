@@ -55,11 +55,13 @@ offset_left = 3.0
 offset_top = 43.0
 offset_right = 717.0
 offset_bottom = 447.0
+mouse_filter = 2
 
 [node name="EmployeeGrid" type="GridContainer" parent="PanelContainer" unique_id=339105751]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 script = ExtResource("5_4d44h")

@@ -103,11 +103,22 @@ func change_code(new_code: String) -> void:
 func get_correctness() -> float:
 	if inputNode.text.length() == 0:
 		return -1.0
-	var input_text: String = tabs_to_spaces(inputNode.text)
+	var input_text: PackedStringArray = tabs_to_spaces(inputNode.text).split("\n")
+	var compare_text: PackedStringArray = initialText.split("\n")
 	var count: int = 0
-	for index: int in range(input_text.length()):
-		if input_text.substr(index, 1) == initialText.substr(index, 1):
-			count += 1
+	for line_index: int in range(input_text.size()):
+		var input_line: String = input_text[line_index]
+		var compare_line: String = compare_text[line_index]
+		for index: int in range(input_line.length()):
+			if input_line.substr(index, 1) == compare_line.substr(index, 1):
+				count += 1
+			else:
+				print("Wrong: " + input_line)
+		if input_line.length() == compare_line.length():
+			if line_index < input_text.size() - 1:
+				count += 1
+		else:
+			print("WrongLen: " + input_line)
 	return float(count)/initialText.length()
 
 func _on_input_focus_entered() -> void:

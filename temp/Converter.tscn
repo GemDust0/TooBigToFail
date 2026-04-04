@@ -5,31 +5,25 @@
 [node name="Converter" type="RichTextLabel" unique_id=1678192672]
 offset_right = 721.0
 offset_bottom = 451.0
-text = "static int partition(int[] arr, int low, int high) {
-	choose the pivot
-	int pivot = arr[high];
-	int i = low - 1;
-	for (int j = low; j <= high - 1; j++) {
-		if (arr[j] < pivot) {
-			i++;
-			swap(arr, i, j);
+text = "static Dictionary<char, int> romanDigits = new(){
+	{'I', 1},
+	{'V', 5},
+	{'X', 10}
+	{'L', 50},
+	{'C', 100},
+	{'D', 500},
+	{'M', 1000}
+};
+
+public int RomanToInt(string s){
+	int result = 0;
+	for (int index = 0; index < s.Length - 1; index++){
+		if (romanDigits[s[index]] < romanDigits[s[index + 1]]){
+			result -= romanDigits[s[index]];
+		}else{
+			result += romanDigits[s[index]];
 		}
 	}
-	swap(arr, i + 1, high);  
-	return i + 1;
-}
-
-static void swap(int[] arr, int i, int j) {
-	int temp = arr[i];
-	arr[i] = arr[j];
-	arr[j] = temp;
-}
-
-static void quickSort(int[] arr, int low, int high) {
-	if (low < high) {
-		int pi = partition(arr, low, high);
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
+	return result + romanDigits[s[s.Length - 1]];
 }"
 script = ExtResource("1_javoe")

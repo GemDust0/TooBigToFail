@@ -8,8 +8,6 @@ func _ready() -> void:
 			txt += "[\\t]"
 		elif character == "\n":
 			txt += "[\\n]"
-		elif character == "[":
-			txt += "[lb]"
 		else:
 			txt += character
 	print(txt)

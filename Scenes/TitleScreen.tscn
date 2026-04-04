@@ -43,6 +43,7 @@ text = "New Game"
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 22
+disabled = true
 text = "Continue Game"
 
 [node name="ExitGame" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1492597337]
@@ -52,3 +53,4 @@ theme_override_font_sizes/font_size = 22
 text = "Quit Game"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]

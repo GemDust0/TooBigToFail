@@ -1,9 +1,10 @@
 @tool
-class_name Employee extends Button
+class_name Employee extends TextureRect
 
 enum Types {
 	DEVELOPER
 }
+
 
 ## Money produced every production
 @export var type: Types = Types.DEVELOPER
@@ -33,16 +34,7 @@ func _input(event: InputEvent) -> void:
 func set_icon() -> void:
 	match type:
 		Types.DEVELOPER:
-			$TextureRect.texture = load("res://Assets/DeveloperIcon.png")
+			texture = load("res://Assets/DeveloperIcon.png")
 
 func produce() -> void:
 	pass
-
-func _on_button_down() -> void:
-	z_index += 1
-	held = true
-
-func _on_button_up() -> void:
-	z_index -= 1
-	held = false
-	position = Vector2.ZERO

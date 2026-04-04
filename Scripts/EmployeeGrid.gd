@@ -2,6 +2,8 @@ class_name EmployeeGrid extends GridContainer
 
 @export var employeeContainerScene: PackedScene
 var grid: Dictionary[Vector2i, EmployeeContainer]
+var held: Employee = null
+var highlighted_container: Vector2i = Vector2(-1, -1)
 
 func create_grid(grid_size: int) -> void:
 	columns = grid_size
@@ -44,3 +46,38 @@ func create_container() -> EmployeeContainer:
 	container.employee = load("res://Scenes/Employees/InternDeveloper.tscn").instantiate()
 	container.employee.modulate = Color(randf(), randf(), randf())
 	return container
+
+func get_cursor_grid_pos() -> Vector2i:
+	var mouse_pos: Vector2 = get_local_mouse_position()
+	if mouse_pos.x < 0 || mouse_pos.y < 0:
+		return Vector2i(-1, -1)
+	var cursor_grid_pos: Vector2i = mouse_pos/32
+	if cursor_grid_pos.x >= columns || cursor_grid_pos.y >= columns:
+		return Vector2i(-1, -1)
+	return Vector2i(cursor_grid_pos.y, cursor_grid_pos.x)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("left_click"):
+			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
+			if cursor_grid_pos != Vector2i(-1, -1):
+				held = grid[cursor_grid_pos].employee
+				held.z_index += 1
+		elif event.is_action_released("left_click") && held != null:
+			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
+			if cursor_grid_pos != Vector2i(-1, -1):
+				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos])
+			else:
+				held.position = Vector2.ZERO
+			held.z_index -= 1
+			held = null
+	if event is InputEventMouseMotion:
+		if held != null:
+			held.position += event.relative
+		var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
+		if cursor_grid_pos != highlighted_container:
+			if highlighted_container != Vector2i(-1, -1):
+				grid[highlighted_container].highlight.hide()
+			if cursor_grid_pos != Vector2i(-1, -1):
+				grid[cursor_grid_pos].highlight.show()
+			highlighted_container = cursor_grid_pos

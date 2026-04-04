@@ -9,3 +9,12 @@ offset_bottom = 32.0
 mouse_filter = 2
 texture = ExtResource("1_8cnn1")
 script = ExtResource("2_nrb43")
+
+[node name="Highlight" type="ColorRect" parent="." unique_id=1835614690]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.49803922)

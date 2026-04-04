@@ -5,17 +5,23 @@ var wrongWhitespaceCol: String = Color(1, 0.0, 0.0, 0.3).to_html()
 var untypedCol: String = Color(1, 1, 1, 0.3).to_html()
 var prevText: String = ""
 var prevColumn: int = 0
+var isFocused: bool
 
 @onready var previewNode: RichTextLabel = $Preview
 @onready var initialText: String = tabs_to_spaces(previewNode.text)
 @onready var inputNode: CodeEdit = $Preview/Input
 
-func _ready() -> void: # func _process(delta: float) -> void:
+func _ready() -> void:
 	focus()
 	inputNode.size.x += inputNode.position.x + 5
 
 func focus() -> void:
+	isFocused = true
 	inputNode.grab_focus()
+
+func defocus() -> void:
+	isFocused = false;
+	inputNode.release_focus()
 
 func tabs_to_spaces(text: String) -> String:
 	var newText: String = text
@@ -103,3 +109,12 @@ func get_correctness() -> float:
 		if input_text.substr(index, 1) == initialText.substr(index, 1):
 			count += 1
 	return float(count)/initialText.length()
+
+func _on_input_focus_entered() -> void:
+	print("TEST")
+	if !isFocused:
+		inputNode.release_focus()
+
+func _on_input_focus_exited() -> void:
+	if isFocused:
+		inputNode.grab_focus()

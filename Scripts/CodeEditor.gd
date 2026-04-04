@@ -40,7 +40,7 @@ func tabs_to_spaces(text: String) -> String:
 
 func _on_input_text_changed() -> void:
 	@warning_ignore("int_as_enum_without_cast")
-	if (previewNode.get_theme_font("font").get_string_size(inputNode.text.split("\n")[inputNode.get_caret_line()], 0, -1, previewNode.get_theme_font_size("normal_font_size")).x > previewNode.size.x) or (inputNode.text.split("\n").size() > (previewNode.text.count("\n")+1)):
+	if (previewNode.get_theme_font("font").get_string_size(inputNode.text.split("\n")[inputNode.get_caret_line()], 0, -1, previewNode.get_theme_font_size("normal_font_size")).x > previewNode.size.x) or (inputNode.text.split("\n").size() > (initialText.count("\n")+1)):
 		var caret_line: int = inputNode.get_caret_line()
 		inputNode.text = prevText
 		inputNode.set_caret_line(caret_line)
@@ -111,7 +111,6 @@ func get_correctness() -> float:
 	return float(count)/initialText.length()
 
 func _on_input_focus_entered() -> void:
-	print("TEST")
 	if !isFocused:
 		inputNode.release_focus()
 

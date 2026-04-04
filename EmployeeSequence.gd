@@ -8,18 +8,20 @@ var code_index: int = 0
 @onready var codeEditor: CodeEditor = $CodeEditor
 @onready var performanceText: Label = $HUD/PerformanceText
 @onready var performanceIcon: Sprite2D = $HUD/PerformanceIcon
+@onready var workProgress: Label = $HUD/WorkProgress
 
 func _ready() -> void:
 	_on_submit_pressed()
 
 func _on_submit_pressed() -> void:
+	workProgress.text = "Daily Quota: %s/%s" % [code_index, codeArray.size()]
 	if code_index > 0:
 		scores.append(codeEditor.get_correctness())
 		var performance: int = get_performance()
 		performanceText.text = str(performance) + "%"
 		if performance >= 90:
 			performanceIcon.texture = faces[0]
-		elif performance > 50:
+		elif performance >= 50:
 			performanceIcon.texture = faces[1]
 		else:
 			performanceIcon.texture = faces[2]

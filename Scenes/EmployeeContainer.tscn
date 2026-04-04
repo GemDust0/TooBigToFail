@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cvd24fy5waelu"]
 
 [ext_resource type="Texture2D" uid="uid://df0tayij1yhhi" path="res://Assets/EmployeeContainer.png" id="1_8cnn1"]
+[ext_resource type="Script" uid="uid://vnuf6fuqdxd5" path="res://Scripts/EmployeeContainer.gd" id="2_nrb43"]
 
 [node name="EmployeeContainer" type="TextureRect" unique_id=127589662]
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("1_8cnn1")
+script = ExtResource("2_nrb43")

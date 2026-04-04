@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://f4dulwdnwwyp" path="res://Scripts/CorporateSim.gd" id="1_v5m7x"]
 [ext_resource type="PackedScene" uid="uid://cvd24fy5waelu" path="res://Scenes/EmployeeContainer.tscn" id="2_d0200"]
 [ext_resource type="Texture2D" uid="uid://3nddv675u4w4" path="res://Assets/MoneySymbol.png" id="2_v5m7x"]
+[ext_resource type="Script" uid="uid://002rt6b87p7y" path="res://Scripts/EmployeeGrid.gd" id="5_4d44h"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -62,3 +63,22 @@ size_flags_vertical = 4
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 10
+script = ExtResource("5_4d44h")
+employeeContainerScene = ExtResource("2_d0200")
+
+[node name="Button" type="Button" parent="." unique_id=1730713543]
+offset_left = 10.0
+offset_top = 342.0
+offset_right = 50.0
+offset_bottom = 382.0
+text = "+++++"
+
+[node name="Button2" type="Button" parent="." unique_id=92158306]
+offset_left = 10.0
+offset_top = 376.0
+offset_right = 50.0
+offset_bottom = 416.0
+text = "-----"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -3,8 +3,13 @@ extends Node
 @export var employeeContainer: PackedScene
 
 var gridSize: int = 10
-@onready var employeeGrid: GridContainer = $PanelContainer/EmployeeGrid
+@onready var employeeGrid: EmployeeGrid = $PanelContainer/EmployeeGrid
 
 func _ready() -> void:
-	for i: int in range(gridSize * gridSize):
-		employeeGrid.add_child(employeeContainer.instantiate())
+	employeeGrid.create_grid(5)
+
+func _on_button_pressed() -> void:
+	employeeGrid.increase_grid_size(1)
+
+func _on_button_2_pressed() -> void:
+	employeeGrid.decrease_grid_size(1)

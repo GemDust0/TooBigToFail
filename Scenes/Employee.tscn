@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bkds4gjqq4ydo"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8hse0"]
+size = Vector2(32, 32)
+
+[node name="Employee" type="Button" unique_id=1534399525]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=854379618]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_8hse0")

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ck0245lqu86lu" path="res://Scripts/DescriptionLabel.gd" id="7_yop2h"]
 [ext_resource type="PackedScene" uid="uid://c5uabqwgjomsa" path="res://Scenes/Employees/InternDeveloper.tscn" id="8_4ekef"]
 [ext_resource type="PackedScene" uid="uid://beodsmuxx7kqu" path="res://Scenes/Employees/Snitch.tscn" id="9_ux72k"]
+[ext_resource type="Texture2D" uid="uid://c6xdkycwu0u8e" path="res://Assets/SellAreaHighlight.png" id="10_i8qfs"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -127,6 +128,39 @@ sim = NodePath("..")
 grid = NodePath("../PanelContainer/EmployeeGrid")
 employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k")])
 
+[node name="SellArea" type="TextureRect" parent="." unique_id=335735936]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+offset_left = 531.0
+offset_top = 41.0
+offset_right = 719.0
+offset_bottom = 449.0
+texture = ExtResource("10_i8qfs")
+
+[node name="SellText" type="Label" parent="SellArea" unique_id=53450909]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -45.0
+offset_right = 92.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_font_sizes/font_size = 22
+text = "Sell for 25 coins"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [connection signal="money_produced" from="PanelContainer/EmployeeGrid" to="." method="add_money"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="SellArea" to="PanelContainer/EmployeeGrid" method="_on_sell_area_mouse_entered"]
+[connection signal="mouse_exited" from="SellArea" to="PanelContainer/EmployeeGrid" method="_on_sell_area_mouse_exited"]

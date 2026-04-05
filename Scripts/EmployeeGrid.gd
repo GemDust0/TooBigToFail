@@ -11,8 +11,12 @@ var highlight_filled: bool = true:
 		if highlighted_container != Vector2i(-1, -1) && (grid[highlighted_container].employee != null) == value:
 			grid[highlighted_container].highlight.visible = !grid[highlighted_container].visible
 		highlight_filled = value
+var hovering_sell: bool = false
+var paint_locked: bool = false
 
 @onready var description: DescriptionLabel = %DescriptionLabel
+@onready var sell_area: TextureRect = %SellArea
+@onready var sell_text: Label = %SellText
 
 func create_grid(grid_size: int) -> void:
 	columns = grid_size
@@ -55,16 +59,30 @@ func add_employee(pos: Vector2i, employee: Employee) -> void:
 	employee.produced.connect(employee_production)
 	employee.grid_pos = pos
 	var speed_mult: float = 1.0
+	var synergyData: SynergyApplication = SynergyApplication.new()
+	for slot: EmployeeContainer in grid.values():
+		if slot.employee != null && slot.employee != employee:
+			synergyData.apply_employee_synergies(slot.employee, employee)
+	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime
 	employee.start_production(speed_mult)
 
+func get_actual_cursor_grid_pos() -> Vector2i:
+	var cursor_pos: Vector2 = get_local_mouse_position()
+	if cursor_pos.x < 0:
+		cursor_pos.x -= 32
+	if cursor_pos.y < 0:
+		cursor_pos.y -= 32
+	cursor_pos /= 32
+	@warning_ignore("narrowing_conversion")
+	return Vector2i(cursor_pos.y, cursor_pos.x)
+
 func get_cursor_grid_pos() -> Vector2i:
-	var mouse_pos: Vector2 = get_local_mouse_position()
-	if mouse_pos.x < 0 || mouse_pos.y < 0:
+	var cursor_grid_pos: Vector2i = get_actual_cursor_grid_pos()
+	if cursor_grid_pos.x < 0 || cursor_grid_pos.y < 0:
 		return Vector2i(-1, -1)
-	var cursor_grid_pos: Vector2i = mouse_pos/32
 	if cursor_grid_pos.x >= columns || cursor_grid_pos.y >= columns:
 		return Vector2i(-1, -1)
-	return Vector2i(cursor_grid_pos.y, cursor_grid_pos.x)
+	return cursor_grid_pos
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -76,9 +94,14 @@ func _input(event: InputEvent) -> void:
 				held.z_index += 1
 				description.hide_description()
 				description.show_locked = true
+				sell_text.text = "Sell for %s coins" % 25
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
-			if cursor_grid_pos != Vector2i(-1, -1):
+			if hovering_sell:
+				grid[held.grid_pos].employee = null
+				held.queue_free()
+				money_produced.emit(25)
+			elif cursor_grid_pos != Vector2i(-1, -1):
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
 			else:
 				held.position = Vector2.ZERO
@@ -88,20 +111,32 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if held != null:
 			held.position += event.relative
+			if !paint_locked:
+				paint_synergies(held, get_actual_cursor_grid_pos())
 		var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 		if highlighted_container != Vector2i(-1, -1):
 			if grid.get(highlighted_container) != null:
 				grid[highlighted_container].highlight.hide()
 		if cursor_grid_pos != Vector2i(-1, -1):
+			if held == null && grid[cursor_grid_pos].employee == null && !paint_locked:
+				unpaint_synergies()
 			if highlight_filled || grid[cursor_grid_pos].employee == null:
 				grid[cursor_grid_pos].highlight.show()
 			if grid[cursor_grid_pos].employee != null && held == null:
 				description.show_description(grid[cursor_grid_pos].employee.description)
+				if !paint_locked:
+					paint_synergies(grid[cursor_grid_pos].employee)
 			else:
 				description.hide_description()
 		else:
+			if held == null && !paint_locked:
+				unpaint_synergies()
 			description.hide_description()
 		highlighted_container = cursor_grid_pos
+		if cursor_grid_pos != Vector2i(-1, -1) && highlight_filled && grid[cursor_grid_pos].employee != null || held != null:
+			sell_area.show()
+		else:
+			sell_area.hide()
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value
@@ -115,3 +150,31 @@ func employee_production(employee: Employee) -> void:
 	money_produced.emit(production_worth)
 	employee.create_production_text(production_worth)
 	employee.start_production(speed_mult)
+
+func _on_sell_area_mouse_entered() -> void:
+	sell_area.modulate.a = 0.8
+	hovering_sell = true
+
+func _on_sell_area_mouse_exited() -> void:
+	sell_area.modulate.a = 0.6
+	hovering_sell = false
+
+func paint_synergies(employee: Employee, temp_pos: Vector2i=Vector2i(-99999, -99999)) -> void:
+	if temp_pos == Vector2i(-99999, -99999):
+		temp_pos = employee.grid_pos
+	var synergyData: SynergyApplication = SynergyApplication.new()
+	for key: Vector2i in grid.keys():
+		if key != temp_pos:
+			var slot: EmployeeContainer = grid[key]
+			if slot.employee == null || key == employee.grid_pos:
+				slot.highlight.self_modulate = synergyData.get_highlight_color_null(employee, key, temp_pos)
+			else:
+				slot.highlight.self_modulate = synergyData.get_highlight_color(employee, slot.employee, temp_pos)
+			slot.highlight.show()
+		else:
+			grid[key].reset_highlight_modulate()
+
+func unpaint_synergies() -> void:
+	for slot: EmployeeContainer in grid.values():
+		slot.reset_highlight_modulate()
+		slot.highlight.hide()

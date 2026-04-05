@@ -23,7 +23,10 @@ enum Stats {
 @export var invertArea: bool = false
 
 func check_apply(grid_position: Vector2i, target_employee: Employee) -> bool:
-	if ((target_employee.grid_pos - grid_position) in area) != invertArea:
-		if (target_employee.id in affects) != invertAffect:
-			return true
-	return false
+	return check_in_range(grid_position, target_employee.grid_pos) && check_affects(target_employee.id)
+
+func check_in_range(grid_position: Vector2i, target_pos: Vector2i) -> bool:
+	return ((target_pos - grid_position) in area) != invertArea
+
+func check_affects(target_id: String) -> bool:
+	return (target_id in affects) != invertAffect

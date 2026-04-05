@@ -3,6 +3,7 @@ class_name EmployeeContainer extends TextureRect
 var employee: Employee = null
 		
 @onready var highlight: ColorRect = $Highlight
+@onready var default_highlight_modulate: Color = highlight.self_modulate
 
 func add_employee(new_employee: Employee) -> void:
 	employee = new_employee
@@ -26,3 +27,6 @@ func switch_employee(container: EmployeeContainer, grid_pos: Vector2) -> void:
 		container.employee.grid_pos = grid_pos
 		employee = null
 	container.employee.position = Vector2.ZERO
+
+func reset_highlight_modulate() -> void:
+	highlight.self_modulate = default_highlight_modulate

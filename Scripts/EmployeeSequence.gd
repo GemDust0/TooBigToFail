@@ -30,7 +30,6 @@ func _on_submit_pressed() -> void:
 		codeEditor.focus()
 		code_index += 1
 	else:
-		print(get_final_score())
 		get_tree().change_scene_to_file("res://Scenes/CorporateSim.tscn")
 
 func get_final_score() -> float:

@@ -47,12 +47,14 @@ func produce() -> void:
 
 func create_production_text(amount: int) -> void:
 	var production_text: Label = production_text_scene.instantiate()
-	production_text.text = "+ %s" % amount
+	production_text.text = "%s%s" % ["+" if amount >= 0 else "", amount]
+	@warning_ignore("int_as_enum_without_cast")
+	production_text.size.x = production_text.get_theme_font("font").get_string_size(production_text.text, 0, -1, 11).x + 11
 	var production_tween: Tween = production_text.create_tween()
 	production_tween.tween_property(production_text, "position:y", production_text.position.y-16, 1.0)
 	production_tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	production_tween = production_text.create_tween()
-	production_tween.tween_property(production_text, "self_modulate:a", 0.0, 0.7)
+	production_tween.tween_property(production_text, "modulate:a", 0.0, 0.7)
 	production_tween.set_trans(Tween.TRANS_LINEAR)
 	production_tween.pause()
 	production_tween.finished.connect(production_text.hide)

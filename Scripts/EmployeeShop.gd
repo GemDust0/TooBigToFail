@@ -19,4 +19,4 @@ func restock() -> void:
 		slot.set_employee(get_random_employee(), sim.money)
 
 func get_random_employee() -> Employee:
-	return employees[randi_range(0, employees.size())].instantiate()
+	return employees[randi()%employees.size()].instantiate()

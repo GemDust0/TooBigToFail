@@ -3,9 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_686db"]
 
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
-texture = null
-type = 0
 id = "Intern Developer"
 description = "[color=#999999ff]Intern Developer
 [font_size=8]Common 0[/font_size][/color]
-Earns you some money, doubles adjacent developer income."
+Produces 50 coins every 5 seconds."

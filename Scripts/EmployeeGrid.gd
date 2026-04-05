@@ -1,5 +1,7 @@
 class_name EmployeeGrid extends GridContainer
 
+signal money_produced(amount: int)
+
 @export var employeeContainerScene: PackedScene
 var grid: Dictionary[Vector2i, EmployeeContainer]
 var held: Employee = null
@@ -84,4 +86,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			highlighted_container = cursor_grid_pos
 
 func employee_production(employee: Employee) -> void:
-	employee.create_production_text(employee.production_value)
+	var production_worth: int = employee.production_value
+	money_produced.emit(production_worth)
+	employee.create_production_text(production_worth)

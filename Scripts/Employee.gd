@@ -53,4 +53,4 @@ func create_production_text(amount: int) -> void:
 	production_tween.pause()
 	production_tween.finished.connect(production_text.hide)
 	get_tree().create_timer(0.8).timeout.connect(production_tween.play)
-	add_child(production_text)
+	add_sibling(production_text)

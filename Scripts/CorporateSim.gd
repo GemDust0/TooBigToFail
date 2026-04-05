@@ -18,3 +18,6 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	employeeGrid.decrease_grid_size(1)
+
+func add_money(amount: int) -> void:
+	money += amount

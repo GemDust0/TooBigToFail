@@ -5,7 +5,12 @@ signal money_produced(amount: int)
 @export var employeeContainerScene: PackedScene
 var grid: Dictionary[Vector2i, EmployeeContainer]
 var held: Employee = null
-var highlighted_container: Vector2i = Vector2(-1, -1)
+var highlighted_container: Vector2i = Vector2i(-1, -1)
+var highlight_filled: bool = true:
+	set(value):
+		if highlighted_container != Vector2i(-1, -1) && (grid[highlighted_container].employee != null) == value:
+			grid[highlighted_container].highlight.visible = !grid[highlighted_container].visible
+		highlight_filled = value
 
 @onready var description: DescriptionLabel = %DescriptionLabel
 
@@ -61,7 +66,7 @@ func get_cursor_grid_pos() -> Vector2i:
 		return Vector2i(-1, -1)
 	return Vector2i(cursor_grid_pos.y, cursor_grid_pos.x)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("left_click"):
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
@@ -69,7 +74,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				held = grid[cursor_grid_pos].employee
 				held.global_position = get_global_mouse_position() - held.size/2
 				held.z_index += 1
-				description.hide()
+				description.hide_description()
+				description.show_locked = true
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if cursor_grid_pos != Vector2i(-1, -1):
@@ -77,26 +83,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				held.position = Vector2.ZERO
 			held.z_index -= 1
-			description.show_description(held.description)
 			held = null
+			description.show_locked = false
 	if event is InputEventMouseMotion:
 		if held != null:
 			held.position += event.relative
 		var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
-		if cursor_grid_pos != highlighted_container:
-			if highlighted_container != Vector2i(-1, -1):
-				if grid.get(highlighted_container) != null:
-					grid[highlighted_container].highlight.hide()
-			if cursor_grid_pos != Vector2i(-1, -1):
+		if highlighted_container != Vector2i(-1, -1):
+			if grid.get(highlighted_container) != null:
+				grid[highlighted_container].highlight.hide()
+		if cursor_grid_pos != Vector2i(-1, -1):
+			if highlight_filled || grid[cursor_grid_pos].employee == null:
 				grid[cursor_grid_pos].highlight.show()
-				if grid[cursor_grid_pos].employee != null && held == null:
-					description.show_description(grid[cursor_grid_pos].employee.description)
-				else:
-					description.hide()
+			if grid[cursor_grid_pos].employee != null && held == null:
+				description.show_description(grid[cursor_grid_pos].employee.description)
 			else:
-				description.hide()
-			highlighted_container = cursor_grid_pos
-		
+				description.hide_description()
+		else:
+			description.hide_description()
+		highlighted_container = cursor_grid_pos
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value

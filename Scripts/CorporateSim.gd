@@ -14,6 +14,7 @@ var money: int = 0:
 @onready var moneyLabel: Label = $HUD/MoneyCount
 
 func _ready() -> void:
+	money = 250
 	employeeGrid.create_grid(5)
 
 func _on_button_pressed() -> void:

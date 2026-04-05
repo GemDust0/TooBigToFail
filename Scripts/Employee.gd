@@ -12,10 +12,11 @@ signal produced(employee: Employee)
 @export var id: String
 @export var description: String = "":
 	get:
+		if Engine.is_editor_hint():
+			return description
 		return description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{id}", id).replace("{t}", "[font_size=8]%s %s[/font_size]" % [rarity, type]).replace("\\n", "\n")
 @export var synergies: Array[Synergy]
 
-var held: bool = false
 var grid_pos: Vector2i
 var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.tscn")
 
@@ -33,14 +34,12 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		texture = get_icon()
 
-func _input(event: InputEvent) -> void:
-	if held && (event is InputEventMouseMotion):
-		position += event.relative
-
 func get_icon() -> Texture:
 	match type:
 		"Developer":
 			return load("res://Assets/DeveloperIcon.png")
+		"Pest":
+			return load("res://Assets/PestIcon.png")
 		_:
 			return null
 

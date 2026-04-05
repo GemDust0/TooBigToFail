@@ -7,13 +7,15 @@ var grid: Dictionary[Vector2i, EmployeeContainer]
 var held: Employee = null
 var highlighted_container: Vector2i = Vector2(-1, -1)
 
+@onready var description: EmployeeDescription = %EmployeeDescription
+
 func create_grid(grid_size: int) -> void:
 	columns = grid_size
 	for row: int in range(grid_size):
 		for col: int in range(grid_size):
 			var container: EmployeeContainer = create_container()
-			#@warning_ignore("integer_division")
-			#container.employee.grid_pos = Vector2i(row, col)
+			@warning_ignore("integer_division")
+			container.employee.grid_pos = Vector2i(row, col)
 			grid[Vector2i(row, col)] = container
 			add_child(container)
 
@@ -22,13 +24,13 @@ func increase_grid_size(amount: int) -> void:
 		for col: int in range(amount + columns):
 			var container: EmployeeContainer = create_container()
 			grid[Vector2i(row + columns, col)] = container
-			#container.employee.grid_pos = Vector2i(row + columns, col)
+			container.employee.grid_pos = Vector2i(row + columns, col)
 			add_child(container)
 	for row: int in range(columns-1, -1, -1):
 		for col: int in range(amount):
 			var container: EmployeeContainer = create_container()
 			grid[Vector2i(row, col + columns)] = container
-			#container.employee.grid_pos = Vector2i(row, col + columns)
+			container.employee.grid_pos = Vector2i(row, col + columns)
 			insert_child(container, row*columns+(columns-col))
 	columns += amount
 
@@ -45,9 +47,9 @@ func insert_child(child: Node, index: int) -> void:
 
 func create_container() -> EmployeeContainer:
 	var container: EmployeeContainer = employeeContainerScene.instantiate()
-	#container.employee = load("res://Scenes/Employees/InternDeveloper.tscn").instantiate()
-	#container.employee.self_modulate = Color(randf(), randf(), randf())
-	#container.employee.produced.connect(employee_production)
+	container.employee = load("res://Scenes/Employees/InternDeveloper.tscn").instantiate()
+	container.employee.self_modulate = Color(randf(), randf(), randf())
+	container.employee.produced.connect(employee_production)
 	return container
 
 func get_cursor_grid_pos() -> Vector2i:
@@ -83,7 +85,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				grid[highlighted_container].highlight.hide()
 			if cursor_grid_pos != Vector2i(-1, -1):
 				grid[cursor_grid_pos].highlight.show()
+				if grid[cursor_grid_pos].employee != null:
+					description.show_description(grid[cursor_grid_pos].employee)
+				else:
+					description.hide()
+			else:
+				description.hide()
 			highlighted_container = cursor_grid_pos
+		
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value

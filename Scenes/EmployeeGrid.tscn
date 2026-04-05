@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cg8f3de2xiggn"]
+
+[ext_resource type="Script" uid="uid://002rt6b87p7y" path="res://Scripts/EmployeeGrid.gd" id="1_rjyo8"]
+[ext_resource type="PackedScene" uid="uid://cvd24fy5waelu" path="res://Scenes/EmployeeContainer.tscn" id="2_ov81a"]
+
+[node name="EmployeeGrid" type="GridContainer" unique_id=1154458215]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("1_rjyo8")
+employeeContainerScene = ExtResource("2_ov81a")

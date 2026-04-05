@@ -44,7 +44,8 @@ func insert_child(child: Node, index: int) -> void:
 func create_container() -> EmployeeContainer:
 	var container: EmployeeContainer = employeeContainerScene.instantiate()
 	container.employee = load("res://Scenes/Employees/InternDeveloper.tscn").instantiate()
-	container.employee.modulate = Color(randf(), randf(), randf())
+	container.employee.self_modulate = Color(randf(), randf(), randf())
+	container.employee.produced.connect(employee_production)
 	return container
 
 func get_cursor_grid_pos() -> Vector2i:
@@ -81,3 +82,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			if cursor_grid_pos != Vector2i(-1, -1):
 				grid[cursor_grid_pos].highlight.show()
 			highlighted_container = cursor_grid_pos
+
+func employee_production(employee: Employee) -> void:
+	employee.create_production_text(employee.production_value)

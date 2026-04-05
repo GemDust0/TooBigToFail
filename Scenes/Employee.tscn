@@ -12,3 +12,5 @@ script = ExtResource("1_yw33p")
 
 [node name="ProductionTimer" type="Timer" parent="." unique_id=8388997]
 wait_time = 5.0
+
+[connection signal="timeout" from="ProductionTimer" to="." method="produce"]

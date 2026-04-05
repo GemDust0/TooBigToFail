@@ -5,6 +5,7 @@ enum Types {
 	DEVELOPER
 }
 
+signal produced(employee: Employee)
 
 ## Money produced every production
 @export var type: Types = Types.DEVELOPER
@@ -15,6 +16,7 @@ enum Types {
 
 var held: bool = false
 var grid_pos: Vector2i
+var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.tscn")
 
 @onready var production_timer: Timer = $ProductionTimer
 
@@ -37,4 +39,18 @@ func set_icon() -> void:
 			texture = load("res://Assets/DeveloperIcon.png")
 
 func produce() -> void:
-	pass
+	produced.emit(self)
+
+func create_production_text(amount: int) -> void:
+	var production_text: Label = production_text_scene.instantiate()
+	production_text.text = "+ %s" % amount
+	var production_tween: Tween = production_text.create_tween()
+	production_tween.tween_property(production_text, "position:y", production_text.position.y-16, 1.0)
+	production_tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	production_tween = production_text.create_tween()
+	production_tween.tween_property(production_text, "self_modulate:a", 0.0, 0.7)
+	production_tween.set_trans(Tween.TRANS_LINEAR)
+	production_tween.pause()
+	production_tween.finished.connect(production_text.hide)
+	get_tree().create_timer(0.8).timeout.connect(production_tween.play)
+	add_child(production_text)

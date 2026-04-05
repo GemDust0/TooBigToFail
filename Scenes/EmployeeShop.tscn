@@ -59,3 +59,4 @@ layout_mode = 2
 [connection signal="button_up" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/RestockButton" to="." method="restock"]

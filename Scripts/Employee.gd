@@ -3,13 +3,16 @@ class_name Employee extends TextureRect
 
 signal produced(employee: Employee)
 
+@export_enum("Developer", "IT", "Pest") var type: String = "Developer"
 ## Money produced every production
-@export_enum("Developer") var type: String = "Developer"
 @export var production_value: int = 50
 ## Time to produce
 @export var production_time: float = 5.0
 @export_enum("Common", "Uncommon", "Rare", "Epic", "Legendary") var rarity: String = "Common"
-@export var description: String = ""
+@export var id: String
+@export var description: String = "":
+	get:
+		return description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{id}", id).replace("{t}", "[font_size=8]%s %s[/font_size]" % [rarity, type]).replace("\\n", "\n")
 
 var held: bool = false
 var grid_pos: Vector2i
@@ -19,23 +22,25 @@ var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.ts
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		set_icon()
 		production_timer.wait_time = production_time
 		production_timer.start()
-		description = description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{t}", "[font_size=8]%s[/font_size]" % type).replace("\\n", "\n")
+		self_modulate = get_rarity_color()
+		texture = get_icon()
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		set_icon()
+		texture = get_icon()
 
 func _input(event: InputEvent) -> void:
 	if held && (event is InputEventMouseMotion):
 		position += event.relative
 
-func set_icon() -> void:
+func get_icon() -> Texture:
 	match type:
 		"Developer":
-			texture = load("res://Assets/DeveloperIcon.png")
+			return load("res://Assets/DeveloperIcon.png")
+		_:
+			return null
 
 func produce() -> void:
 	produced.emit(self)

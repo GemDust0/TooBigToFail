@@ -6,8 +6,6 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7whhf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ltok0"]
-
 [resource]
 default_font_size = 11
 /constants/line_spacing = 0
@@ -21,4 +19,3 @@ Button/styles/focus = SubResource("StyleBoxEmpty_emot1")
 Button/styles/hover = SubResource("StyleBoxEmpty_i5sur")
 Button/styles/normal = SubResource("StyleBoxEmpty_i5sur")
 Button/styles/pressed = SubResource("StyleBoxEmpty_7whhf")
-PanelContainer/styles/panel = SubResource("StyleBoxEmpty_ltok0")

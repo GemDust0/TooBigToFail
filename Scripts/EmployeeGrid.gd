@@ -67,7 +67,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if cursor_grid_pos != Vector2i(-1, -1) && grid[cursor_grid_pos].employee != null:
 				held = grid[cursor_grid_pos].employee
+				held.global_position = get_global_mouse_position() - held.size/2
 				held.z_index += 1
+				description.hide()
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if cursor_grid_pos != Vector2i(-1, -1):
@@ -75,6 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				held.position = Vector2.ZERO
 			held.z_index -= 1
+			description.show_description(held.description)
 			held = null
 	if event is InputEventMouseMotion:
 		if held != null:
@@ -82,10 +85,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 		if cursor_grid_pos != highlighted_container:
 			if highlighted_container != Vector2i(-1, -1):
-				grid[highlighted_container].highlight.hide()
+				if grid.get(highlighted_container) != null:
+					grid[highlighted_container].highlight.hide()
 			if cursor_grid_pos != Vector2i(-1, -1):
 				grid[cursor_grid_pos].highlight.show()
-				if grid[cursor_grid_pos].employee != null:
+				if grid[cursor_grid_pos].employee != null && held == null:
 					description.show_description(grid[cursor_grid_pos].employee.description)
 				else:
 					description.hide()

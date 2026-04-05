@@ -1,9 +1,13 @@
 extends Control
 
-@onready var description: RichTextLabel = $Description
+var employee: Employee
+
+@onready var employeeIcon: TextureRect = $EmployeeIcon
+@onready var cost: RichTextLabel = $Cost
 
 func set_employee(new_employee: Employee) -> void:
-	description.clear()
 	if new_employee != null:
-		add_child(new_employee)
-		description.append_text(new_employee.description)
+		employeeIcon.texture = new_employee.get_icon()
+		employeeIcon.self_modulate = new_employee.get_rarity_color()
+		cost.text = "[color=#%s]%s[/color]\nCost: 50" % [new_employee.get_rarity_color().to_html(), new_employee.id]
+	employee = new_employee

@@ -3,3 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_686db"]
 
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
+type = 0
+description = "{rc}Intern Developer\\n{t}"

@@ -1,17 +1,14 @@
 @tool
 class_name Employee extends TextureRect
 
-enum Types {
-	DEVELOPER
-}
-
 signal produced(employee: Employee)
 
 ## Money produced every production
-@export var type: Types = Types.DEVELOPER
+@export_enum("Developer") var type: String = "Developer"
 @export var production_value: int = 50
 ## Time to produce
 @export var production_time: float = 5.0
+@export_enum("Common", "Uncommon", "Rare", "Epic", "Legendary") var rarity: String = "Common"
 @export var description: String = ""
 
 var held: bool = false
@@ -21,9 +18,11 @@ var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.ts
 @onready var production_timer: Timer = $ProductionTimer
 
 func _ready() -> void:
-	set_icon()
-	production_timer.wait_time = production_time
-	production_timer.start()
+	if !Engine.is_editor_hint():
+		set_icon()
+		production_timer.wait_time = production_time
+		production_timer.start()
+		description = description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{t}", "[font_size=8]%s[/font_size]" % type).replace("\\n", "\n")
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -35,7 +34,7 @@ func _input(event: InputEvent) -> void:
 
 func set_icon() -> void:
 	match type:
-		Types.DEVELOPER:
+		"Developer":
 			texture = load("res://Assets/DeveloperIcon.png")
 
 func produce() -> void:
@@ -54,3 +53,18 @@ func create_production_text(amount: int) -> void:
 	production_tween.finished.connect(production_text.hide)
 	get_tree().create_timer(0.8).timeout.connect(production_tween.play)
 	add_sibling(production_text)
+
+func get_rarity_color() -> Color:
+	match rarity:
+		"Common":
+			return Color(0.6, 0.6, 0.6, 1.0)
+		"Uncommon":
+			return Color(0.112, 0.75, 0.112, 1.0)
+		"Rare":
+			return Color(0.085, 0.276, 0.85, 1.0)
+		"Epic":
+			return Color(0.3, 0.0, 0.9, 1.0)
+		"Legendary":
+			return Color(1.0, 0.775, 0.1, 1.0)
+		_:
+			return Color(1, 1, 1)

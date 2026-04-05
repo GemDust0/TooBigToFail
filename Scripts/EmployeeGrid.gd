@@ -7,7 +7,7 @@ var grid: Dictionary[Vector2i, EmployeeContainer]
 var held: Employee = null
 var highlighted_container: Vector2i = Vector2(-1, -1)
 
-@onready var description: EmployeeDescription = %EmployeeDescription
+@onready var description: DescriptionLabel = %DescriptionLabel
 
 func create_grid(grid_size: int) -> void:
 	columns = grid_size
@@ -86,7 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if cursor_grid_pos != Vector2i(-1, -1):
 				grid[cursor_grid_pos].highlight.show()
 				if grid[cursor_grid_pos].employee != null:
-					description.show_description(grid[cursor_grid_pos].employee)
+					description.show_description(grid[cursor_grid_pos].employee.description)
 				else:
 					description.hide()
 			else:

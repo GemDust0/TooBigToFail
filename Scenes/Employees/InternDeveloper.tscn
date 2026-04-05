@@ -4,4 +4,4 @@
 
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
 type = 0
-description = "{rc}Intern Developer\\n{t}"
+description = "{rc}Intern Developer\\n{t}[/color]\\nEarns you some money, doubles adjacent developer income."

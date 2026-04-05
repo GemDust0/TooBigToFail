@@ -14,7 +14,7 @@ signal produced(employee: Employee)
 	get:
 		if Engine.is_editor_hint():
 			return description
-		return description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{id}", id).replace("{t}", "[font_size=8]%s %s[/font_size]" % [rarity, type]).replace("\\n", "\n")
+		return "[color=#%s]%s\n[font_size=8]%s %s[/font_size][/color]\n%s" % [get_rarity_color().to_html(), id, rarity, type, description]
 @export var synergies: Array[Synergy]
 
 var grid_pos: Vector2i

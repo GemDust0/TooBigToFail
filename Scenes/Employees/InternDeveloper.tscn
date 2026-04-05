@@ -4,4 +4,4 @@
 
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
 id = "Intern Developer"
-description = "{rc}{id}\\n{t}[/color]\\nProduces 50 coins every 5 seconds."
+description = "Produces 50 coins every 5 seconds."

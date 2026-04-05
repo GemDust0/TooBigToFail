@@ -63,8 +63,7 @@ func _input(event: InputEvent) -> void:
 			sim.money -= held.cost
 			held.set_employee(null)
 			held.update_description(sim.money)
-		else:
-			held.employeeIcon.position = Vector2.ZERO
+		held.employeeIcon.position = Vector2.ZERO
 		held.employeeIcon.z_index -= 1
 		held = null
 		grid.description.show_locked = false

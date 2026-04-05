@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 @export var sim: CorporateSim
+@export var employees: Array[PackedScene]
 var slot_scene: PackedScene = preload("res://Scenes/ShopSlot.tscn")
 var slots: Array[ShopSlot] = []
 
@@ -14,4 +15,8 @@ func add_slot() -> void:
 	$Slots.add_child(slot)
 
 func restock() -> void:
-	$Slots/ShopSlot.set_employee(load("res://Scenes/Employees/InternDeveloper.tscn").instantiate(), sim.money)
+	for slot: ShopSlot in slots:
+		slot.set_employee(get_random_employee(), sim.money)
+
+func get_random_employee() -> Employee:
+	return employees[randi_range(0, employees.size())].instantiate()

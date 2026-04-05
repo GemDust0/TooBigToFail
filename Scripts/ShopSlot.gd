@@ -17,4 +17,7 @@ func set_employee(new_employee: Employee, money: int=0) -> void:
 	employee = new_employee
 
 func update_description(money: int=0) -> void:
-	cost_label.text = "[color=#%s]%s\n[color=#%s]Cost: %s[/color]" % [employee.get_rarity_color().to_html(), employee.id, too_expensive_col if money < cost else cost_label.get_theme_color("default_color").to_html(), cost]
+	if employee != null:
+		cost_label.text = "[color=#%s]%s\n[color=#%s]Cost: %s[/color]" % [employee.get_rarity_color().to_html(), employee.id, too_expensive_col if money < cost else cost_label.get_theme_color("default_color").to_html(), cost]
+	else:
+		cost_label.text = "Empty"

@@ -24,15 +24,14 @@ var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.ts
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		if production_time > 0:
-			production_timer.wait_time = production_time
-			production_timer.start()
 		self_modulate = get_rarity_color()
 		texture = get_icon()
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		texture = get_icon()
+	else:
+		print(production_timer.get_time_left())
 
 func get_icon() -> Texture:
 	match type:
@@ -60,6 +59,7 @@ func create_production_text(amount: int) -> void:
 	production_tween.pause()
 	production_tween.finished.connect(production_text.hide)
 	get_tree().create_timer(0.8).timeout.connect(production_tween.play)
+	production_tween.finished.connect(production_text.queue_free)
 	add_sibling(production_text)
 
 func get_rarity_color() -> Color:
@@ -76,3 +76,8 @@ func get_rarity_color() -> Color:
 			return Color(1.0, 0.775, 0.1, 1.0)
 		_:
 			return Color(1, 1, 1)
+
+func start_production(speed_mult: float) -> void:
+	if production_time > 0:
+		production_timer.wait_time = production_time / speed_mult
+		production_timer.start()

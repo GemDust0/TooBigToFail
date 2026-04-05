@@ -59,7 +59,8 @@ func _input(event: InputEvent) -> void:
 			grid.highlight_filled = false
 	elif event.is_action_released("left_click") && held != null:
 		var cursor_grid_pos: Vector2i = grid.get_cursor_grid_pos()
-		if cursor_grid_pos != Vector2i(-1, -1):
+		if cursor_grid_pos != Vector2i(-1, -1) && grid.grid[cursor_grid_pos].employee == null:
+			grid.add_employee(cursor_grid_pos, held.employee)
 			sim.money -= held.cost
 			held.set_employee(null)
 			held.update_description(sim.money)
@@ -76,3 +77,7 @@ func _input(event: InputEvent) -> void:
 			if slot.employee != null:
 				grid.description.show_description(slot.employee.description)
 				grid.description.show_locked = true
+			else:
+				grid.description.show_locked = false
+		else:
+			grid.description.show_locked = false

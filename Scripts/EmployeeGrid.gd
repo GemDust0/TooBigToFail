@@ -19,8 +19,6 @@ func create_grid(grid_size: int) -> void:
 	for row: int in range(grid_size):
 		for col: int in range(grid_size):
 			var container: EmployeeContainer = create_container()
-			@warning_ignore("integer_division")
-			container.employee.grid_pos = Vector2i(row, col)
 			grid[Vector2i(row, col)] = container
 			add_child(container)
 
@@ -29,13 +27,11 @@ func increase_grid_size(amount: int) -> void:
 		for col: int in range(amount + columns):
 			var container: EmployeeContainer = create_container()
 			grid[Vector2i(row + columns, col)] = container
-			container.employee.grid_pos = Vector2i(row + columns, col)
 			add_child(container)
 	for row: int in range(columns-1, -1, -1):
 		for col: int in range(amount):
 			var container: EmployeeContainer = create_container()
 			grid[Vector2i(row, col + columns)] = container
-			container.employee.grid_pos = Vector2i(row, col + columns)
 			insert_child(container, row*columns+(columns-col))
 	columns += amount
 
@@ -52,10 +48,14 @@ func insert_child(child: Node, index: int) -> void:
 
 func create_container() -> EmployeeContainer:
 	var container: EmployeeContainer = employeeContainerScene.instantiate()
-	container.employee = load("res://Scenes/Employees/InternDeveloper.tscn").instantiate()
-	container.employee.self_modulate = Color(randf(), randf(), randf())
-	container.employee.produced.connect(employee_production)
 	return container
+
+func add_employee(pos: Vector2i, employee: Employee) -> void:
+	grid[pos].add_employee(employee)
+	employee.produced.connect(employee_production)
+	employee.grid_pos = pos
+	var speed_mult: float = 1.0
+	employee.start_production(speed_mult)
 
 func get_cursor_grid_pos() -> Vector2i:
 	var mouse_pos: Vector2 = get_local_mouse_position()
@@ -79,7 +79,7 @@ func _input(event: InputEvent) -> void:
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if cursor_grid_pos != Vector2i(-1, -1):
-				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos])
+				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
 			else:
 				held.position = Vector2.ZERO
 			held.z_index -= 1
@@ -105,5 +105,7 @@ func _input(event: InputEvent) -> void:
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value
+	var speed_mult: float = 1.0
 	money_produced.emit(production_worth)
 	employee.create_production_text(production_worth)
+	employee.start_production(speed_mult)

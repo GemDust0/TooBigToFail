@@ -24,5 +24,5 @@ production_value = 0
 production_time = -1.0
 rarity = "Uncommon"
 id = "Snitch"
-description = "Increased production speed of adjacent employees by 25% but reduces value by 10%"
+description = "Increases production speed of adjacent employees by 25% but reduces value by 10%"
 synergies = Array[ExtResource("2_jekr8")]([SubResource("Resource_qelro"), SubResource("Resource_kd472")])

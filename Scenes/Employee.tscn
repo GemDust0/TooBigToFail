@@ -13,5 +13,6 @@ description = "{rc}Placeholder"
 
 [node name="ProductionTimer" type="Timer" parent="." unique_id=8388997]
 wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="ProductionTimer" to="." method="produce"]

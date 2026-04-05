@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2o7ayg510k4a" path="res://Scenes/EmployeeShop.tscn" id="6_cj7sp"]
 [ext_resource type="Script" uid="uid://ck0245lqu86lu" path="res://Scripts/DescriptionLabel.gd" id="7_yop2h"]
 [ext_resource type="PackedScene" uid="uid://c5uabqwgjomsa" path="res://Scenes/Employees/InternDeveloper.tscn" id="8_4ekef"]
+[ext_resource type="PackedScene" uid="uid://beodsmuxx7kqu" path="res://Scenes/Employees/Snitch.tscn" id="9_ux72k"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -123,7 +124,7 @@ text = "-----"
 
 [node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("sim") instance=ExtResource("6_cj7sp")]
 sim = NodePath("..")
-employees = Array[PackedScene]([ExtResource("8_4ekef")])
+employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k")])
 
 [connection signal="money_produced" from="PanelContainer/EmployeeGrid" to="." method="add_money"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

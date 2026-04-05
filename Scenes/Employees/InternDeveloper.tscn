@@ -5,5 +5,4 @@
 [node name="InternDeveloper" unique_id=1534399525 instance=ExtResource("1_686db")]
 id = "Intern Developer"
 description = "[color=#999999ff]Intern Developer
-[font_size=8]Common 0[/font_size][/color]
-Produces 50 coins every 5 seconds."
+[font_size=8]Common 0[/font_size][/color]\\nProduces 50 coins every 5 seconds."

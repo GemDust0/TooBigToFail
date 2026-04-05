@@ -1,0 +1,1 @@
+class_name SynergyFilter extends Resource

@@ -13,6 +13,7 @@ signal produced(employee: Employee)
 @export var description: String = "":
 	get:
 		return description.replace("{rc}", "[color=#%s]" % get_rarity_color().to_html()).replace("{id}", id).replace("{t}", "[font_size=8]%s %s[/font_size]" % [rarity, type]).replace("\\n", "\n")
+@export var synergies: Array[Synergy]
 
 var held: bool = false
 var grid_pos: Vector2i
@@ -22,8 +23,9 @@ var production_text_scene: PackedScene = preload("res://Scenes/ProductionText.ts
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		production_timer.wait_time = production_time
-		production_timer.start()
+		if production_time > 0:
+			production_timer.wait_time = production_time
+			production_timer.start()
 		self_modulate = get_rarity_color()
 		texture = get_icon()
 

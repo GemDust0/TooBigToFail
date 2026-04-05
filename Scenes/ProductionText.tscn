@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://3nddv675u4w4" path="res://Assets/MoneySymbol.png" id="1_nuh8v"]
 
 [node name="ProductionText" type="Label" unique_id=1492520313]
+modulate = Color(0.8, 0.53333336, 0, 1)
+z_index = 2
 offset_right = 40.0
 offset_bottom = 14.0
 text = "+ 50"

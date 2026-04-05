@@ -30,8 +30,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		texture = get_icon()
-	else:
-		print(production_timer.get_time_left())
 
 func get_icon() -> Texture:
 	match type:

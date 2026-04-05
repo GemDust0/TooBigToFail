@@ -106,6 +106,12 @@ func _input(event: InputEvent) -> void:
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value
 	var speed_mult: float = 1.0
+	var synergyData: SynergyApplication = SynergyApplication.new()
+	for slot: EmployeeContainer in grid.values():
+		if slot.employee != null && slot.employee != employee:
+			synergyData.apply_employee_synergies(slot.employee, employee)
+	production_worth = roundi((production_worth + synergyData.flatValue) * synergyData.multValue)
+	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime
 	money_produced.emit(production_worth)
 	employee.create_production_text(production_worth)
 	employee.start_production(speed_mult)

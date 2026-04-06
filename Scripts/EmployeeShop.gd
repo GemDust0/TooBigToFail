@@ -9,7 +9,7 @@ var slot_highlight_color: Color = Color(1.0, 1.0, 1.0, 0.498)
 var slot_expensive_color: Color = Color(0.65, 0.065, 0.163, 0.498)
 var held: ShopSlot = null
 var shop_level: int = 1
-var weights: Array[int] = [0, 50, 55, 85, 95, 100]
+var weights: Array[int] = [0, 50, 70, 85, 95, 100]
 
 @onready var slots_node: VBoxContainer = $Slots
 @onready var slot_highlight: ColorRect = $SlotHighlight

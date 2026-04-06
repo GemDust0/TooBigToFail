@@ -221,8 +221,7 @@ mouse_filter = 2
 [node name="EmployeeGrid" parent="PanelContainer" unique_id=1154458215 instance=ExtResource("5_4d44h")]
 layout_mode = 2
 
-[node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("sim", "grid") instance=ExtResource("6_cj7sp")]
-sim = NodePath("..")
+[node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("grid") instance=ExtResource("6_cj7sp")]
 grid = NodePath("../PanelContainer/EmployeeGrid")
 employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("12_pvrxv"), ExtResource("13_hnvcw")])
 

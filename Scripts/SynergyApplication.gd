@@ -34,7 +34,7 @@ func get_highlight_color(employee: Employee, target_employee: Employee, temp_pos
 		temp_pos = employee.grid_pos
 	for synergy: Synergy in employee.synergies:
 		if synergy.check_in_range(temp_pos, target_employee.grid_pos):
-			if synergy.check_affects(target_employee.id):
+			if synergy.check_affects(target_employee.id) && synergy.check_relic_req():
 				highlight_color = Color(0.0, 1.0, 0.0, 0.9)
 				break
 			else:
@@ -46,6 +46,6 @@ func get_highlight_color_null(employee: Employee, target_pos: Vector2i, temp_pos
 	if temp_pos == Vector2i(-99999, -99999):
 		temp_pos = employee.grid_pos
 	for synergy: Synergy in employee.synergies:
-		if synergy.check_in_range(temp_pos, target_pos):
+		if synergy.check_in_range(temp_pos, target_pos) && synergy.check_relic_req():
 			return Color(1.0, 0.0, 0.0, 0.8)
 	return highlight_color

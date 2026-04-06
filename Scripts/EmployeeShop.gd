@@ -1,6 +1,5 @@
 class_name EmployeeShop extends TileMapLayer
 
-@export var sim: CorporateSim
 @export var grid: EmployeeGrid
 @export var employees: Array[PackedScene]
 var slot_scene: PackedScene = preload("res://Scenes/ShopSlot.tscn")
@@ -28,22 +27,22 @@ func _ready() -> void:
 func add_slot(locked: bool = false) -> void:
 	var slot: ShopSlot = slot_scene.instantiate()
 	slots.append(slot)
-	sim.money_changed.connect(slot.update_description)
+	CorporateSim.instance.money_changed.connect(slot.update_description)
 	slots_node.add_child(slot)
 	if locked:
 		slot.locked = true
 	else:
-		slot.set_employee(get_random_employee(), sim.money)
+		slot.set_employee(get_random_employee(), CorporateSim.instance.money)
 
 func restock(ignore_cost: bool=false) -> void:
-	if sim.money < 50 && !ignore_cost:
+	if CorporateSim.instance.money < 50 && !ignore_cost:
 		return
 	elif !ignore_cost:
-		sim.money -= 50
+		CorporateSim.instance.money -= 50
 	for slot: ShopSlot in slots:
 		if slot.locked:
 			break
-		slot.set_employee(get_random_employee(), sim.money)
+		slot.set_employee(get_random_employee(), CorporateSim.instance.money)
 
 func get_random_employee() -> Employee:
 	var weight: int = randi() % weights[shop_level]
@@ -62,7 +61,7 @@ func get_random_employee() -> Employee:
 func _process(_delta: float) -> void:
 	if $Disabler.visible:
 		return
-	if sim.money < 50:
+	if CorporateSim.instance.money < 50:
 		$RestockButton.modulate = Color(0.65, 0.065, 0.163, 1.0)
 		$RestockButton.disable()
 	else:
@@ -74,7 +73,7 @@ func _process(_delta: float) -> void:
 		if hovered_slot < slots.size():
 			if slots[hovered_slot].employee != null:
 				slot_highlight.position.y = 86 + hovered_slot*34
-				if sim.money < slots[hovered_slot].cost:
+				if CorporateSim.instance.money < slots[hovered_slot].cost:
 					slot_highlight.color = slot_expensive_color
 				else:
 					slot_highlight.color = slot_highlight_color
@@ -89,7 +88,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") && slot_highlight.visible:
 		var slot: ShopSlot = slots[(slot_highlight.position.y - 86) / 34]
-		if slot.employee != null && sim.money >= slot.cost:
+		if slot.employee != null && CorporateSim.instance.money >= slot.cost:
 			held = slot
 			held.employeeIcon.global_position = get_global_mouse_position() - held.employeeIcon.size/2
 			held.employeeIcon.z_index += 1
@@ -101,9 +100,9 @@ func _input(event: InputEvent) -> void:
 		var cursor_grid_pos: Vector2i = grid.get_cursor_grid_pos()
 		if cursor_grid_pos != Vector2i(-1, -1) && grid.grid[cursor_grid_pos].employee == null:
 			grid.add_employee(cursor_grid_pos, held.employee)
-			sim.money -= held.cost
+			CorporateSim.instance.money -= held.cost
 			held.set_employee(null)
-			held.update_description(sim.money)
+			held.update_description(CorporateSim.instance.money)
 		held.employeeIcon.position = Vector2.ZERO
 		held.employeeIcon.z_index -= 1
 		held = null
@@ -132,7 +131,7 @@ func unlock_slot() -> void:
 	for slot: ShopSlot in slots:
 		if slot.locked:
 			slot.locked = false
-			slot.set_employee(get_random_employee(), sim.money)
+			slot.set_employee(get_random_employee(), CorporateSim.instance.money)
 			break
 
 func interrupt_hold() -> void:

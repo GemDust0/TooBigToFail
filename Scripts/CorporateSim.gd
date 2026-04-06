@@ -17,6 +17,11 @@ var targets: Array[int] = [5000, 100000, 10000000, 1000000000, 100000000000]
 @onready var target_label: Label = $HUD/MoneyTarget
 @onready var relic_inventory: RelicInventory = $RelicInventory
 
+static var instance: CorporateSim = null
+
+func _enter_tree() -> void:
+	instance = self
+
 func _ready() -> void:
 	money = 250
 	#money = 1000000000

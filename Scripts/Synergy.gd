@@ -21,12 +21,17 @@ enum Stats {
 @export var area: Array[Vector2i]
 ## If true will only affect those not in area
 @export var invertArea: bool = false
+@export var relicReq: String = ""
+@export var invertRelic: bool = false
 
 func check_apply(grid_position: Vector2i, target_employee: Employee) -> bool:
-	return check_in_range(grid_position, target_employee.grid_pos) && check_affects(target_employee.id)
+	return check_in_range(grid_position, target_employee.grid_pos) && check_affects(target_employee.id) && check_relic_req()
 
 func check_in_range(grid_position: Vector2i, target_pos: Vector2i) -> bool:
 	return ((target_pos - grid_position) in area) != invertArea
 
 func check_affects(target_id: String) -> bool:
 	return (target_id in affects) != invertAffect
+
+func check_relic_req() -> bool:
+	return relicReq == "" || ((CorporateSim.instance.relic_inventory.has_relic(relicReq)) != invertRelic)

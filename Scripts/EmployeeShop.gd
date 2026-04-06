@@ -17,7 +17,7 @@ func _ready() -> void:
 	add_slot()
 	add_slot()
 	add_slot()
-	restock()
+	restock(true)
 
 func add_slot() -> void:
 	var slot: ShopSlot = slot_scene.instantiate()
@@ -25,11 +25,13 @@ func add_slot() -> void:
 	sim.money_changed.connect(slot.update_description)
 	slots_node.add_child(slot)
 
-func restock() -> void:
-	if sim.money >= 50:
+func restock(ignore_cost: bool=false) -> void:
+	if sim.money < 50 && !ignore_cost:
+		return
+	elif !ignore_cost:
 		sim.money -= 50
-		for slot: ShopSlot in slots:
-			slot.set_employee(get_random_employee(), sim.money)
+	for slot: ShopSlot in slots:
+		slot.set_employee(get_random_employee(), sim.money)
 
 func get_random_employee() -> Employee:
 	return employees[randi()%employees.size()].instantiate()

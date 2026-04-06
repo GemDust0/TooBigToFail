@@ -43,6 +43,6 @@ static func get_cost(rarity: String) -> int:
 		"Epic":
 			return 20000
 		"Legendary":
-			return 5000
+			return 50000
 		_:
 			return 50

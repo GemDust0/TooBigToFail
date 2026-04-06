@@ -4,7 +4,11 @@ var too_expensive_col: String = Color(0.65, 0.065, 0.163, 1.0).to_html()
 
 var employee: Employee
 var cost: int
-var locked: bool = false
+var locked: bool = false:
+	set(value):
+		if value:
+			employeeIcon.texture = null
+		locked = value
 
 @onready var employeeIcon: TextureRect = $EmployeeIcon
 @onready var cost_label: RichTextLabel = $Cost

@@ -25,13 +25,26 @@ func _ready() -> void:
 func add_money(amount: int) -> void:
 	money += amount
 	if money >= targets[0]:
+		$HUD/TargetReached.visible = true
+		grid.process_mode = Node.PROCESS_MODE_DISABLED
+		shop.process_mode = Node.PROCESS_MODE_DISABLED
 		targets.pop_front()
 		if targets.size() == 0:
-			pass
+			$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\nYou may rest.\n\n" % targets[0]
 		else:
-			target_label.text = "Target: %s" % targets[0]
-			grid.increase_grid_size(1)
 			if targets.size() == 1:
-				grid.increase_grid_size(1)
-				shop.unlock_slot()
-			shop.upgrade_shop()
+				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
+			else:
+				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
+			
+
+func target_reached_accept() -> void:
+	$HUD/TargetReached.visible = false
+	target_label.text = "Target: %s" % targets[0]
+	grid.increase_grid_size(1)
+	if targets.size() == 1:
+		grid.increase_grid_size(1)
+		shop.unlock_slot()
+	shop.upgrade_shop()
+	grid.process_mode = Node.PROCESS_MODE_INHERIT
+	shop.process_mode = Node.PROCESS_MODE_INHERIT

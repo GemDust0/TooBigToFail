@@ -41,6 +41,8 @@ func restock(ignore_cost: bool=false) -> void:
 	elif !ignore_cost:
 		sim.money -= 50
 	for slot: ShopSlot in slots:
+		if slot.locked:
+			break
 		slot.set_employee(get_random_employee(), sim.money)
 
 func get_random_employee() -> Employee:

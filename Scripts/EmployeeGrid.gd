@@ -95,8 +95,8 @@ func _input(event: InputEvent) -> void:
 				held = grid[cursor_grid_pos].employee
 				held.global_position = get_global_mouse_position() - held.size/2
 				held.z_index += 1
-				description.hide_description()
-				description.show_locked = true
+				description.hide_description(self)
+				description.change_show_locked(true, self)
 				@warning_ignore("integer_division")
 				sell_text.text = "Sell for %s coins" % (ShopSlot.get_cost(held.rarity)/2)
 				sell_area.show()
@@ -113,7 +113,7 @@ func _input(event: InputEvent) -> void:
 				held.position = Vector2.ZERO
 			held = null
 			sell_area.hide()
-			description.show_locked = false
+			description.change_show_locked(false, self)
 	if event is InputEventMouseMotion:
 		if held != null:
 			held.position += event.relative
@@ -129,15 +129,15 @@ func _input(event: InputEvent) -> void:
 			if highlight_filled || grid[cursor_grid_pos].employee == null:
 				grid[cursor_grid_pos].highlight.show()
 			if grid[cursor_grid_pos].employee != null && held == null:
-				description.show_description(grid[cursor_grid_pos].employee.description)
+				description.show_description(grid[cursor_grid_pos].employee.description, self)
 				if !paint_locked:
 					paint_synergies(grid[cursor_grid_pos].employee)
 			else:
-				description.hide_description()
+				description.hide_description(self)
 		else:
 			if held == null && !paint_locked:
 				unpaint_synergies()
-			description.hide_description()
+			description.hide_description(self)
 		highlighted_container = cursor_grid_pos
 
 func employee_production(employee: Employee) -> void:
@@ -187,7 +187,7 @@ func interrupt_hold() -> void:
 		held.z_index -= 1
 		held = null
 		sell_area.hide()
-		description.show_locked = false
+		description.change_show_locked(false, self)
 
 func get_employee_count(id: String) -> int:
 	var count: int = 0

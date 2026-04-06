@@ -92,8 +92,8 @@ func _input(event: InputEvent) -> void:
 			held = slot
 			held.employeeIcon.global_position = get_global_mouse_position() - held.employeeIcon.size/2
 			held.employeeIcon.z_index += 1
-			grid.description.hide_description(true)
-			grid.description.show_locked = true
+			grid.description.hide_description(grid.description.show_locked)
+			grid.description.change_show_locked(true, self)
 			grid.paint_locked = true
 			grid.highlight_filled = false
 	elif event.is_action_released("left_click") && held != null:
@@ -106,7 +106,7 @@ func _input(event: InputEvent) -> void:
 		held.employeeIcon.position = Vector2.ZERO
 		held.employeeIcon.z_index -= 1
 		held = null
-		grid.description.show_locked = false
+		grid.description.change_show_locked(false, self)
 		grid.paint_locked = false
 		grid.highlight_filled = true
 	elif event is InputEventMouseMotion:
@@ -116,12 +116,12 @@ func _input(event: InputEvent) -> void:
 		elif slot_highlight.visible:
 			var slot: ShopSlot = slots[(slot_highlight.position.y - 86) / 34]
 			if slot.employee != null:
-				grid.description.show_description(slot.employee.description)
-				grid.description.show_locked = true
+				grid.description.show_description(slot.employee.description, self)
+				grid.description.change_show_locked(true, self)
 			else:
-				grid.description.show_locked = false
+				grid.description.change_show_locked(false, self)
 		else:
-			grid.description.show_locked = false
+			grid.description.change_show_locked(false, self)
 
 func upgrade_shop() -> void:
 	shop_level += 1
@@ -139,7 +139,7 @@ func interrupt_hold() -> void:
 		held.employeeIcon.position = Vector2.ZERO
 		held.employeeIcon.z_index -= 1
 		held = null
-		grid.description.show_locked = false
+		grid.description.change_show_locked(false, self)
 		grid.paint_locked = false
 		grid.highlight_filled = true
 

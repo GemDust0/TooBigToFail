@@ -61,6 +61,10 @@ func create_production_text(amount: int) -> void:
 	add_sibling(production_text)
 
 func get_rarity_color() -> Color:
+	return static_get_rarity_color(rarity)
+
+@warning_ignore("shadowed_variable")
+static func static_get_rarity_color(rarity: String) -> Color:
 	match rarity:
 		"Common":
 			return Color(0.6, 0.6, 0.6, 1.0)

@@ -102,6 +102,7 @@ func _input(event: InputEvent) -> void:
 				sell_area.show()
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
+			held.z_index -= 1
 			if hovering_sell:
 				grid[held.grid_pos].employee = null
 				held.queue_free()
@@ -110,7 +111,6 @@ func _input(event: InputEvent) -> void:
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
 			else:
 				held.position = Vector2.ZERO
-			held.z_index -= 1
 			held = null
 			sell_area.hide()
 			description.show_locked = false
@@ -188,3 +188,22 @@ func interrupt_hold() -> void:
 		held = null
 		sell_area.hide()
 		description.show_locked = false
+
+func get_employee_count(id: String) -> int:
+	var count: int = 0
+	for container: EmployeeContainer in grid.values():
+		if container.employee == null:
+			if id == "":
+				count += 1
+		elif container.employee.id == id:
+			count += 1
+	return count
+
+func has_employee_count(id: String) -> bool:
+	for container: EmployeeContainer in grid.values():
+		if container.employee == null:
+			if id == "":
+				return true
+		elif container.employee.id == id:
+			return true
+	return false

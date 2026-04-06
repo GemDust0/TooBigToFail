@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://by53ati7er8y3"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_shv5u"]
+[ext_resource type="Texture2D" uid="uid://3nddv675u4w4" path="res://Assets/MoneySymbol.png" id="2_ofaso"]
+
+[node name="GovernmentSubsidies" unique_id=362028674 instance=ExtResource("1_shv5u")]
+texture = ExtResource("2_ofaso")
+id = "Government Subsidies"
+description = "You are given 100 coins every 5 seconds"

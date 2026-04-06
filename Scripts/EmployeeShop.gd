@@ -70,12 +70,15 @@ func _process(_delta: float) -> void:
 	if shop_cursor_pos.x > 0 && shop_cursor_pos.x < slots_node.size.x:
 		var hovered_slot: int = int(shop_cursor_pos.y / slots_node.get_theme_constant("separation"))
 		if hovered_slot < slots.size():
-			slot_highlight.position.y = 86 + hovered_slot*34
-			if sim.money < slots[hovered_slot].cost:
-				slot_highlight.color = slot_expensive_color
+			if slots[hovered_slot].employee != null:
+				slot_highlight.position.y = 86 + hovered_slot*34
+				if sim.money < slots[hovered_slot].cost:
+					slot_highlight.color = slot_expensive_color
+				else:
+					slot_highlight.color = slot_highlight_color
+				slot_highlight.show()
 			else:
-				slot_highlight.color = slot_highlight_color
-			slot_highlight.show()
+				slot_highlight.hide()
 		else:
 			slot_highlight.hide()
 	else:

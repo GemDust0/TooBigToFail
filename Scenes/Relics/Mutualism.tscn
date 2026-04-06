@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dhxx7y3iunh6r"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_om2bn"]
+[ext_resource type="Texture2D" uid="uid://cja2vvxig4shh" path="res://Assets/PestIcon.png" id="1_r1tv8"]
+
+[node name="Mutualism" unique_id=362028674 instance=ExtResource("1_om2bn")]
+texture = ExtResource("1_r1tv8")
+id = "Mutualism"
+description = "Rats no longer decrease production value of adjacent employees"

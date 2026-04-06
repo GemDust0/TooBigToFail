@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://xdv240crh3kg" path="res://Scenes/Employees/ExperiencedDeveloper.tscn" id="11_l3k28"]
 [ext_resource type="PackedScene" uid="uid://grr8d8ddayxl" path="res://Scenes/Employees/MasterDeveloper.tscn" id="12_pvrxv"]
 [ext_resource type="PackedScene" uid="uid://hqje2n5cnh24" path="res://Scenes/Employees/SeniorDeveloper.tscn" id="13_hnvcw"]
+[ext_resource type="PackedScene" uid="uid://dqhraap1ln7ee" path="res://Scenes/Employees/Rat.tscn" id="14_8f4hq"]
+[ext_resource type="PackedScene" uid="uid://c3wlxjtmpnkf6" path="res://Scenes/Employees/BossPet.tscn" id="16_7r3px"]
+[ext_resource type="PackedScene" uid="uid://cmo1j1767m6yh" path="res://Scenes/Employees/Dog.tscn" id="17_nmoak"]
+[ext_resource type="PackedScene" uid="uid://nq53mjnc0xx0" path="res://Scenes/Employees/ProjectManager.tscn" id="18_5ido5"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -306,7 +310,7 @@ layout_mode = 2
 
 [node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("grid") instance=ExtResource("6_cj7sp")]
 grid = NodePath("../PanelContainer/EmployeeGrid")
-employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("12_pvrxv"), ExtResource("13_hnvcw")])
+employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("13_hnvcw"), ExtResource("12_pvrxv"), ExtResource("14_8f4hq"), ExtResource("9_ux72k"), ExtResource("16_7r3px"), ExtResource("17_nmoak"), ExtResource("18_5ido5")])
 
 [node name="SellArea" type="TextureRect" parent="." unique_id=335735936]
 unique_name_in_owner = true

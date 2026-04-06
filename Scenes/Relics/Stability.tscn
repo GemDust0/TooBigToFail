@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c1pkowvf8se8d"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_7iuyq"]
+[ext_resource type="Texture2D" uid="uid://dfhv185c4coyh" path="res://Assets/HappyFace.png" id="2_4pbg7"]
+
+[node name="Stability" unique_id=362028674 instance=ExtResource("1_7iuyq")]
+texture = ExtResource("2_4pbg7")
+id = "Employee Stability"
+description = "All employee production value is doubled"

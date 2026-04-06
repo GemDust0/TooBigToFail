@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dhq18vy4i2t7l"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_tbrcu"]
+[ext_resource type="Texture2D" uid="uid://brcti43shig4d" path="res://Assets/TurningLossesAround.png" id="2_g78to"]
+
+[node name="TurningLosses" unique_id=362028674 instance=ExtResource("1_tbrcu")]
+texture = ExtResource("2_g78to")
+id = "Turning Losses (Around)"
+description = "Any negative profits are instead made positive"

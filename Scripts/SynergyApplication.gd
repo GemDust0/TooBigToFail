@@ -1,7 +1,7 @@
 class_name SynergyApplication extends Resource
 
 var flatValue: float = 0.0
-var flatTime: float = 1.0
+var flatTime: float = 0.0
 var multValue: float = 1.0
 var multTime: float = 1.0
 

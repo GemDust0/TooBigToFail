@@ -24,7 +24,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	money = 250
-	#money = 1000000000
+	money = 100000000000
 	target_label.text = "Target: %s" % targets[0]
 	grid.create_grid(5)
 	grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
@@ -71,6 +71,7 @@ func target_reached_accept() -> void:
 	grid.disabled = false
 	shop.enable()
 	relic_inventory.process_mode = Node.PROCESS_MODE_INHERIT
+	%HandInTargetButton.disabled = (money < targets[0])
 
 func start_subsidy_timer() -> void:
 	var timer: SceneTreeTimer = get_tree().create_timer(5)
@@ -78,14 +79,26 @@ func start_subsidy_timer() -> void:
 	timer.timeout.connect(start_subsidy_timer)
 
 func give_relic(relic: Relic) -> void:
+	relic_inventory.add_relic(relic)
+	relic_popup.call_deferred(relic)
+
+func relic_popup(relic: Relic) -> void:
 	if !$HUD/TargetReached.visible:
+		grid.interrupt_hold()
+		shop.interrupt_hold()
+		grid.description.hide()
+		shop.slot_highlight.hide()
+		grid.unpaint_synergies()
+		grid.disabled = true
+		shop.disable()
 		relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 		%RelicName.text = relic.id
 		%RelicTexture.texture = relic.texture
 		%RelicDescription.text = relic.description
 		%RelicUnlock.visible = true
-	relic_inventory.add_relic(relic)
-	
+
 func accept_relic() -> void:
 	%RelicUnlock.visible = false
+	grid.disabled = false
+	shop.enable()
 	relic_inventory.process_mode = Node.PROCESS_MODE_INHERIT

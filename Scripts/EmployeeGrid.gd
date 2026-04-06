@@ -14,10 +14,16 @@ var highlight_filled: bool = true:
 var hovering_sell: bool = false
 var paint_locked: bool = false
 var disabled: bool = false
+var negatives_earned: int = 0
+var last_change: int = Time.get_ticks_msec()
 
 @onready var description: DescriptionLabel = %DescriptionLabel
 @onready var sell_area: TextureRect = %SellArea
 @onready var sell_text: Label = %SellText
+
+func _process(_delta: float) -> void:
+	if (Time.get_ticks_msec() - last_change) >= 30000 && (!CorporateSim.instance.relic_inventory.has_relic("Employee Stability")): # 30000ms = 0.5min
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Stability.tscn").instantiate())
 
 func create_grid(grid_size: int) -> void:
 	columns = grid_size
@@ -56,7 +62,12 @@ func create_container() -> EmployeeContainer:
 	return container
 
 func add_employee(pos: Vector2i, employee: Employee) -> void:
+	last_change = Time.get_ticks_msec()
 	grid[pos].add_employee(employee)
+	if get_employee_count("Snitch") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Snitches get... Snitches??"):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/SnitchesSnitches.tscn").instantiate())
+	if get_employee_count("Rat") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Mutualism"):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
 	employee.produced.connect(employee_production)
 	employee.grid_pos = pos
 	var speed_mult: float = 1.0
@@ -107,8 +118,10 @@ func _input(event: InputEvent) -> void:
 				grid[held.grid_pos].employee = null
 				held.queue_free()
 				money_produced.emit(25)
+				last_change = Time.get_ticks_msec()
 			elif cursor_grid_pos != Vector2i(-1, -1):
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
+				last_change = Time.get_ticks_msec()
 			else:
 				held.position = Vector2.ZERO
 			held = null
@@ -149,6 +162,15 @@ func employee_production(employee: Employee) -> void:
 			synergyData.apply_employee_synergies(slot.employee, employee)
 	production_worth = roundi((production_worth + synergyData.flatValue) * synergyData.multValue)
 	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime
+	if production_worth < 0:
+		if CorporateSim.instance.relic_inventory.has_relic("Turning Losses (Around)"):
+			production_worth *= -1
+		else:
+			negatives_earned += 1
+			if negatives_earned > 5:
+				CorporateSim.instance.give_relic(load("res://Scenes/Relics/TurningLosses.tscn").instantiate())
+	if CorporateSim.instance.relic_inventory.has_relic("Employee Stability"):
+		production_worth *= 2
 	money_produced.emit(production_worth)
 	employee.create_production_text(production_worth)
 	employee.start_production(speed_mult)

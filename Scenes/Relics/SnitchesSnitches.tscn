@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b7ekf3liomx5f"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_arfm7"]
+[ext_resource type="Texture2D" uid="uid://cja2vvxig4shh" path="res://Assets/PestIcon.png" id="2_d0cs7"]
+
+[node name="SnitchesSnitches" unique_id=362028674 instance=ExtResource("1_arfm7")]
+self_modulate = Color(0.11372549, 0.7490196, 0.11372549, 1)
+texture = ExtResource("2_d0cs7")
+id = "Snitches get... Snitches??"
+description = "Snitches no longer decrease employee production value"

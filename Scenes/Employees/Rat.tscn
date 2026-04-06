@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dqhraap1ln7ee"]
+
+[ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_6c0oi"]
+[ext_resource type="Texture2D" uid="uid://cja2vvxig4shh" path="res://Assets/PestIcon.png" id="2_q25nc"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="3_q25nc"]
+
+[sub_resource type="Resource" id="Resource_lthed"]
+script = ExtResource("3_q25nc")
+effect = -10.0
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+relicReq = "Mutualism"
+invertRelic = true
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[sub_resource type="Resource" id="Resource_q25nc"]
+script = ExtResource("3_q25nc")
+stat = 1
+type = 1
+effect = 0.2
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[node name="Rat" unique_id=854379618 instance=ExtResource("1_6c0oi")]
+texture = ExtResource("2_q25nc")
+type = "Pest"
+production_value = 0
+production_time = 0.0
+id = "Rat"
+description = "Reduces production value of adjacent employees by 10, but increases their production speed by 20%"
+synergies = Array[ExtResource("3_q25nc")]([SubResource("Resource_lthed"), SubResource("Resource_q25nc")])

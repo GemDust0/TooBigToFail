@@ -14,6 +14,8 @@ func set_employee(new_employee: Employee, money: int=0) -> void:
 		employeeIcon.self_modulate = new_employee.get_rarity_color()
 		cost = 50
 		cost_label.text = "[color=#%s]%s\n[color=#%s]Cost: %s[/color]" % [new_employee.get_rarity_color().to_html(), new_employee.id, too_expensive_col if money < cost else cost_label.get_theme_color("default_color").to_html(), cost]
+	else:
+		employeeIcon.texture = null
 	employee = new_employee
 
 func update_description(money: int=0) -> void:

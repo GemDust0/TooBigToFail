@@ -88,7 +88,14 @@ offset_bottom = 408.0
 mouse_filter = 2
 theme_override_constants/separation = 34
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=684948598]
+offset_left = 566.0
+offset_top = 86.0
+offset_right = 568.0
+offset_bottom = 390.0
+
 [node name="SlotHighlight" type="ColorRect" parent="." unique_id=1308099986]
+visible = false
 offset_left = 532.0
 offset_top = 86.0
 offset_right = 718.0

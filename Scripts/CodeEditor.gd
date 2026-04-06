@@ -88,7 +88,6 @@ func _on_input_text_changed() -> void:
 		previewNode.append_text(initialText.substr(line_indices[lines.size()]))
 	prevText = inputNode.text
 	prevColumn = inputNode.get_caret_column()
-	previewNode.append_text("\n%f" % get_correctness())
 
 func _on_input_caret_changed() -> void:
 	prevColumn = inputNode.get_caret_column()

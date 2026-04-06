@@ -39,4 +39,5 @@ func add_money(amount: int) -> void:
 			grid.increase_grid_size(1)
 			if targets.size() == 1:
 				grid.increase_grid_size(1)
+				shop.unlock_slot()
 			shop.upgrade_shop()

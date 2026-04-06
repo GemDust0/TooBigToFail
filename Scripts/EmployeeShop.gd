@@ -19,13 +19,21 @@ func _ready() -> void:
 	add_slot()
 	add_slot()
 	add_slot()
-	restock(true)
+	add_slot(true)
+	add_slot(true)
+	add_slot(true)
+	add_slot(true)
+	add_slot(true)
 
-func add_slot() -> void:
+func add_slot(locked: bool = false) -> void:
 	var slot: ShopSlot = slot_scene.instantiate()
 	slots.append(slot)
 	sim.money_changed.connect(slot.update_description)
 	slots_node.add_child(slot)
+	if locked:
+		slot.locked = true
+	else:
+		slot.set_employee(get_random_employee(), sim.money)
 
 func restock(ignore_cost: bool=false) -> void:
 	if sim.money < 50 && !ignore_cost:
@@ -110,6 +118,12 @@ func _input(event: InputEvent) -> void:
 			grid.description.show_locked = false
 
 func upgrade_shop() -> void:
-	add_slot()
-	slots[-1].set_employee(get_random_employee(), sim.money)
 	shop_level += 1
+	unlock_slot()
+
+func unlock_slot() -> void:
+	for slot: ShopSlot in slots:
+		if slot.locked:
+			slot.locked = false
+			slot.set_employee(get_random_employee(), sim.money)
+			break

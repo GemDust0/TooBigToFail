@@ -95,6 +95,7 @@ func _input(event: InputEvent) -> void:
 				description.hide_description()
 				description.show_locked = true
 				sell_text.text = "Sell for %s coins" % 25
+				sell_area.show()
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if hovering_sell:
@@ -107,6 +108,7 @@ func _input(event: InputEvent) -> void:
 				held.position = Vector2.ZERO
 			held.z_index -= 1
 			held = null
+			sell_area.hide()
 			description.show_locked = false
 	if event is InputEventMouseMotion:
 		if held != null:
@@ -133,10 +135,10 @@ func _input(event: InputEvent) -> void:
 				unpaint_synergies()
 			description.hide_description()
 		highlighted_container = cursor_grid_pos
-		if cursor_grid_pos != Vector2i(-1, -1) && highlight_filled && grid[cursor_grid_pos].employee != null || held != null:
-			sell_area.show()
-		else:
-			sell_area.hide()
+		#if cursor_grid_pos != Vector2i(-1, -1) && highlight_filled && grid[cursor_grid_pos].employee != null || held != null:
+			#sell_area.show()
+		#else:
+			#sell_area.hide()
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value

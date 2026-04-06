@@ -17,21 +17,30 @@ func _ready() -> void:
 	add_slot()
 	add_slot()
 	add_slot()
+	restock()
 
 func add_slot() -> void:
 	var slot: ShopSlot = slot_scene.instantiate()
 	slots.append(slot)
 	sim.money_changed.connect(slot.update_description)
-	$Slots.add_child(slot)
+	slots_node.add_child(slot)
 
 func restock() -> void:
-	for slot: ShopSlot in slots:
-		slot.set_employee(get_random_employee(), sim.money)
+	if sim.money >= 50:
+		sim.money -= 50
+		for slot: ShopSlot in slots:
+			slot.set_employee(get_random_employee(), sim.money)
 
 func get_random_employee() -> Employee:
 	return employees[randi()%employees.size()].instantiate()
 
 func _process(_delta: float) -> void:
+	if sim.money < 50:
+		$RestockButton.modulate = Color(0.65, 0.065, 0.163, 1.0)
+		$RestockButton.disable()
+	else:
+		$RestockButton.modulate = Color(1, 1, 1)
+		$RestockButton.undisable()
 	var shop_cursor_pos: Vector2 = slots_node.get_local_mouse_position()
 	if shop_cursor_pos.x > 0 && shop_cursor_pos.x < slots_node.size.x:
 		var hovered_slot: int = int(shop_cursor_pos.y / slots_node.get_theme_constant("separation"))

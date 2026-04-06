@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://d2o7ayg510k4a"]
 
 [ext_resource type="TileSet" uid="uid://dcofykib1g8jy" path="res://Assets/menu_tileset.tres" id="1_ef5t0"]
-[ext_resource type="Texture2D" uid="uid://13ykhdh4cagl" path="res://Assets/RestockButtonBackground.png" id="2_7orru"]
 [ext_resource type="Script" uid="uid://cyuejbauho77b" path="res://Scripts/EmployeeShop.gd" id="2_byi62"]
 [ext_resource type="Texture2D" uid="uid://ojht4dspp0dc" path="res://Assets/RestockIcon.png" id="3_byi62"]
 [ext_resource type="Script" uid="uid://dic4ysfr33gdo" path="res://Scripts/RestockButton.gd" id="4_ya453"]
@@ -26,27 +25,27 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 33
 text = "Shop"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=94546676]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_filter = 2
-
-[node name="Background" type="Sprite2D" parent="PanelContainer/HBoxContainer" unique_id=1737911458]
-position = Vector2(67.00001, 16.000006)
-texture = ExtResource("2_7orru")
-
-[node name="RestockIcon" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1233210918]
-layout_mode = 2
-texture = ExtResource("3_byi62")
-
-[node name="RestockButton" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1893318892]
-layout_mode = 2
+[node name="RestockButton" type="Button" parent="." unique_id=1893318892]
+offset_left = 533.0
+offset_top = 391.0
+offset_right = 717.0
+offset_bottom = 447.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 22
-text = "Restock"
+theme_override_icons/icon = ExtResource("3_byi62")
+text = "Restock
+Cost: 50"
 script = ExtResource("4_ya453")
+
+[node name="RestockIcon" type="TextureRect" parent="RestockButton" unique_id=924248379]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 12.0
+offset_right = 44.0
+offset_bottom = 44.0
+size_flags_vertical = 4
+texture = ExtResource("3_byi62")
 
 [node name="SlotsBg" type="VBoxContainer" parent="." unique_id=41450008]
 offset_left = 532.0
@@ -97,8 +96,8 @@ offset_bottom = 118.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0.49803922)
 
-[connection signal="button_down" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_button_down"]
-[connection signal="button_up" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_button_up"]
-[connection signal="mouse_entered" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PanelContainer/HBoxContainer/RestockButton" to="PanelContainer/HBoxContainer/RestockButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/RestockButton" to="." method="restock"]
+[connection signal="button_down" from="RestockButton" to="RestockButton" method="_on_button_down"]
+[connection signal="button_up" from="RestockButton" to="RestockButton" method="_on_button_up"]
+[connection signal="mouse_entered" from="RestockButton" to="RestockButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RestockButton" to="RestockButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="RestockButton" to="." method="restock"]

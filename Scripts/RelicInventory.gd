@@ -10,7 +10,6 @@ func has_relic(id: String) -> bool:
 			return true
 	return false
 
-func add_relic(relic: Relic, dupe: bool=false) -> void:
-	if dupe || !has_relic(relic.id):
-		relics.append(relic)
-		container.add_child(relic)
+func add_relic(relic: Relic) -> void:
+	relics.append(relic)
+	container.add_child(relic)

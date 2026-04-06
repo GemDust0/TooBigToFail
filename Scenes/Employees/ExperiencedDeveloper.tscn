@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://xdv240crh3kg"]
+
+[ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_djk7h"]
+
+[node name="ExperiencedDeveloper" unique_id=854379618 instance=ExtResource("1_djk7h")]
+production_value = 150
+production_time = 3.0
+rarity = "Rare"
+id = "Experienced Developer"
+description = "Produces 150 coins every 3 seconds"

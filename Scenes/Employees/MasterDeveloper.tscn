@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://grr8d8ddayxl"]
+
+[ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_ma15u"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="2_uienj"]
+
+[sub_resource type="Resource" id="Resource_ra8wo"]
+script = ExtResource("2_uienj")
+type = 2
+effect = 2.0
+affects = Array[String](["Intern Developer", "Amateur Developer", "Experienced Developer", "Senior Developer", "Master Developer"])
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[node name="MasterDeveloper" unique_id=854379618 instance=ExtResource("1_ma15u")]
+production_value = 250
+production_time = 1.0
+rarity = "Legendary"
+id = "Master Developer"
+description = "Produces 250 coins every second, doubles production of nearby developers."
+synergies = Array[ExtResource("2_uienj")]([SubResource("Resource_ra8wo")])

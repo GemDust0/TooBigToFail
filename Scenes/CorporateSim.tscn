@@ -10,7 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c5uabqwgjomsa" path="res://Scenes/Employees/InternDeveloper.tscn" id="8_4ekef"]
 [ext_resource type="PackedScene" uid="uid://beodsmuxx7kqu" path="res://Scenes/Employees/Snitch.tscn" id="9_ux72k"]
 [ext_resource type="Texture2D" uid="uid://c6xdkycwu0u8e" path="res://Assets/SellAreaHighlight.png" id="10_i8qfs"]
+[ext_resource type="PackedScene" uid="uid://bjl65rhcrd5pv" path="res://Scenes/Employees/AmateurDeveloper.tscn" id="10_uvps6"]
 [ext_resource type="PackedScene" uid="uid://gw88ypw86crf" path="res://Scenes/RelicInventory.tscn" id="11_ig6cq"]
+[ext_resource type="PackedScene" uid="uid://xdv240crh3kg" path="res://Scenes/Employees/ExperiencedDeveloper.tscn" id="11_l3k28"]
+[ext_resource type="PackedScene" uid="uid://grr8d8ddayxl" path="res://Scenes/Employees/MasterDeveloper.tscn" id="12_pvrxv"]
+[ext_resource type="PackedScene" uid="uid://hqje2n5cnh24" path="res://Scenes/Employees/SeniorDeveloper.tscn" id="13_hnvcw"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -188,7 +192,7 @@ layout_mode = 2
 [node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("sim", "grid") instance=ExtResource("6_cj7sp")]
 sim = NodePath("..")
 grid = NodePath("../PanelContainer/EmployeeGrid")
-employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k")])
+employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("9_ux72k"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("12_pvrxv"), ExtResource("13_hnvcw")])
 
 [node name="SellArea" type="TextureRect" parent="." unique_id=335735936]
 unique_name_in_owner = true

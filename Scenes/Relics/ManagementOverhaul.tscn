@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bw7yksic4j8"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_0chxt"]
+[ext_resource type="Texture2D" uid="uid://cja2vvxig4shh" path="res://Assets/PestIcon.png" id="2_is7ck"]
+
+[node name="ManagementOverhaul" unique_id=362028674 instance=ExtResource("1_0chxt")]
+self_modulate = Color(1, 0.7764706, 0.09803922, 1)
+texture = ExtResource("2_is7ck")
+id = "Management Overhaul"
+description = "Project Managers stop bothering regular employees"

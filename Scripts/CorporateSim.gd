@@ -17,7 +17,7 @@ var targets: Array[int] = [1000, 100000, 10000000, 1000000000, 100000000000]
 @onready var target_label: Label = $HUD/MoneyTarget
 
 func _ready() -> void:
-	money = 950
+	money = 250
 	target_label.text = "Target: %s" % targets[0]
 	grid.create_grid(5)
 	grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())

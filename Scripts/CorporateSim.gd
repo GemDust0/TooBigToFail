@@ -22,12 +22,6 @@ func _ready() -> void:
 	grid.create_grid(5)
 	grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
 
-func _on_button_pressed() -> void:
-	grid.increase_grid_size(1)
-
-func _on_button_2_pressed() -> void:
-	grid.decrease_grid_size(1)
-
 func add_money(amount: int) -> void:
 	money += amount
 	if money >= targets[0]:

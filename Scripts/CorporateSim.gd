@@ -27,14 +27,16 @@ func _ready() -> void:
 func add_money(amount: int) -> void:
 	money += amount
 	if money >= targets[0]:
+		if $HUD/TargetReached.visible:
+			target_reached_accept()
 		$HUD/TargetReached.visible = true
 		grid.interrupt_hold()
 		shop.interrupt_hold()
 		grid.description.hide()
 		shop.slot_highlight.hide()
 		grid.unpaint_synergies()
-		grid.process_mode = Node.PROCESS_MODE_DISABLED
-		shop.process_mode = Node.PROCESS_MODE_DISABLED
+		grid.disabled = true
+		shop.disable()
 		relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 		targets.pop_front()
 		if targets.size() == 0:
@@ -54,6 +56,6 @@ func target_reached_accept() -> void:
 		grid.increase_grid_size(1)
 		shop.unlock_slot()
 	shop.upgrade_shop()
-	grid.process_mode = Node.PROCESS_MODE_INHERIT
-	shop.process_mode = Node.PROCESS_MODE_INHERIT
+	grid.disabled = false
+	shop.enable()
 	relic_inventory.process_mode = Node.PROCESS_MODE_INHERIT

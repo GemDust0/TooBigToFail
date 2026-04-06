@@ -60,6 +60,8 @@ func get_random_employee() -> Employee:
 	return candidates[randi()%candidates.size()]
 
 func _process(_delta: float) -> void:
+	if $Disabler.visible:
+		return
 	if sim.money < 50:
 		$RestockButton.modulate = Color(0.65, 0.065, 0.163, 1.0)
 		$RestockButton.disable()
@@ -141,3 +143,9 @@ func interrupt_hold() -> void:
 		grid.description.show_locked = false
 		grid.paint_locked = false
 		grid.highlight_filled = true
+
+func disable() -> void:
+	$Disabler.show()
+
+func enable() -> void:
+	$Disabler.hide()

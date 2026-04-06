@@ -13,6 +13,7 @@ var highlight_filled: bool = true:
 		highlight_filled = value
 var hovering_sell: bool = false
 var paint_locked: bool = false
+var disabled: bool = false
 
 @onready var description: DescriptionLabel = %DescriptionLabel
 @onready var sell_area: TextureRect = %SellArea
@@ -85,6 +86,8 @@ func get_cursor_grid_pos() -> Vector2i:
 	return cursor_grid_pos
 
 func _input(event: InputEvent) -> void:
+	if disabled:
+		return
 	if event is InputEventMouseButton:
 		if event.is_action_pressed("left_click"):
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()

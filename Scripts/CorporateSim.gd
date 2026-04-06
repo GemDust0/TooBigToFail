@@ -33,9 +33,9 @@ func add_money(amount: int) -> void:
 			$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\nYou may rest.\n\n" % targets[0]
 		else:
 			if targets.size() == 1:
-				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
+				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
 			else:
-				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
+				$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
 			
 
 func target_reached_accept() -> void:

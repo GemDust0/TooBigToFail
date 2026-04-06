@@ -94,7 +94,7 @@ func relic_popup(relic: Relic) -> void:
 		relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 		%RelicName.text = relic.id
 		%RelicTexture.texture = relic.texture
-		%RelicDescription.text = relic.description
+		%RelicDescription.text = " %s " % relic.description
 		%RelicUnlock.visible = true
 
 func accept_relic() -> void:

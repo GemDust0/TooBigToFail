@@ -12,7 +12,7 @@ func set_employee(new_employee: Employee, money: int=0) -> void:
 	if new_employee != null:
 		employeeIcon.texture = new_employee.get_icon()
 		employeeIcon.self_modulate = new_employee.get_rarity_color()
-		cost = 50
+		cost = get_cost(new_employee.rarity)
 		cost_label.text = "[color=#%s]%s\n[color=#%s]Cost: %s[/color]" % [new_employee.get_rarity_color().to_html(), new_employee.id, too_expensive_col if money < cost else cost_label.get_theme_color("default_color").to_html(), cost]
 	else:
 		employeeIcon.texture = null
@@ -23,3 +23,18 @@ func update_description(money: int=0) -> void:
 		cost_label.text = "[color=#%s]%s\n[color=#%s]Cost: %s[/color]" % [employee.get_rarity_color().to_html(), employee.id, too_expensive_col if money < cost else cost_label.get_theme_color("default_color").to_html(), cost]
 	else:
 		cost_label.text = "Empty"
+
+func get_cost(rarity: String) -> int:
+	match rarity:
+		"Common":
+			return 200
+		"Uncommon":
+			return 1000
+		"Rare":
+			return 5000
+		"Epic":
+			return 20000
+		"Legendary":
+			return 5000
+		_:
+			return 50

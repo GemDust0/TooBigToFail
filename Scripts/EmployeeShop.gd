@@ -8,6 +8,8 @@ var slots: Array[ShopSlot] = []
 var slot_highlight_color: Color = Color(1.0, 1.0, 1.0, 0.498)
 var slot_expensive_color: Color = Color(0.65, 0.065, 0.163, 0.498)
 var held: ShopSlot = null
+var shop_level: int = 2
+var weights: Array[int] = [0, 50, 55, 85, 95, 100]
 
 @onready var slots_node: VBoxContainer = $Slots
 @onready var slot_highlight: ColorRect = $SlotHighlight
@@ -34,7 +36,18 @@ func restock(ignore_cost: bool=false) -> void:
 		slot.set_employee(get_random_employee(), sim.money)
 
 func get_random_employee() -> Employee:
-	return employees[randi()%employees.size()].instantiate()
+	var weight: int = randi() % weights[shop_level]
+	var rarity: String
+	for index: int in range(weights.size()-2, -1, -1):
+		if weight >= weights[index]:
+			rarity = ["Common", "Uncommon", "Rare", "Epic", "Legendary"][index]
+			break
+	var candidates: Array[Employee] = []
+	for employee_scene: PackedScene in employees:
+		var employee: Employee = employee_scene.instantiate()
+		if employee.rarity == rarity:
+			candidates.append(employee)
+	return candidates[randi()%candidates.size()]
 
 func _process(_delta: float) -> void:
 	if sim.money < 50:

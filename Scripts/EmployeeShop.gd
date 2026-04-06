@@ -1,4 +1,4 @@
-extends TileMapLayer
+class_name EmployeeShop extends TileMapLayer
 
 @export var sim: CorporateSim
 @export var grid: EmployeeGrid
@@ -8,7 +8,7 @@ var slots: Array[ShopSlot] = []
 var slot_highlight_color: Color = Color(1.0, 1.0, 1.0, 0.498)
 var slot_expensive_color: Color = Color(0.65, 0.065, 0.163, 0.498)
 var held: ShopSlot = null
-var shop_level: int = 2
+var shop_level: int = 1
 var weights: Array[int] = [0, 50, 55, 85, 95, 100]
 
 @onready var slots_node: VBoxContainer = $Slots
@@ -108,3 +108,8 @@ func _input(event: InputEvent) -> void:
 				grid.description.show_locked = false
 		else:
 			grid.description.show_locked = false
+
+func upgrade_shop() -> void:
+	add_slot()
+	slots[-1].set_employee(get_random_employee(), sim.money)
+	shop_level += 1

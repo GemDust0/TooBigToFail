@@ -127,3 +127,12 @@ func unlock_slot() -> void:
 			slot.locked = false
 			slot.set_employee(get_random_employee(), sim.money)
 			break
+
+func interrupt_hold() -> void:
+	if held != null:
+		held.employeeIcon.position = Vector2.ZERO
+		held.employeeIcon.z_index -= 1
+		held = null
+		grid.description.show_locked = false
+		grid.paint_locked = false
+		grid.highlight_filled = true

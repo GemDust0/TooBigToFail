@@ -135,10 +135,6 @@ func _input(event: InputEvent) -> void:
 				unpaint_synergies()
 			description.hide_description()
 		highlighted_container = cursor_grid_pos
-		#if cursor_grid_pos != Vector2i(-1, -1) && highlight_filled && grid[cursor_grid_pos].employee != null || held != null:
-			#sell_area.show()
-		#else:
-			#sell_area.hide()
 
 func employee_production(employee: Employee) -> void:
 	var production_worth: int = employee.production_value
@@ -180,3 +176,11 @@ func unpaint_synergies() -> void:
 	for slot: EmployeeContainer in grid.values():
 		slot.reset_highlight_modulate()
 		slot.highlight.hide()
+
+func interrupt_hold() -> void:
+	if held != null:
+		held.position = Vector2.ZERO
+		held.z_index -= 1
+		held = null
+		sell_area.hide()
+		description.show_locked = false

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dqg0bvky61dxp"]
+
+[ext_resource type="Script" uid="uid://dgxvv6vtjtslo" path="res://Scripts/Relic.gd" id="1_giuqx"]
+
+[node name="Relic" type="TextureRect" unique_id=362028674]
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_giuqx")

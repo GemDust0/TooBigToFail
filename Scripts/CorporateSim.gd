@@ -15,6 +15,7 @@ var targets: Array[int] = [1000, 100000, 10000000, 1000000000, 100000000000]
 @onready var moneyLabel: Label = $HUD/MoneyCount
 @onready var shop: EmployeeShop = $EmployeeShop
 @onready var target_label: Label = $HUD/MoneyTarget
+@onready var relic_inventory: RelicInventory = $RelicInventory
 
 func _ready() -> void:
 	money = 250
@@ -27,8 +28,14 @@ func add_money(amount: int) -> void:
 	money += amount
 	if money >= targets[0]:
 		$HUD/TargetReached.visible = true
+		grid.interrupt_hold()
+		shop.interrupt_hold()
+		grid.description.hide()
+		shop.slot_highlight.hide()
+		grid.unpaint_synergies()
 		grid.process_mode = Node.PROCESS_MODE_DISABLED
 		shop.process_mode = Node.PROCESS_MODE_DISABLED
+		relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 		targets.pop_front()
 		if targets.size() == 0:
 			$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\nYou may rest.\n\n" % targets[0]
@@ -49,3 +56,4 @@ func target_reached_accept() -> void:
 	shop.upgrade_shop()
 	grid.process_mode = Node.PROCESS_MODE_INHERIT
 	shop.process_mode = Node.PROCESS_MODE_INHERIT
+	relic_inventory.process_mode = Node.PROCESS_MODE_INHERIT

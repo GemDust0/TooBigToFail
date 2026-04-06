@@ -94,7 +94,8 @@ func _input(event: InputEvent) -> void:
 				held.z_index += 1
 				description.hide_description()
 				description.show_locked = true
-				sell_text.text = "Sell for %s coins" % 25
+				@warning_ignore("integer_division")
+				sell_text.text = "Sell for %s coins" % (ShopSlot.get_cost(held.rarity)/2)
 				sell_area.show()
 		elif event.is_action_released("left_click") && held != null:
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()

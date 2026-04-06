@@ -32,7 +32,7 @@ func update_description(money: int=0) -> void:
 		else:
 			cost_label.text = "Empty"
 
-func get_cost(rarity: String) -> int:
+static func get_cost(rarity: String) -> int:
 	match rarity:
 		"Common":
 			return 200

@@ -27,6 +27,5 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TransitionObject" parent="." unique_id=1894568809 instance=ExtResource("3_qcpka")]
-should_fade_in = false
 
 [connection signal="ended" from="Dialogue" to="." method="transition"]

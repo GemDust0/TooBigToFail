@@ -70,6 +70,7 @@ func add_employee(pos: Vector2i, employee: Employee) -> void:
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
 	if get_employee_count("Project Manager") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Management Overhaul"):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
+	check_grid_for_relics()
 	employee.produced.connect(employee_production)
 	employee.grid_pos = pos
 	var speed_mult: float = 1.0
@@ -79,6 +80,37 @@ func add_employee(pos: Vector2i, employee: Employee) -> void:
 			synergyData.apply_employee_synergies(slot.employee, employee)
 	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime
 	employee.start_production(speed_mult)
+
+const patterns: Dictionary[String, Array] = {
+	"Intern Together Strong":[
+		["Intern Developer", "Intern Developer", "Intern Developer"],
+		["Intern Developer", "Intern Developer", "Intern Developer"],
+		["Intern Developer", "Intern Developer", "Intern Developer"]
+	]
+}
+
+func check_grid_for_relics() -> void:
+	if !CorporateSim.instance.relic_inventory.has_relic("Intern Together Strong") && check_for_pattern(patterns["Intern Together Strong"]):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/InternTogetherStrong.tscn").instantiate())
+
+func check_for_pattern(pattern: Array) -> bool:
+	for key: Vector2i in grid.keys():
+		if key[0] > (columns - pattern.size()) || key[1] > (columns - pattern[0].size()):
+			continue
+		var employee: Employee = grid[key].employee
+		if pattern[0][0] == "X" || (employee == null && pattern[0][0] == "") || (employee != null && (employee.id == pattern[0][0] || employee.type == pattern[0][0] || employee.rarity == pattern[0][0])):
+			var is_match: bool = true
+			for row: int in range(pattern.size()):
+				for col: int in range(pattern[0].size()):
+					employee = grid[key + Vector2i(row, col)].employee
+					if !(pattern[row][col] == "X" || (employee == null && pattern[row][col] == "") || (employee != null && (employee.id == pattern[row][col] || employee.type == pattern[row][col] || employee.rarity == pattern[0][0]))):
+						is_match = false
+						break
+				if !is_match:
+					break
+			if is_match:
+				return true
+	return false
 
 func get_actual_cursor_grid_pos() -> Vector2i:
 	var cursor_pos: Vector2 = get_local_mouse_position()
@@ -123,6 +155,7 @@ func _input(event: InputEvent) -> void:
 				last_change = Time.get_ticks_msec()
 			elif cursor_grid_pos != Vector2i(-1, -1):
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
+				check_grid_for_relics()
 				last_change = Time.get_ticks_msec()
 			else:
 				held.position = Vector2.ZERO

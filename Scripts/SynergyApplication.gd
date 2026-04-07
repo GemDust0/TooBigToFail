@@ -27,6 +27,8 @@ func apply_employee_synergies(employee: Employee, target_employee: Employee) -> 
 							multValue *= synergy.effect
 						Synergy.Stats.SPEED:
 							multTime *= synergy.effect
+	if employee != null && employee.id == "Intern Developer" && target_employee.id == "Intern Developer":
+		multValue *= 1.1
 
 func get_highlight_color(employee: Employee, target_employee: Employee, temp_pos: Vector2i=Vector2i(-1, -1)) -> Color:
 	var highlight_color: Color = Color(0.0, 0.0, 0.0, 0.0)

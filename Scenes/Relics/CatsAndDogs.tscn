@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://3vlh3t03on2x"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_0e66d"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_ege0h"]
 
 [node name="CatsAndDogs" unique_id=362028674 instance=ExtResource("1_0e66d")]
+self_modulate = Color(1, 0.7764706, 0.09803922, 1)
+texture = ExtResource("2_ege0h")
 id = "Cats And Dogs"
 description = "Cats now provide double their buff to adjacent employees, dogs now triple production value of adjacent employees."

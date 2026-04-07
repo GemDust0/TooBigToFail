@@ -2,12 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://d0l8cldmt5055" path="res://Scenes/Dialogue.tscn" id="1_1srds"]
 [ext_resource type="Script" uid="uid://c4fi2io8v23b0" path="res://Scripts/Cutscene.gd" id="1_idm0t"]
-[ext_resource type="PackedScene" uid="uid://7wntewwe18qc" path="res://Scenes/EmployeeSequence.tscn" id="2_qcpka"]
 [ext_resource type="PackedScene" uid="uid://bw6uqna2uej6v" path="res://Scenes/TransitionObject.tscn" id="3_qcpka"]
 
 [node name="Cutscene" type="Node" unique_id=1404501526]
 script = ExtResource("1_idm0t")
-transition_scene = ExtResource("2_qcpka")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1917938603]
 anchors_preset = 15

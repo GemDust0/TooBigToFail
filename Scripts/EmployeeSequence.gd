@@ -31,7 +31,13 @@ func _on_submit_pressed() -> void:
 		codeEditor.focus()
 		code_index += 1
 	else:
-		transition_object.change_scene(load("res://Scenes/CorporateSim.tscn"))
+		var score: float = get_final_score()
+		if score < -0.5:
+			transition_object.change_scene(load("res://Scenes/Cutscenes/EmployeeNot.tscn"))
+		elif score < 0.5:
+			transition_object.change_scene(load("res://Scenes/Cutscenes/EmployeeBad.tscn"))
+		else:
+			transition_object.change_scene(load("res://Scenes/Cutscenes/EmployeeGood.tscn"))
 
 func get_final_score() -> float:
 	var finalScore: float = 0

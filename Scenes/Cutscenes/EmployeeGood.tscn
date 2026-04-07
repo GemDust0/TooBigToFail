@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cq18ytd6cllcs"]
+
+[ext_resource type="PackedScene" uid="uid://dubt5l8dwh388" path="res://Scenes/Cutscene.tscn" id="1_y14ki"]
+[ext_resource type="PackedScene" uid="uid://dxsiu2j0jdiah" path="res://Scenes/CorporateSim.tscn" id="2_7g1c5"]
+
+[node name="EmployeeGood" unique_id=1404501526 instance=ExtResource("1_y14ki")]
+transition_scene = ExtResource("2_7g1c5")
+
+[node name="Dialogue" parent="." index="1" unique_id=1803881885]
+dialogue = PackedStringArray("Promoted to manager due to a far above average performance? After one day? Do your coworkers just... Sleep? Whatever, good job on climbing the corporate ladder I guess.", "A manager position gives you the perfect position to crunch down on their profits, take good note of who does and doesn\'t work well together, and any conditions that change that. Make it all fall down 6 feet under.")
+speakers = PackedStringArray("???", "???")

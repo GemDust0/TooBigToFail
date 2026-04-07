@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bkopv7r28gxmg"]
+
+[ext_resource type="PackedScene" uid="uid://dubt5l8dwh388" path="res://Scenes/Cutscene.tscn" id="1_1l857"]
+[ext_resource type="PackedScene" uid="uid://dxsiu2j0jdiah" path="res://Scenes/CorporateSim.tscn" id="2_fvs0y"]
+
+[node name="EmployeeNot" unique_id=1404501526 instance=ExtResource("1_1l857")]
+transition_scene = ExtResource("2_fvs0y")
+
+[node name="Dialogue" parent="." index="1" unique_id=1803881885]
+dialogue = PackedStringArray("Seriously [i]how are they still performing well[/i], they were paying the wages of years of fired employees due to an improper firing process? At least they took your refusal to do work to be you pointing them to that fact.", "A manager position gives you the perfect position to crunch down on their profits, take good note of who does and doesn\'t work well together, and any conditions that change that. Make it all fall down 6 feet under.")
+speakers = PackedStringArray("???", "???")

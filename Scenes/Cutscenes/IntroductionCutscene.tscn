@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dapqpmwbkssp"]
+
+[ext_resource type="PackedScene" uid="uid://dubt5l8dwh388" path="res://Scenes/Cutscene.tscn" id="1_g1t5e"]
+
+[node name="IntroductionCutscene" unique_id=1404501526 instance=ExtResource("1_g1t5e")]
+
+[node name="Dialogue" parent="." index="1" unique_id=1803881885]
+dialogue = PackedStringArray("You have one simple mission, bring that company down no matter what. And don\'t you [i]dare[/i] to fail me. If you do, let\'s just say your payment, [i][color=#a6112aff]won\'t arrive[/color][/i]... Got it?", "Good. Now, we managed to get you a position as a developer. You\'ll want to perform well so you earn their trust, and once you have their trust break the entire system down. Now go in there.")
+speakers = PackedStringArray("???", "???")

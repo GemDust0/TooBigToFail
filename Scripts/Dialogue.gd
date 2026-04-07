@@ -17,6 +17,7 @@ var dialogue_index: int
 
 func _ready() -> void:
 	label.visible_characters = 0
+	label.text = dialogue[0]
 	name_label.text = " %s " % speakers[0]
 
 func stop_timers() -> void:
@@ -24,7 +25,7 @@ func stop_timers() -> void:
 	space_timer.stop()
 	period_timer.stop()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter") || event.is_action_pressed("left_click"):
 		if label.visible_characters < dialogue[dialogue_index].length():
 			label.visible_characters = dialogue[dialogue_index].length()
@@ -50,10 +51,10 @@ func _on_timer_timeout() -> void:
 		continue_label.show()
 		curTextEnded.emit(dialogue_index)
 	else:
-		var character: String = label.text.substr(label.visible_characters - 1, 1)
-		if character in [" ", ","]:
+		var character: String = label.get_parsed_text().substr(label.visible_characters - 1, 1)
+		if character in [" "]:
 			space_timer.start()
-		elif character in [".", "?", "!"]:
+		elif character in [".", "?", "!", ","]:
 			period_timer.start()
 		else:
 			character_timer.start()

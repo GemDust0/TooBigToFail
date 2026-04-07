@@ -38,7 +38,7 @@ func get_highlight_color(employee: Employee, target_employee: Employee, temp_pos
 				highlight_color = Color(0.0, 1.0, 0.0, 0.9)
 				break
 			else:
-				highlight_color = Color(1.0, 0.0, 0.0, 0.9)
+				highlight_color = Color(1.0, 0.0, 0.0, 0.8)
 	return highlight_color
 
 func get_highlight_color_null(employee: Employee, target_pos: Vector2i, temp_pos: Vector2i=Vector2i(-1, -1)) -> Color:

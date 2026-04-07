@@ -1,6 +1,6 @@
 class_name ShopSlot extends Control
 
-var too_expensive_col: String = Color(0.65, 0.065, 0.163, 1.0).to_html()
+var too_expensive_col: String = Color(0.651, 0.067, 0.165, 1.0).to_html()
 
 var employee: Employee
 var cost: int

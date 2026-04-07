@@ -20,6 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://c3wlxjtmpnkf6" path="res://Scenes/Employees/BossPet.tscn" id="16_7r3px"]
 [ext_resource type="PackedScene" uid="uid://cmo1j1767m6yh" path="res://Scenes/Employees/Dog.tscn" id="17_nmoak"]
 [ext_resource type="PackedScene" uid="uid://nq53mjnc0xx0" path="res://Scenes/Employees/ProjectManager.tscn" id="18_5ido5"]
+[ext_resource type="PackedScene" uid="uid://d26u2eedighbk" path="res://Scenes/Employees/Analyst.tscn" id="19_ebquq"]
+[ext_resource type="PackedScene" uid="uid://c4jt1isi2je4g" path="res://Scenes/Employees/ItSupport.tscn" id="20_s85ji"]
+[ext_resource type="PackedScene" uid="uid://cr78lwnx0xiq5" path="res://Scenes/Employees/RubberDucky.tscn" id="21_rwkd1"]
+[ext_resource type="PackedScene" uid="uid://c463mhbtyan7m" path="res://Scenes/Employees/QaTester.tscn" id="22_3xc6l"]
+[ext_resource type="PackedScene" uid="uid://c5rfmaaquqbnt" path="res://Scenes/Employees/Cat.tscn" id="23_35kq6"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -310,7 +315,7 @@ layout_mode = 2
 
 [node name="EmployeeShop" parent="." unique_id=1407566876 node_paths=PackedStringArray("grid") instance=ExtResource("6_cj7sp")]
 grid = NodePath("../PanelContainer/EmployeeGrid")
-employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("13_hnvcw"), ExtResource("12_pvrxv"), ExtResource("14_8f4hq"), ExtResource("9_ux72k"), ExtResource("16_7r3px"), ExtResource("17_nmoak"), ExtResource("18_5ido5")])
+employees = Array[PackedScene]([ExtResource("8_4ekef"), ExtResource("10_uvps6"), ExtResource("11_l3k28"), ExtResource("13_hnvcw"), ExtResource("12_pvrxv"), ExtResource("14_8f4hq"), ExtResource("9_ux72k"), ExtResource("16_7r3px"), ExtResource("17_nmoak"), ExtResource("18_5ido5"), ExtResource("19_ebquq"), ExtResource("20_s85ji"), ExtResource("21_rwkd1"), ExtResource("22_3xc6l"), ExtResource("23_35kq6")])
 
 [node name="SellArea" type="TextureRect" parent="." unique_id=335735936]
 unique_name_in_owner = true

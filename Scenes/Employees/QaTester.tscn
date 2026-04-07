@@ -1,11 +1,31 @@
 [gd_scene format=3 uid="uid://c463mhbtyan7m"]
 
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_63tff"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_n84k0"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="3_p0p86"]
+
+[sub_resource type="Resource" id="Resource_ie7f3"]
+script = ExtResource("3_p0p86")
+effect = 200.0
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[sub_resource type="Resource" id="Resource_n7aoh"]
+script = ExtResource("3_p0p86")
+stat = 1
+type = 2
+effect = 0.8
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
 
 [node name="QATester" unique_id=854379618 instance=ExtResource("1_63tff")]
-texture = null
+texture = ExtResource("2_n84k0")
 type = "IT"
 production_value = 0
 production_time = 0.0
 rarity = "Epic"
 id = "QA Tester"
+description = "Increases production value of adjacent employees by 200, decreases production speed by 20%"
+synergies = Array[ExtResource("3_p0p86")]([SubResource("Resource_ie7f3"), SubResource("Resource_n7aoh")])

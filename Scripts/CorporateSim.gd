@@ -24,6 +24,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	money = 250
+	#money = 10000
 	money = 100000000000
 	target_label.text = "Target: %s" % targets[0]
 	grid.create_grid(5)

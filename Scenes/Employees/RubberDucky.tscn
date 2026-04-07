@@ -1,11 +1,32 @@
 [gd_scene format=3 uid="uid://cr78lwnx0xiq5"]
 
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_hkj4w"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_wswsp"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="3_mjvjr"]
+
+[sub_resource type="Resource" id="Resource_kulpp"]
+script = ExtResource("3_mjvjr")
+type = 1
+effect = 0.25
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[sub_resource type="Resource" id="Resource_7kgxw"]
+script = ExtResource("3_mjvjr")
+stat = 1
+type = 1
+effect = 0.25
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, -1), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(1, 0), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, 1), Vector2i(1, -1)])
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
 
 [node name="RubberDucky" unique_id=854379618 instance=ExtResource("1_hkj4w")]
-texture = null
+texture = ExtResource("2_wswsp")
 type = "IT"
 production_value = 0
 production_time = 0.0
 rarity = "Rare"
 id = "Rubber Ducky"
+description = "Increases production value and speed of adjacent employees by 25%"
+synergies = Array[ExtResource("3_mjvjr")]([SubResource("Resource_kulpp"), SubResource("Resource_7kgxw")])

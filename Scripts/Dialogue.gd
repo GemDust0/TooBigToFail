@@ -5,24 +5,27 @@ signal dialogueContinued(dialogue_index: int)
 signal curTextEnded(dialogue_index: int)
 
 @export var dialogue: PackedStringArray
+@export var speakers: PackedStringArray
 var dialogue_index: int
 
-@onready var label: RichTextLabel = $Text
+@onready var label: RichTextLabel = $Background/Text
 @onready var character_timer: Timer = $CharacterTimer
 @onready var space_timer: Timer = $SpaceTimer
 @onready var period_timer: Timer = $PeriodTimer
-@onready var continue_label: Label = $Continue
+@onready var continue_label: Label = $Background/Continue
+@onready var name_label: Label = $NameContainer/MarginContainer/Name
 
 func _ready() -> void:
 	label.visible_characters = 0
+	name_label.text = " %s " % speakers[0]
 
 func stop_timers() -> void:
 	character_timer.stop()
 	space_timer.stop()
 	period_timer.stop()
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("enter"):
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("enter") || event.is_action_pressed("left_click"):
 		if label.visible_characters < dialogue[dialogue_index].length():
 			label.visible_characters = dialogue[dialogue_index].length()
 			stop_timers()
@@ -33,6 +36,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			if dialogue_index < dialogue.size():
 				label.visible_characters = 0
 				label.text = dialogue[dialogue_index]
+				name_label.text = " %s " % speakers[dialogue_index]
 				character_timer.start()
 				continue_label.hide()
 				dialogueContinued.emit(dialogue_index)

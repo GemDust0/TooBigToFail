@@ -113,15 +113,11 @@ func get_correctness() -> float:
 		for index: int in range(input_line.length()):
 			if input_line.substr(index, 1) == compare_line.substr(index, 1):
 				count += 1
-			else:
-				print("Wrong: " + input_line)
 		if input_line.length() == compare_line.length():
 			if line_index < input_text.size() - 1:
 				count += 1
 		elif input_line.length() > compare_line.length():
 			count -= input_line.length() - compare_line.length()
-		else:
-			print("WrongLen: " + input_line)
 	return max(float(count)/initialText.length(), 0.0)
 
 func _on_input_focus_entered() -> void:

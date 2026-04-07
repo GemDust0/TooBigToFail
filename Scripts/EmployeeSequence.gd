@@ -9,6 +9,7 @@ var code_index: int = 0
 @onready var performanceText: Label = $HUD/PerformanceText
 @onready var performanceIcon: Sprite2D = $HUD/PerformanceIcon
 @onready var workProgress: Label = $HUD/WorkProgress
+@onready var transition_object: TransitionObject = $TransitionObject
 
 func _ready() -> void:
 	_on_submit_pressed()
@@ -30,7 +31,7 @@ func _on_submit_pressed() -> void:
 		codeEditor.focus()
 		code_index += 1
 	else:
-		get_tree().change_scene_to_file("res://Scenes/CorporateSim.tscn")
+		transition_object.change_scene("res://Scenes/CorporateSim.tscn")
 
 func get_final_score() -> float:
 	var finalScore: float = 0

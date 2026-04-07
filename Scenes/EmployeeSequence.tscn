@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://dcofykib1g8jy" path="res://Assets/menu_tileset.tres" id="3_lets4"]
 [ext_resource type="Texture2D" uid="uid://bvq08ao3jco3" path="res://Assets/SadFace.png" id="4_1ws3y"]
 [ext_resource type="Texture2D" uid="uid://dfhv185c4coyh" path="res://Assets/HappyFace.png" id="4_pvl1v"]
+[ext_resource type="PackedScene" uid="uid://bw6uqna2uej6v" path="res://Scenes/TransitionObject.tscn" id="7_1ws3y"]
 
 [node name="EmployeeSequence" type="Node" unique_id=595623739]
 script = ExtResource("1_56010")
@@ -52,5 +53,7 @@ offset_bottom = 37.0
 theme_override_font_sizes/font_size = 22
 text = "Daily Quota: 0/4"
 vertical_alignment = 1
+
+[node name="TransitionObject" parent="." unique_id=1894568809 instance=ExtResource("7_1ws3y")]
 
 [connection signal="pressed" from="Submit" to="." method="_on_submit_pressed"]

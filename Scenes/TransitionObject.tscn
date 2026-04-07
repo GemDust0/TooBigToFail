@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bw6uqna2uej6v"]
+
+[ext_resource type="Script" uid="uid://dj7lxcwoqlrtg" path="res://Scripts/TransitionObject.gd" id="1_mead7"]
+
+[sub_resource type="Animation" id="Animation_mead7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ub1vm"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1iey2"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lgjhi"]
+_data = {
+&"RESET": SubResource("Animation_mead7"),
+&"fade_in": SubResource("Animation_ub1vm"),
+&"fade_out": SubResource("Animation_1iey2")
+}
+
+[node name="TransitionObject" type="ColorRect" unique_id=1894568809]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("1_mead7")
+
+[node name="Fade" type="AnimationPlayer" parent="." unique_id=1891699574]
+libraries/ = SubResource("AnimationLibrary_lgjhi")

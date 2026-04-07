@@ -192,7 +192,7 @@ func paint_synergies(employee: Employee, temp_pos: Vector2i=Vector2i(-99999, -99
 	for key: Vector2i in grid.keys():
 		if key != temp_pos:
 			var slot: EmployeeContainer = grid[key]
-			if slot.employee == null || key == employee.grid_pos:
+			if slot.employee == null || key == temp_pos:
 				slot.highlight.self_modulate = synergyData.get_highlight_color_null(employee, key, temp_pos)
 			else:
 				slot.highlight.self_modulate = synergyData.get_highlight_color(employee, slot.employee, temp_pos)

@@ -70,6 +70,8 @@ func add_employee(pos: Vector2i, employee: Employee) -> void:
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
 	if get_employee_count("Project Manager") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Management Overhaul"):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
+	if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
 	check_grid_for_relics()
 	employee.produced.connect(employee_production)
 	employee.grid_pos = pos
@@ -86,12 +88,19 @@ const patterns: Dictionary[String, Array] = {
 		["Intern Developer", "Intern Developer", "Intern Developer"],
 		["Intern Developer", "Intern Developer", "Intern Developer"],
 		["Intern Developer", "Intern Developer", "Intern Developer"]
+	],
+	"Rubber Ducking":[
+		["Rubber Ducky", "Rubber Ducky", "Rubber Ducky"],
+		["Rubber Ducky", "Developer", "Rubber Ducky"],
+		["Rubber Ducky", "Rubber Ducky", "Rubber Ducky"]
 	]
 }
 
 func check_grid_for_relics() -> void:
 	if !CorporateSim.instance.relic_inventory.has_relic("Intern Together Strong") && check_for_pattern(patterns["Intern Together Strong"]):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/InternTogetherStrong.tscn").instantiate())
+	if !CorporateSim.instance.relic_inventory.has_relic("Rubber Ducking") && check_for_pattern(patterns["Rubber Ducking"]):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/RubberDucking.tscn").instantiate())
 
 func check_for_pattern(pattern: Array) -> bool:
 	for key: Vector2i in grid.keys():
@@ -256,7 +265,7 @@ func get_employee_count(id: String) -> int:
 			count += 1
 	return count
 
-func has_employee_count(id: String) -> bool:
+func has_employee(id: String) -> bool:
 	for container: EmployeeContainer in grid.values():
 		if container.employee == null:
 			if id == "":

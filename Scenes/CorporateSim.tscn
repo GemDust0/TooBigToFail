@@ -190,8 +190,8 @@ text = " Okay "
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -98.0
-offset_right = 98.0
+offset_left = -100.0
+offset_right = 100.0
 offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 4
@@ -226,10 +226,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -142.0
+offset_top = -81.0
+offset_right = 142.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -269,9 +269,10 @@ texture = ExtResource("6_l3k28")
 [node name="RelicDescription" type="Label" parent="HUD/RelicUnlock/ButtonMargin/VBoxContainer" unique_id=1828510905]
 unique_name_in_owner = true
 layout_mode = 2
-text = "You get 100 coins every 5 seconds"
+text = "Cats now provide double their buff to adjacent employees, dogs now triple production value of adjacent employees."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ButtonMargin" type="MarginContainer" parent="HUD/RelicUnlock/ButtonMargin/VBoxContainer" unique_id=1553041122]
 layout_mode = 2

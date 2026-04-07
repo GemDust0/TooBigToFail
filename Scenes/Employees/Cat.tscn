@@ -21,6 +21,25 @@ invertAffect = true
 invertArea = true
 metadata/_custom_type_script = "uid://b2rumm8cisypv"
 
+[sub_resource type="Resource" id="Resource_wnvh3"]
+script = ExtResource("3_quyet")
+type = 1
+effect = 0.25
+invertAffect = true
+invertArea = true
+relicReq = "Cats And Dogs"
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
+[sub_resource type="Resource" id="Resource_quyet"]
+script = ExtResource("3_quyet")
+stat = 1
+type = 1
+effect = 0.05
+invertAffect = true
+invertArea = true
+relicReq = "Cats And Dogs"
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
+
 [node name="Cat" unique_id=854379618 instance=ExtResource("1_lngg4")]
 texture = ExtResource("2_wnvh3")
 type = "IT"
@@ -29,4 +48,4 @@ production_time = 0.0
 rarity = "Legendary"
 id = "Cat"
 description = "+0.25x production value and +0.05x speed to all employees"
-synergies = Array[ExtResource("3_quyet")]([SubResource("Resource_8cmmo"), SubResource("Resource_w4m6f")])
+synergies = Array[ExtResource("3_quyet")]([SubResource("Resource_8cmmo"), SubResource("Resource_w4m6f"), SubResource("Resource_wnvh3"), SubResource("Resource_quyet")])

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://3vlh3t03on2x"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_0e66d"]
+
+[node name="CatsAndDogs" unique_id=362028674 instance=ExtResource("1_0e66d")]
+id = "Cats And Dogs"
+description = "Cats now provide double their buff to adjacent employees, dogs now triple production value of adjacent employees."

@@ -38,7 +38,7 @@ func restock(ignore_cost: bool=false) -> void:
 	if CorporateSim.instance.money < 50 && !ignore_cost:
 		return
 	elif !ignore_cost:
-		CorporateSim.instance.money -= 50
+		CorporateSim.instance.add_money(-50)
 	for slot: ShopSlot in slots:
 		if slot.locked:
 			break
@@ -100,7 +100,7 @@ func _input(event: InputEvent) -> void:
 		var cursor_grid_pos: Vector2i = grid.get_cursor_grid_pos()
 		if cursor_grid_pos != Vector2i(-1, -1) && grid.grid[cursor_grid_pos].employee == null:
 			grid.add_employee(cursor_grid_pos, held.employee)
-			CorporateSim.instance.money -= held.cost
+			CorporateSim.instance.add_money(-held.cost)
 			held.set_employee(null)
 			held.update_description(CorporateSim.instance.money)
 		held.employeeIcon.position = Vector2.ZERO

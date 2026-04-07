@@ -17,6 +17,7 @@ var targets: Array[int] = [5000, 100000, 10000000, 1000000000, 100000000000]
 @onready var target_label: Label = $HUD/MoneyTarget
 @onready var relic_inventory: RelicInventory = $RelicInventory
 @onready var transition_object: TransitionObject = $HUD/TransitionObject
+@onready var relic_description: Label = %RelicDescription
 
 static var instance: CorporateSim = null
 
@@ -96,7 +97,9 @@ func relic_popup(relic: Relic) -> void:
 		relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 		%RelicName.text = relic.id
 		%RelicTexture.texture = relic.texture
-		%RelicDescription.text = " %s " % relic.description
+		relic_description.text = " %s " % relic.description
+		@warning_ignore("int_as_enum_without_cast")
+		relic_description.custom_minimum_size.x = min(relic_description.get_theme_font("font").get_string_size(relic_description.text, 0, -1, 11).x, 360)
 		%RelicUnlock.visible = true
 
 func accept_relic() -> void:

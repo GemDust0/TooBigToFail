@@ -45,16 +45,17 @@ func _input(event: InputEvent) -> void:
 				ended.emit()
 
 func _on_timer_timeout() -> void:
-	label.visible_characters += 1
-	
-	if label.visible_characters == dialogue[dialogue_index].length():
+	var label_text: String = label.get_parsed_text()
+	if label.visible_characters == label_text.length():
 		continue_label.show()
 		curTextEnded.emit(dialogue_index)
+		return
+	label.visible_characters += 1
+	
+	var character: String = label_text.substr(label.visible_characters - 1, 1)
+	if character in [" "]:
+		space_timer.start()
+	elif character in [".", "?", "!", ","]:
+		period_timer.start()
 	else:
-		var character: String = label.get_parsed_text().substr(label.visible_characters - 1, 1)
-		if character in [" "]:
-			space_timer.start()
-		elif character in [".", "?", "!", ","]:
-			period_timer.start()
-		else:
-			character_timer.start()
+		character_timer.start()

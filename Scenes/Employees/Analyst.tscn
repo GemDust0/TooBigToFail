@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d26u2eedighbk"]
+
+[ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_fj6nq"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_0i2qe"]
+
+[node name="Analyst" unique_id=854379618 instance=ExtResource("1_fj6nq")]
+texture = ExtResource("2_0i2qe")
+type = "IT"
+production_value = 0
+production_time = 0.0
+id = "Analyst"

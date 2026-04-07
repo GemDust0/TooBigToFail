@@ -38,7 +38,7 @@ func get_icon() -> Texture:
 		"Pest":
 			return load("res://Assets/PestIcon.png")
 		_:
-			return null
+			return load("res://Assets/ITIcon.png")
 
 func produce() -> void:
 	produced.emit(self)

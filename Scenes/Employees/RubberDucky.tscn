@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cr78lwnx0xiq5"]
+
+[ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_hkj4w"]
+
+[node name="RubberDucky" unique_id=854379618 instance=ExtResource("1_hkj4w")]
+texture = null
+type = "IT"
+production_value = 0
+production_time = 0.0
+rarity = "Rare"
+id = "Rubber Ducky"

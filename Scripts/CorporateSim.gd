@@ -40,6 +40,9 @@ func add_money(amount: int) -> void:
 	%HandInTargetButton.disabled = (money < targets[0]) || $HUD/TargetReached.visible
 
 func display_target_reached() -> void:
+	if targets.size() == 1:
+		transition_object.change_scene(load("res://Scenes/Cutscenes/FinalCutscene.tscn"))
+		return # No clue if this is necessary but, in case
 	if $HUD/TargetReached.visible:
 		target_reached_accept()
 	elif %RelicUnlock.visible:
@@ -54,13 +57,10 @@ func display_target_reached() -> void:
 	shop.disable()
 	relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 	add_money(-targets.pop_front())
-	if targets.size() == 0:
-		$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\nYou may rest.\n\n" % targets[0]
+	if targets.size() == 1:
+		$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
 	else:
-		if targets.size() == 1:
-			$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
-		else:
-			$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
+		$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
 		
 
 func target_reached_accept() -> void:

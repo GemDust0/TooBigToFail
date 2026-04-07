@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://pr8my05f0ddi"]
+
+[ext_resource type="PackedScene" uid="uid://dubt5l8dwh388" path="res://Scenes/Cutscene.tscn" id="1_sqasn"]
+[ext_resource type="PackedScene" uid="uid://clie5hddnjaqy" path="res://Scenes/TitleScreen.tscn" id="2_nu2x2"]
+
+[node name="FinalCutscene" unique_id=1404501526 instance=ExtResource("1_sqasn")]
+transition_scene = ExtResource("2_nu2x2")
+
+[node name="Dialogue" parent="." index="1" unique_id=1803881885]
+dialogue = PackedStringArray("So you earned 10000000 coins, and are now offering them to me so I\'ll send a meteor to that building? Deal.", "...", "Of course there would be a giant ore deposit worth trillions of coins under there making the company even more valuable, why wouldn\'t there be.", "I\'m retiring", "*RING RING*", "So... The boss got hit with a brick from the rival company as it was struck with a meteor. He\'s in the hospital recovering, but you failed your task, so don\'t expect payment.")
+speakers = PackedStringArray("God", "God", "God", "God", "Phone", "???")

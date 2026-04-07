@@ -73,7 +73,7 @@ static func static_get_rarity_color(rarity: String) -> Color:
 		"Rare":
 			return Color(0.085, 0.276, 0.85, 1.0)
 		"Epic":
-			return Color(0.3, 0.0, 0.9, 1.0)
+			return Color(0.417, 0.0, 1.0, 1.0)
 		"Legendary":
 			return Color(1.0, 0.775, 0.1, 1.0)
 		_:

@@ -27,14 +27,15 @@ func apply_employee_synergies(employee: Employee, target_employee: Employee) -> 
 							multValue *= synergy.effect
 						Synergy.Stats.SPEED:
 							multTime *= synergy.effect
-	if employee != null && employee.id == "Intern Developer" && target_employee.id == "Intern Developer":
-		multValue *= 1.1
 
 func get_highlight_color(employee: Employee, target_employee: Employee, temp_pos: Vector2i=Vector2i(-1, -1)) -> Color:
 	var highlight_color: Color = Color(0.0, 0.0, 0.0, 0.0)
+	
 	if temp_pos == Vector2i(-99999, -99999):
 		temp_pos = employee.grid_pos
 	for synergy: Synergy in employee.synergies:
+		if !synergy.visible:
+			continue
 		if synergy.check_in_range(temp_pos, target_employee.grid_pos):
 			if synergy.check_affects(target_employee) && synergy.check_relic_req():
 				highlight_color = Color(0.0, 1.0, 0.0, 0.9)
@@ -48,6 +49,8 @@ func get_highlight_color_null(employee: Employee, target_pos: Vector2i, temp_pos
 	if temp_pos == Vector2i(-99999, -99999):
 		temp_pos = employee.grid_pos
 	for synergy: Synergy in employee.synergies:
+		if !synergy.visible:
+			continue
 		if synergy.check_in_range(temp_pos, target_pos) && synergy.check_relic_req():
 			return Color(1.0, 0.0, 0.0, 0.8)
 	return highlight_color

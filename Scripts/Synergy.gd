@@ -23,6 +23,7 @@ enum Stats {
 @export var invertArea: bool = false
 @export var relicReq: String = ""
 @export var invertRelic: bool = false
+@export var visible: bool = true
 
 func check_apply(grid_position: Vector2i, target_employee: Employee) -> bool:
 	return check_in_range(grid_position, target_employee.grid_pos) && check_affects(target_employee) && check_relic_req()

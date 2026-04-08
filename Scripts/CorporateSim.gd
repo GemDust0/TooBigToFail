@@ -9,7 +9,7 @@ var money: int = 0:
 		money = value
 		moneyLabel.text = str(money)
 		money_changed.emit(money)
-var targets: Array[int] = [5000, 50000, 250000, 1000000, 10000000]
+var targets: Array[int] = [10000, 100000, 500000, 2000000, 100000000]
 
 @onready var grid: EmployeeGrid = $PanelContainer/EmployeeGrid
 @onready var moneyLabel: Label = $HUD/MoneyCount

@@ -202,7 +202,7 @@ func employee_production(employee: Employee) -> void:
 	var speed_mult: float = 1.0
 	var synergyData: SynergyApplication = SynergyApplication.new()
 	for slot: EmployeeContainer in grid.values():
-		if slot.employee != null && slot.employee != employee:
+		if slot.employee != null:
 			synergyData.apply_employee_synergies(slot.employee, employee)
 	production_worth = roundi((production_worth + synergyData.flatValue) * synergyData.multValue)
 	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime

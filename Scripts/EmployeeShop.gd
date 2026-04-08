@@ -67,6 +67,11 @@ func _process(_delta: float) -> void:
 	else:
 		$RestockButton.modulate = Color(1, 1, 1)
 		$RestockButton.undisable()
+	if get_global_mouse_position().y < slots_node.global_position.y:
+		grid.description.hide_description(grid.description.show_locked)
+		grid.description.change_show_locked(true, self)
+		slot_highlight.hide()
+		return
 	var shop_cursor_pos: Vector2 = slots_node.get_local_mouse_position()
 	if shop_cursor_pos.x > 0 && shop_cursor_pos.x < slots_node.size.x:
 		var hovered_slot: int = int(shop_cursor_pos.y / slots_node.get_theme_constant("separation"))

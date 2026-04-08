@@ -15,6 +15,10 @@ run/main_scene="uid://clie5hddnjaqy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioPlayer="*uid://c07gvv5ykuvfa"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1

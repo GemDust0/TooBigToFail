@@ -26,6 +26,8 @@ func stop_timers() -> void:
 	period_timer.stop()
 
 func _input(event: InputEvent) -> void:
+	if GameMenu.is_open || GameMenu.icon_hovered:
+		return
 	if event.is_action_pressed("enter") || event.is_action_pressed("left_click"):
 		if label.visible_characters < dialogue[dialogue_index].length():
 			label.visible_characters = dialogue[dialogue_index].length()

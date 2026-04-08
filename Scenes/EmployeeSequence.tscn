@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvq08ao3jco3" path="res://Assets/SadFace.png" id="4_1ws3y"]
 [ext_resource type="Texture2D" uid="uid://dfhv185c4coyh" path="res://Assets/HappyFace.png" id="4_pvl1v"]
 [ext_resource type="PackedScene" uid="uid://bw6uqna2uej6v" path="res://Scenes/TransitionObject.tscn" id="7_1ws3y"]
+[ext_resource type="PackedScene" uid="uid://cuy180vvxh21n" path="res://Scenes/GameMenu.tscn" id="8_s7mt1"]
 
 [node name="EmployeeSequence" type="Node" unique_id=595623739]
 script = ExtResource("1_56010")
@@ -55,5 +56,16 @@ text = "Daily Quota: 0/4"
 vertical_alignment = 1
 
 [node name="TransitionObject" parent="." unique_id=1894568809 instance=ExtResource("7_1ws3y")]
+
+[node name="GameMenu" parent="." unique_id=873510849 instance=ExtResource("8_s7mt1")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 8.0
+offset_top = -48.0
+offset_right = 8.0
+offset_bottom = -48.0
+grow_horizontal = 1
+grow_vertical = 0
 
 [connection signal="pressed" from="Submit" to="." method="_on_submit_pressed"]

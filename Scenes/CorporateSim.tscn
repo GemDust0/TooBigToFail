@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://c463mhbtyan7m" path="res://Scenes/Employees/QaTester.tscn" id="22_3xc6l"]
 [ext_resource type="PackedScene" uid="uid://c5rfmaaquqbnt" path="res://Scenes/Employees/Cat.tscn" id="23_35kq6"]
 [ext_resource type="PackedScene" uid="uid://bw6uqna2uej6v" path="res://Scenes/TransitionObject.tscn" id="26_s85ji"]
+[ext_resource type="PackedScene" uid="uid://cuy180vvxh21n" path="res://Scenes/GameMenu.tscn" id="27_rwkd1"]
 
 [node name="CorporateSim" type="Node" unique_id=1056640650]
 script = ExtResource("1_v5m7x")
@@ -353,6 +354,12 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="RelicInventory" parent="." unique_id=1807914356 instance=ExtResource("11_ig6cq")]
+
+[node name="GameMenu" parent="." unique_id=873510849 instance=ExtResource("27_rwkd1")]
+offset_left = 8.0
+offset_top = 402.0
+offset_right = -672.0
+offset_bottom = -8.0
 
 [connection signal="pressed" from="HUD/TargetReached/ButtonMargin/ButtonMargin/Confirm" to="." method="target_reached_accept"]
 [connection signal="pressed" from="HUD/MarginContainer/MarginContainer/HandInTargetButton" to="." method="display_target_reached"]

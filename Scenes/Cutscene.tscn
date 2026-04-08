@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d0l8cldmt5055" path="res://Scenes/Dialogue.tscn" id="1_1srds"]
 [ext_resource type="Script" uid="uid://c4fi2io8v23b0" path="res://Scripts/Cutscene.gd" id="1_idm0t"]
 [ext_resource type="PackedScene" uid="uid://bw6uqna2uej6v" path="res://Scenes/TransitionObject.tscn" id="3_qcpka"]
+[ext_resource type="PackedScene" uid="uid://cuy180vvxh21n" path="res://Scenes/GameMenu.tscn" id="4_qcpka"]
 
 [node name="Cutscene" type="Node" unique_id=1404501526]
 script = ExtResource("1_idm0t")
@@ -25,5 +26,11 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="TransitionObject" parent="." unique_id=1894568809 instance=ExtResource("3_qcpka")]
+
+[node name="GameMenu" parent="." unique_id=873510849 instance=ExtResource("4_qcpka")]
+offset_left = 8.0
+offset_top = 402.0
+offset_right = -672.0
+offset_bottom = -8.0
 
 [connection signal="ended" from="Dialogue" to="." method="transition"]

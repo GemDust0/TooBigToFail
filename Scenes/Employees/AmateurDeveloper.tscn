@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://bjl65rhcrd5pv"]
 
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_jgmox"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="2_1u5hu"]
+
+[sub_resource type="Resource" id="Resource_m62k6"]
+script = ExtResource("2_1u5hu")
+type = 2
+effect = 1.5
+invertAffect = true
+area = Array[Vector2i]([Vector2i(0, 0)])
+relicReq = "Amateur Hour"
+visible = false
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
 
 [node name="AmateurDeveloper" unique_id=854379618 instance=ExtResource("1_jgmox")]
 production_value = 100
@@ -8,3 +19,4 @@ production_time = 4.0
 rarity = "Uncommon"
 id = "Amateur Developer"
 description = "Produces 100 coins every 4 seconds"
+synergies = Array[ExtResource("2_1u5hu")]([SubResource("Resource_m62k6")])

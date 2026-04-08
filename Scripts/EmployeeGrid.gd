@@ -70,6 +70,8 @@ func add_employee(pos: Vector2i, employee: Employee) -> void:
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
 	if get_employee_count("Project Manager") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Management Overhaul"):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
+	if get_employee_count("Amateur Developer") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
 	if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
 	check_grid_for_relics()

@@ -7,4 +7,4 @@ production_value = 100
 production_time = 4.0
 rarity = "Uncommon"
 id = "Amateur Developer"
-description = "Produces 100 coins every 4 secibds"
+description = "Produces 100 coins every 4 seconds"

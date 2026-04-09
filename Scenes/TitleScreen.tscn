@@ -106,4 +106,5 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ContinueGame" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]

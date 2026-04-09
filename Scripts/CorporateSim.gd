@@ -25,12 +25,16 @@ func _enter_tree() -> void:
 	instance = self
 
 func _ready() -> void:
-	money = 250
-	#money = 100000
-	#money = 100000000000
-	target_label.text = "Target: %s" % targets[0]
-	grid.create_grid(5)
-	grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
+	SaveManager.save_node = self
+	if SaveManager.loaded:
+		money = 250
+		#money = 100000
+		#money = 100000000000
+		target_label.text = "Target: %s" % targets[0]
+		grid.create_grid(5)
+		grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
+	else:
+		pass
 
 func add_money(amount: int) -> void:
 	money += amount

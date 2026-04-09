@@ -23,24 +23,21 @@ func _on_spin_box_value_changed(value: float) -> void:
 	AudioPlayer.volume_linear = AudioPlayer.max_volume * value / 100
 
 func _on_save_exit_pressed() -> void:
-	get_tree().quit()
+	SaveManager.save()
+	get_tree().call_deferred("quit")
 
 func _on_settings_button_mouse_entered() -> void:
-	if !get_tree().paused:
-		settings_highlight.color = Color(1.0, 1.0, 1.0, 0.75)
-		icon_hovered = true
+	settings_highlight.color = Color(1.0, 1.0, 1.0, 0.75)
+	icon_hovered = true
 
 func _on_settings_button_mouse_exited() -> void:
-	if !get_tree().paused:
-		settings_highlight.color = Color(0.0, 0.0, 0.0, 0.0)
-		icon_hovered = false
+	settings_highlight.color = Color(0.0, 0.0, 0.0, 0.0)
+	icon_hovered = false
 
 func _on_settings_button_button_down() -> void:
-	if !get_tree().paused:
-		settings_highlight.color = Color(0.3, 0.3, 0.3, 0.75)
-		icon_hovered = true
+	settings_highlight.color = Color(0.3, 0.3, 0.3, 0.75)
+	icon_hovered = true
 
 func _on_settings_button_pressed() -> void:
-	if !get_tree().paused:
-		settings_highlight.color = Color(0.0, 0.0, 0.0, 0.0)
-		icon_hovered = false
+	settings_highlight.color = Color(0.0, 0.0, 0.0, 0.0)
+	icon_hovered = false

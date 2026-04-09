@@ -1,4 +1,4 @@
-extends Control
+class_name Dialogue extends Control
 
 signal ended
 signal dialogueContinued(dialogue_index: int)
@@ -6,7 +6,7 @@ signal curTextEnded(dialogue_index: int)
 
 @export var dialogue: PackedStringArray
 @export var speakers: PackedStringArray
-var dialogue_index: int
+var dialogue_index: int = 0
 
 @onready var label: RichTextLabel = $Background/Text
 @onready var character_timer: Timer = $CharacterTimer
@@ -16,9 +16,12 @@ var dialogue_index: int
 @onready var name_label: Label = $NameContainer/MarginContainer/Name
 
 func _ready() -> void:
+	SaveManager.save_node = self
 	label.visible_characters = 0
-	label.text = dialogue[0]
-	name_label.text = " %s " % speakers[0]
+	if SaveManager.loaded:
+		dialogue_index = SaveManager.loaded_file.get_64()
+	label.text = dialogue[dialogue_index]
+	name_label.text = " %s " % speakers[dialogue_index]
 
 func stop_timers() -> void:
 	character_timer.stop()

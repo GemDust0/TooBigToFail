@@ -1,5 +1,7 @@
 class_name ShopSlot extends Control
 
+var lock_icon: Texture = preload("res://Assets/LockIcon.png")
+
 var too_expensive_col: String = Color(0.651, 0.067, 0.165, 1.0).to_html()
 
 var employee: Employee
@@ -7,7 +9,7 @@ var cost: int
 var locked: bool = false:
 	set(value):
 		if value:
-			employeeIcon.texture = null
+			employeeIcon.texture = lock_icon
 		locked = value
 
 @onready var employeeIcon: TextureRect = $EmployeeIcon

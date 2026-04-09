@@ -17,6 +17,27 @@ func save() -> void:
 func save_corporate_sim() -> void:
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_pascal_string("C")
+	file.store_64(save_node.money)
+	file.store_var(save_node.targets)
+	file.store_64(save_node.grid.columns)
+	for key: Vector2i in save_node.grid.grid.keys():
+		file.store_var(key)
+		var employee: Employee = save_node.grid.grid[key].employee
+		if employee == null:
+			file.store_pascal_string("")
+		else:
+			file.store_pascal_string(employee.id)
+	file.store_64(save_node.relic_inventory.relics.size())
+	for relic: Relic in save_node.relic_inventory.relics:
+		file.store_pascal_string(relic.id)
+	for slot: ShopSlot in save_node.shop.slots:
+		if slot.locked:
+			file.store_pascal_string("locked")
+		elif slot.employee == null:
+			file.store_pascal_string("")
+		else:
+			file.store_pascal_string(slot.employee.id)
+	file.store_64(save_node.shop.shop_level)
 	
 func save_employee_sequence() -> void:
 	var file: FileAccess = FileAccess.open(save_path, FileAccess.WRITE)

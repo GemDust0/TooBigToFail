@@ -61,20 +61,21 @@ func create_container() -> EmployeeContainer:
 	var container: EmployeeContainer = employeeContainerScene.instantiate()
 	return container
 
-func add_employee(pos: Vector2i, employee: Employee) -> void:
+func add_employee(pos: Vector2i, employee: Employee, check_relics: bool=true) -> void:
 	last_change = Time.get_ticks_msec()
 	grid[pos].add_employee(employee)
-	if get_employee_count("Snitch") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Snitches get... Snitches??"):
-		CorporateSim.instance.give_relic(load("res://Scenes/Relics/SnitchesSnitches.tscn").instantiate())
-	if get_employee_count("Rat") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Mutualism"):
-		CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
-	if get_employee_count("Project Manager") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Management Overhaul"):
-		CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
-	if get_employee_count("Amateur Developer") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
-		CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
-	if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
-		CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
-	check_grid_for_relics()
+	if check_relics:
+		if get_employee_count("Snitch") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Snitches get... Snitches??"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/SnitchesSnitches.tscn").instantiate())
+		if get_employee_count("Rat") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Mutualism"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mutualism.tscn").instantiate())
+		if get_employee_count("Project Manager") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Management Overhaul"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
+		if get_employee_count("Amateur Developer") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
+		if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
+		check_grid_for_relics()
 	employee.produced.connect(employee_production)
 	employee.grid_pos = pos
 	var speed_mult: float = 1.0

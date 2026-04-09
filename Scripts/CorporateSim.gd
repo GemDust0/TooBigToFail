@@ -27,14 +27,34 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	SaveManager.save_node = self
 	if SaveManager.loaded:
+		money = SaveManager.loaded_file.get_64()
+		targets = SaveManager.loaded_file.get_var()
+		target_label.text = "Target: %s" % targets[0]
+		grid.columns = SaveManager.loaded_file.get_64()
+		grid.create_grid(grid.columns)
+		for i: int in grid.grid.size():
+			var key: Vector2i = SaveManager.loaded_file.get_var()
+			var id: String = SaveManager.loaded_file.get_pascal_string()
+			if id != "":
+				grid.add_employee(key, load(Employee.lookup[id]).instantiate(), false)
+		for i: int in range(SaveManager.loaded_file.get_64()):
+			relic_inventory.add_relic(load(Relic.lookup[SaveManager.loaded_file.get_pascal_string()]).instantiate())
+		for slot: ShopSlot in shop.slots:
+			var id: String = SaveManager.loaded_file.get_pascal_string()
+			if id == "locked":
+				slot.locked = true
+			elif id == "":
+				slot.set_employee(null)
+			else:
+				slot.set_employee(load(Employee.lookup[id]).instantiate(), money)
+		shop.shop_level = SaveManager.loaded_file.get_64()
+	else:
 		money = 250
 		#money = 100000
 		#money = 100000000000
 		target_label.text = "Target: %s" % targets[0]
 		grid.create_grid(5)
 		grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
-	else:
-		pass
 
 func add_money(amount: int) -> void:
 	money += amount

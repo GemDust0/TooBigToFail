@@ -1,6 +1,24 @@
 @tool
 class_name Employee extends TextureRect
 
+const lookup: Dictionary[String, String] = {
+	"Intern Developer":"res://Scenes/Employees/InternDeveloper.tscn",
+	"Amateur Developer":"res://Scenes/Employees/AmateurDeveloper.tscn",
+	"Experienced Developer":"res://Scenes/Employees/ExperiencedDeveloper.tscn",
+	"Senior Developer":"res://Scenes/Employees/SeniorDeveloper.tscn",
+	"Master Developer":"res://Scenes/Employees/MasterDeveloper.tscn",
+	"Rat":"res://Scenes/Employees/Rat.tscn",
+	"Snitch":"res://Scenes/Employees/Snitch.tscn",
+	"Boss' Pet":"res://Scenes/Employees/BossPet.tscn",
+	"Dog":"res://Scenes/Employees/Dog.tscn",
+	"Project Manager":"res://Scenes/Employees/ProjectManager.tscn",
+	"Analyst":"res://Scenes/Employees/Analyst.tscn",
+	"IT Support":"res://Scenes/Employees/ItSupport.tscn",
+	"Rubber Ducky":"res://Scenes/Employees/RubberDucky.tscn",
+	"QA Tester":"res://Scenes/Employees/QaTester.tscn",
+	"Cat":"res://Scenes/Employees/Cat.tscn"
+}
+
 signal produced(employee: Employee)
 
 @export_enum("Developer", "IT", "Pest") var type: String = "Developer"

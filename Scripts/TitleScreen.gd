@@ -4,7 +4,6 @@ extends Node
 
 func _ready() -> void:
 	SaveManager.save_node = null
-	SaveManager.attempt_load()
 	if SaveManager.loaded_file != null:
 		$CanvasLayer/VBoxContainer/ContinueGame.disabled = false
 

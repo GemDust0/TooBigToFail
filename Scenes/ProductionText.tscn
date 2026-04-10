@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://da36lichwbjv1"]
 
 [ext_resource type="Texture2D" uid="uid://3nddv675u4w4" path="res://Assets/MoneySymbol.png" id="1_nuh8v"]
+[ext_resource type="Script" uid="uid://cdkp5w3bqu2h7" path="res://Scenes/ProductionText.gd" id="1_y6xkq"]
+[ext_resource type="AudioStream" uid="uid://b8xxb46omkfgs" path="res://Assets/847351__ilyashevelev__handful-of-coins-008.mp3" id="3_pd7pc"]
 
 [node name="ProductionText" type="Label" unique_id=1492520313]
 modulate = Color(0.8, 0.53333336, 0, 1)
@@ -8,6 +10,7 @@ z_index = 2
 offset_right = 40.0
 offset_bottom = 14.0
 text = "+ 50"
+script = ExtResource("1_y6xkq")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=556272303]
 layout_mode = 1
@@ -22,3 +25,7 @@ offset_bottom = 5.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("1_nuh8v")
+
+[node name="ProductionSound" type="AudioStreamPlayer" parent="." unique_id=739841550]
+stream = ExtResource("3_pd7pc")
+autoplay = true

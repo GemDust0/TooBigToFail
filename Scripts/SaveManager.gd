@@ -1,5 +1,6 @@
 extends Node
 
+const settings_path: String = "Settings.txt"
 const save_path: String = "Save.txt"
 
 var loaded_file: FileAccess = null;
@@ -7,9 +8,13 @@ var save_node: Node = null
 var loaded: bool = false
 var save_file: FileAccess
 
+func _ready() -> void:
+	attempt_load()
+
 func save() -> void:
+	var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.WRITE)
+	settings_file.store_float(AudioPlayer.volume_db)
 	save_file = FileAccess.open(save_path, FileAccess.WRITE)
-	save_file.store_float(AudioPlayer.volume_db)
 	if save_node is CorporateSim:
 		save_corporate_sim()
 	elif save_node is EmployeeSequence:
@@ -56,9 +61,10 @@ func save_dialogue() -> void:
 	save_file.close()
 
 func attempt_load() -> void:
+	if FileAccess.file_exists(settings_path):
+		AudioPlayer.volume_db = FileAccess.open(settings_path, FileAccess.READ).get_float()
 	if FileAccess.file_exists(save_path):
 		loaded_file = FileAccess.open(save_path, FileAccess.READ)
-		AudioPlayer.volume_db = loaded_file.get_float()
 		print(AudioPlayer.volume_db)
 
 func transition_to_saved(transition_object: TransitionObject) -> void:

@@ -15,12 +15,14 @@ func save() -> void:
 	var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.WRITE)
 	settings_file.store_float(AudioPlayer.volume_db)
 	settings_file.store_float(AudioPlayer.cur_sfx_volume)
-	save_file = FileAccess.open(save_path, FileAccess.WRITE)
 	if save_node is CorporateSim:
+		save_file = FileAccess.open(save_path, FileAccess.WRITE)
 		save_corporate_sim()
 	elif save_node is EmployeeSequence:
+		save_file = FileAccess.open(save_path, FileAccess.WRITE)
 		save_employee_sequence()
 	elif save_node is Dialogue:
+		save_file = FileAccess.open(save_path, FileAccess.WRITE)
 		save_dialogue()
 
 func save_corporate_sim() -> void:
@@ -66,7 +68,6 @@ func attempt_load() -> void:
 		var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.READ)
 		AudioPlayer.volume_db = settings_file.get_float()
 		AudioPlayer.cur_sfx_volume = settings_file.get_float()
-		print(db_to_linear(AudioPlayer.cur_sfx_volume))
 	if FileAccess.file_exists(save_path):
 		loaded_file = FileAccess.open(save_path, FileAccess.READ)
 

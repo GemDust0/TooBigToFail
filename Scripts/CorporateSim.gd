@@ -16,7 +16,7 @@ var targets: Array[int] = [10000, 100000, 500000, 2000000, 100000000]
 @onready var shop: EmployeeShop = $EmployeeShop
 @onready var target_label: Label = $HUD/MoneyTarget
 @onready var relic_inventory: RelicInventory = $RelicInventory
-@onready var transition_object: TransitionObject = $TransitionObject
+@onready var transition_object: TransitionObject = $UI/TransitionObject
 @onready var relic_description: Label = %RelicDescription
 
 static var instance: CorporateSim = null
@@ -27,7 +27,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	SaveManager.save_node = self
 	if SaveManager.loaded:
-		money = SaveManager.loaded_file.get_64()
+		money = 0
+		add_money(SaveManager.loaded_file.get_64())
 		targets = SaveManager.loaded_file.get_var()
 		target_label.text = "Target: %s" % targets[0]
 		grid.columns = SaveManager.loaded_file.get_64()
@@ -61,18 +62,18 @@ func add_money(amount: int) -> void:
 	if !relic_inventory.has_relic("Government Subsidies") && money < ShopSlot.get_cost("Common") && grid.get_employee_count("") == grid.grid.size():
 		give_relic(load("res://Scenes/Relics/GovernmentSubsidies.tscn").instantiate())
 		start_subsidy_timer()
-	%HandInTargetButton.disabled = (money < targets[0]) || $HUD/TargetReached.visible
+	%HandInTargetButton.disabled = (money < targets[0]) || $UI/TargetReached.visible
 
 func display_target_reached() -> void:
 	if targets.size() == 1:
 		SaveManager.save()
 		transition_object.change_scene(load("res://Scenes/Cutscenes/FinalCutscene.tscn"))
 		return # No clue if this is necessary but, in case
-	if $HUD/TargetReached.visible:
+	if $UI/TargetReached.visible:
 		target_reached_accept()
 	elif %RelicUnlock.visible:
 		accept_relic()
-	$HUD/TargetReached.visible = true
+	$UI/TargetReached.visible = true
 	grid.interrupt_hold()
 	shop.interrupt_hold()
 	grid.description.hide()
@@ -83,13 +84,13 @@ func display_target_reached() -> void:
 	relic_inventory.process_mode = Node.PROCESS_MODE_DISABLED
 	add_money(-targets.pop_front())
 	if targets.size() == 1:
-		$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
+		$UI/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 2 Shop Slots\n+ 2 Grid Size\n\n New Target: %s \n\n" % targets[0]
 	else:
-		$HUD/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
+		$UI/TargetReached/TargetAchieved.text = " TARGET ACHIEVED \n\n+ Shop Rarity\n+ 1 Shop Slot\n+ 1 Grid Size\n\n New Target: %s \n\n" % targets[0]
 		
 
 func target_reached_accept() -> void:
-	$HUD/TargetReached.visible = false
+	$UI/TargetReached.visible = false
 	target_label.text = "Target: %s" % targets[0]
 	grid.increase_grid_size(1)
 	if targets.size() == 1:
@@ -111,10 +112,11 @@ func give_relic(relic: Relic) -> void:
 	relic_popup.call_deferred(relic)
 
 func relic_popup(relic: Relic) -> void:
-	if !$HUD/TargetReached.visible:
+	if !$UI/TargetReached.visible:
 		grid.interrupt_hold()
 		shop.interrupt_hold()
 		grid.description.hide()
+		grid.description.show_locked = self
 		shop.slot_highlight.hide()
 		grid.unpaint_synergies()
 		grid.disabled = true
@@ -132,3 +134,4 @@ func accept_relic() -> void:
 	grid.disabled = false
 	shop.enable()
 	relic_inventory.process_mode = Node.PROCESS_MODE_INHERIT
+	grid.description.show_locked = null

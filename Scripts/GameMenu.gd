@@ -5,10 +5,8 @@ class_name GameMenu extends Control
 static var is_open: bool = false
 static var icon_hovered: bool = false
 
-func _ready() -> void:
-	%SpinBox.value = AudioPlayer.volume_linear / AudioPlayer.max_volume * 100
-
 func open() -> void:
+	%SpinBox.value = AudioPlayer.volume_linear / AudioPlayer.max_volume * 100
 	_on_settings_button_pressed()
 	menu.visible = true
 	get_tree().paused = true

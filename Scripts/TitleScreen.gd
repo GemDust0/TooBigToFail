@@ -12,6 +12,7 @@ func _on_new_game_pressed() -> void:
 	transition_object.change_scene(load("res://Scenes/Cutscenes/IntroductionCutscene.tscn"))
 
 func _on_exit_game_pressed() -> void:
+	SaveManager.save()
 	get_tree().quit()
 
 func _on_continue_game_pressed() -> void:

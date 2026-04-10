@@ -65,6 +65,7 @@ func add_money(amount: int) -> void:
 
 func display_target_reached() -> void:
 	if targets.size() == 1:
+		SaveManager.save()
 		transition_object.change_scene(load("res://Scenes/Cutscenes/FinalCutscene.tscn"))
 		return # No clue if this is necessary but, in case
 	if $HUD/TargetReached.visible:

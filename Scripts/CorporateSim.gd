@@ -37,7 +37,7 @@ func _ready() -> void:
 			var key: Vector2i = SaveManager.loaded_file.get_var()
 			var id: String = SaveManager.loaded_file.get_pascal_string()
 			if id != "":
-				grid.add_employee(key, load(Employee.lookup[id]).instantiate(), false)
+				grid.add_employee(key, load(Employee.lookup[id]).instantiate(), false, true)
 		for i: int in range(SaveManager.loaded_file.get_64()):
 			relic_inventory.add_relic(load(Relic.lookup[SaveManager.loaded_file.get_pascal_string()]).instantiate())
 		for slot: ShopSlot in shop.slots:

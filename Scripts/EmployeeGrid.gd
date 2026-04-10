@@ -61,7 +61,7 @@ func create_container() -> EmployeeContainer:
 	var container: EmployeeContainer = employeeContainerScene.instantiate()
 	return container
 
-func add_employee(pos: Vector2i, employee: Employee, check_relics: bool=true) -> void:
+func add_employee(pos: Vector2i, employee: Employee, check_relics:bool=true, random_offset:bool=false) -> void:
 	last_change = Time.get_ticks_msec()
 	grid[pos].add_employee(employee)
 	if check_relics:
@@ -84,6 +84,8 @@ func add_employee(pos: Vector2i, employee: Employee, check_relics: bool=true) ->
 		if slot.employee != null && slot.employee != employee:
 			synergyData.apply_employee_synergies(slot.employee, employee)
 	speed_mult = (speed_mult + synergyData.flatTime) * synergyData.multTime
+	if random_offset:
+		speed_mult += randf() * 0.1 - 0.05
 	employee.start_production(speed_mult)
 
 const patterns: Dictionary[String, Array] = {

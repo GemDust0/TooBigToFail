@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://da36lichwbjv1"]
 
 [ext_resource type="Texture2D" uid="uid://3nddv675u4w4" path="res://Assets/MoneySymbol.png" id="1_nuh8v"]
-[ext_resource type="Script" uid="uid://cdkp5w3bqu2h7" path="res://Scenes/ProductionText.gd" id="1_y6xkq"]
+[ext_resource type="Script" uid="uid://cdkp5w3bqu2h7" path="res://Scripts/ProductionText.gd" id="1_y6xkq"]
 [ext_resource type="AudioStream" uid="uid://b8xxb46omkfgs" path="res://Assets/847351__ilyashevelev__handful-of-coins-008.mp3" id="3_pd7pc"]
 
 [node name="ProductionText" type="Label" unique_id=1492520313]

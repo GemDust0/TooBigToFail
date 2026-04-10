@@ -163,7 +163,9 @@ func _input(event: InputEvent) -> void:
 			if hovering_sell:
 				grid[held.grid_pos].employee = null
 				held.queue_free()
-				money_produced.emit(round(ShopSlot.get_cost(held.rarity)/2.0))
+				var sell_value: int = round(ShopSlot.get_cost(held.rarity)/2.0)
+				held.create_production_text(sell_value)
+				money_produced.emit(sell_value)
 				last_change = Time.get_ticks_msec()
 			elif cursor_grid_pos != Vector2i(-1, -1):
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
@@ -180,7 +182,9 @@ func _input(event: InputEvent) -> void:
 				var employee: Employee = grid[cursor_grid_pos].employee
 				grid[cursor_grid_pos].employee = null
 				employee.queue_free()
-				money_produced.emit(round(ShopSlot.get_cost(employee.rarity)/2.0))
+				var sell_value: int = round(ShopSlot.get_cost(employee.rarity)/2.0)
+				employee.create_production_text(sell_value)
+				money_produced.emit(sell_value)
 				last_change = Time.get_ticks_msec()
 	if event is InputEventMouseMotion:
 		if held != null:

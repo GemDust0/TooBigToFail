@@ -66,6 +66,8 @@ func create_production_text(amount: int) -> void:
 	production_text.text = "%s%s" % ["+" if amount >= 0 else "", amount]
 	@warning_ignore("int_as_enum_without_cast")
 	production_text.size.x = production_text.get_theme_font("font").get_string_size(production_text.text, 0, -1, 11).x + 11
+	add_sibling(production_text)
+	production_text.global_position = global_position
 	var production_tween: Tween = production_text.create_tween()
 	production_tween.tween_property(production_text, "position:y", production_text.position.y-16, 1.0)
 	production_tween.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
@@ -76,7 +78,6 @@ func create_production_text(amount: int) -> void:
 	production_tween.finished.connect(production_text.hide)
 	get_tree().create_timer(0.8).timeout.connect(production_tween.play)
 	production_tween.finished.connect(production_text.queue_free)
-	add_sibling(production_text)
 
 func get_rarity_color() -> Color:
 	return static_get_rarity_color(rarity)

@@ -3,6 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://bro73rev5du8b" path="res://Assets/Cog.png" id="1_4f8b7"]
 [ext_resource type="Script" uid="uid://v14x62d80c4n" path="res://Scripts/GameMenu.gd" id="1_sj0hj"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sj0hj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd3g4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d6vgs"]
+
+[sub_resource type="Theme" id="Theme_5iivx"]
+LineEdit/font_sizes/font_size = 11
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_sj0hj")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_wd3g4")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_d6vgs")
+
 [node name="GameMenu" type="Control" unique_id=873510849]
 layout_mode = 3
 anchors_preset = 15
@@ -124,27 +136,56 @@ theme_override_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer" unique_id=1123663538]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1330997251]
+[node name="MarginContainer3" type="MarginContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1319470964]
+layout_mode = 2
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3" unique_id=1330997251]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 33
 text = "Game Menu"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1465555382]
+[node name="MusicVolume" type="HBoxContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1465555382]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=712281708]
+[node name="Label" type="Label" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MusicVolume" unique_id=712281708]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Audio Volume:"
+theme_override_font_sizes/font_size = 11
+text = "Music Volume:"
 
-[node name="SpinBox" type="SpinBox" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1715732637]
+[node name="MusicVolumeSpinBox" type="SpinBox" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MusicVolume" unique_id=1715732637]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(61, 0)
+custom_minimum_size = Vector2(53, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+theme = SubResource("Theme_5iivx")
+value = 100.0
+rounded = true
+suffix = "%"
+custom_arrow_step = 5.0
+custom_arrow_round = true
+select_all_on_focus = true
+
+[node name="SFXVolume" type="HBoxContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=21506197]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/SFXVolume" unique_id=1254664230]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 11
+text = "SFX Volume:"
+
+[node name="SFXVolumeSpinBox" type="SpinBox" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/SFXVolume" unique_id=1601913368]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(53, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = SubResource("Theme_5iivx")
 value = 100.0
 rounded = true
 suffix = "%"
@@ -155,6 +196,7 @@ select_all_on_focus = true
 [node name="MarginContainer2" type="MarginContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=793800981]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/margin_top = 16
 
 [node name="ColorRect" type="ColorRect" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=642868475]
 layout_mode = 2
@@ -180,6 +222,7 @@ theme_override_constants/margin_bottom = 2
 [node name="Return" type="Button" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/MarginContainer" unique_id=1151399291]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
 text = "Return To Game"
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=368025717]
@@ -210,6 +253,7 @@ theme_override_constants/margin_bottom = 2
 [node name="SaveExit" type="Button" parent="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer" unique_id=1861873617]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
 text = "Save & Exit"
 
 [connection signal="button_down" from="IconContainer/ColorRect/MarginContainer/MarginContainer/SettingsIcon/SettingsButton" to="." method="_on_settings_button_button_down"]
@@ -217,6 +261,7 @@ text = "Save & Exit"
 [connection signal="mouse_exited" from="IconContainer/ColorRect/MarginContainer/MarginContainer/SettingsIcon/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
 [connection signal="pressed" from="IconContainer/ColorRect/MarginContainer/MarginContainer/SettingsIcon/SettingsButton" to="." method="open"]
 [connection signal="pressed" from="IconContainer/ColorRect/MarginContainer/MarginContainer/SettingsIcon/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="value_changed" from="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MusicVolume/MusicVolumeSpinBox" to="." method="_on_music_volume_changed"]
+[connection signal="value_changed" from="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/SFXVolume/SFXVolumeSpinBox" to="." method="_on_sfx_volume_changed"]
 [connection signal="pressed" from="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/MarginContainer/Return" to="." method="close"]
 [connection signal="pressed" from="MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/SaveExit" to="." method="_on_save_exit_pressed"]

@@ -14,6 +14,7 @@ func _ready() -> void:
 func save() -> void:
 	var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.WRITE)
 	settings_file.store_float(AudioPlayer.volume_db)
+	settings_file.store_float(AudioPlayer.cur_sfx_volume)
 	save_file = FileAccess.open(save_path, FileAccess.WRITE)
 	if save_node is CorporateSim:
 		save_corporate_sim()
@@ -62,10 +63,12 @@ func save_dialogue() -> void:
 
 func attempt_load() -> void:
 	if FileAccess.file_exists(settings_path):
-		AudioPlayer.volume_db = FileAccess.open(settings_path, FileAccess.READ).get_float()
+		var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.READ)
+		AudioPlayer.volume_db = settings_file.get_float()
+		AudioPlayer.cur_sfx_volume = settings_file.get_float()
+		print(db_to_linear(AudioPlayer.cur_sfx_volume))
 	if FileAccess.file_exists(save_path):
 		loaded_file = FileAccess.open(save_path, FileAccess.READ)
-		print(AudioPlayer.volume_db)
 
 func transition_to_saved(transition_object: TransitionObject) -> void:
 	match loaded_file.get_pascal_string():

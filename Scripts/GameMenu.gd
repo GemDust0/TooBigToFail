@@ -6,7 +6,8 @@ static var is_open: bool = false
 static var icon_hovered: bool = false
 
 func open() -> void:
-	%SpinBox.value = AudioPlayer.volume_linear / AudioPlayer.max_volume * 100
+	%MusicVolumeSpinBox.value = AudioPlayer.volume_linear / AudioPlayer.max_volume * 100
+	%SFXVolumeSpinBox.value = db_to_linear(AudioPlayer.cur_sfx_volume) / AudioPlayer.max_sfx_volume * 100
 	_on_settings_button_pressed()
 	menu.visible = true
 	get_tree().paused = true
@@ -17,9 +18,12 @@ func close() -> void:
 	get_tree().paused = false
 	is_open = false
 
-func _on_spin_box_value_changed(value: float) -> void:
+func _on_music_volume_changed(value: float) -> void:
 	AudioPlayer.volume_linear = AudioPlayer.max_volume * value / 100
 
+func _on_sfx_volume_changed(value: float) -> void:
+	AudioPlayer.cur_sfx_volume = linear_to_db(AudioPlayer.max_sfx_volume * value / 100)
+	
 func _on_save_exit_pressed() -> void:
 	SaveManager.save()
 	get_tree().call_deferred("quit")

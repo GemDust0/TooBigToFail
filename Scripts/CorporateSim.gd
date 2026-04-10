@@ -16,7 +16,7 @@ var targets: Array[int] = [10000, 100000, 500000, 2000000, 100000000]
 @onready var shop: EmployeeShop = $EmployeeShop
 @onready var target_label: Label = $HUD/MoneyTarget
 @onready var relic_inventory: RelicInventory = $RelicInventory
-@onready var transition_object: TransitionObject = $HUD/TransitionObject
+@onready var transition_object: TransitionObject = $TransitionObject
 @onready var relic_description: Label = %RelicDescription
 
 static var instance: CorporateSim = null

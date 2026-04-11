@@ -4,7 +4,7 @@ var max_volume: int = 4
 var default_volume: int = 2
 
 var max_sfx_volume: int = 4
-var cur_sfx_volume: float = 2
+var cur_sfx_volume: float = linear_to_db(2)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

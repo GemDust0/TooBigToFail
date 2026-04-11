@@ -38,16 +38,18 @@ offset_right = 107.0
 offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 9
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="NewGame" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=489960652]
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 22
 text = "New Game"
 
 [node name="ContinueGame" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=656783921]
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 22
@@ -55,6 +57,7 @@ disabled = true
 text = "Continue Game"
 
 [node name="ExitGame" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1492597337]
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 22

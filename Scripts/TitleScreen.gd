@@ -3,6 +3,9 @@ extends Node
 @onready var transition_object: TransitionObject = $CanvasLayer/TransitionObject
 
 func _ready() -> void:
+	ButtonPress.bind_button($CanvasLayer/VBoxContainer/NewGame)
+	ButtonPress.bind_button($CanvasLayer/VBoxContainer/ContinueGame)
+	ButtonPress.bind_button($CanvasLayer/VBoxContainer/ExitGame)
 	SaveManager.save_node = null
 	if SaveManager.loaded_file != null:
 		$CanvasLayer/VBoxContainer/ContinueGame.disabled = false

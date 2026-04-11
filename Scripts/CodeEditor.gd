@@ -6,14 +6,17 @@ var untypedCol: String = Color(1, 1, 1, 0.3).to_html()
 var prevText: String = ""
 var prevColumn: int = 0
 var isFocused: bool
+var play_sound: bool = false
 
 @onready var previewNode: RichTextLabel = $Preview
 @onready var initialText: String = tabs_to_spaces(previewNode.text)
 @onready var inputNode: CodeEdit = $Preview/Input
+@onready var gameMenu: GameMenu = $"../GameMenu"
 
 func _ready() -> void:
 	focus()
 	inputNode.size.x += inputNode.position.x + 5
+	gameMenu.closed.connect(focus)
 
 func focus() -> void:
 	isFocused = true
@@ -46,6 +49,9 @@ func _on_input_text_changed() -> void:
 		inputNode.set_caret_line(caret_line)
 		inputNode.set_caret_column(prevColumn)
 		return
+	
+	if play_sound:
+		ButtonPress.play_sound(0.2, 1.1, 0.07)
 	
 	previewNode.clear()
 	previewNode.append_text("[color=#%s]" % untypedCol)
@@ -93,11 +99,13 @@ func _on_input_caret_changed() -> void:
 	prevColumn = inputNode.get_caret_column()
 
 func change_code(new_code: String) -> void:
+	play_sound = false
 	prevText = ""
 	prevColumn = 0
 	initialText = tabs_to_spaces(new_code)
 	inputNode.text = ""
 	_on_input_text_changed()
+	play_sound = true
 
 func get_correctness() -> float:
 	if inputNode.text.length() == 0:

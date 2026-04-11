@@ -70,14 +70,19 @@ func _process(_delta: float) -> void:
 	if get_global_mouse_position().y < slots_node.global_position.y:
 		grid.description.hide_description(grid.description.show_locked)
 		grid.description.change_show_locked(true, self)
-		slot_highlight.hide()
+		if slot_highlight.visible:
+			ButtonPress.play_sound(0.1, 1.1, 0.07)
+			slot_highlight.hide()
 		return
 	var shop_cursor_pos: Vector2 = slots_node.get_local_mouse_position()
 	if shop_cursor_pos.x > 0 && shop_cursor_pos.x < slots_node.size.x:
 		var hovered_slot: int = int(shop_cursor_pos.y / slots_node.get_theme_constant("separation"))
 		if hovered_slot < slots.size():
 			if slots[hovered_slot].employee != null:
-				slot_highlight.position.y = 86 + hovered_slot*34
+				var new_highlight_pos: int = 86 + hovered_slot*34
+				if new_highlight_pos != slot_highlight.position.y || !slot_highlight.visible:
+					ButtonPress.play_sound(0.1, 1.1, 0.07)
+				slot_highlight.position.y = new_highlight_pos
 				if CorporateSim.instance.money < slots[hovered_slot].cost:
 					slot_highlight.color = slot_expensive_color
 				else:
@@ -94,6 +99,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") && slot_highlight.visible:
 		var slot: ShopSlot = slots[(slot_highlight.position.y - 86) / 34]
 		if slot.employee != null && CorporateSim.instance.money >= slot.cost:
+			ButtonPress.play_sound(0.1, 1.1, 0.07)
 			held = slot
 			held.employeeIcon.global_position = get_global_mouse_position() - held.employeeIcon.size/2
 			held.employeeIcon.z_index += 1
@@ -101,13 +107,19 @@ func _input(event: InputEvent) -> void:
 			grid.description.change_show_locked(true, self)
 			grid.paint_locked = true
 			grid.highlight_filled = false
+		else:
+			ButtonPress.play_sound(0.05, 0.6, 0.07)
+			
 	elif event.is_action_released("left_click") && held != null:
 		var cursor_grid_pos: Vector2i = grid.get_cursor_grid_pos()
 		if cursor_grid_pos != Vector2i(-1, -1) && grid.grid[cursor_grid_pos].employee == null:
+			ButtonPress.play_sound(0.1, 1.1, 0.07)
 			grid.add_employee(cursor_grid_pos, held.employee)
 			CorporateSim.instance.add_money(-held.cost)
 			held.set_employee(null)
 			held.update_description(CorporateSim.instance.money)
+		else:
+			ButtonPress.play_sound(0.05, 0.6, 0.07)
 		held.employeeIcon.position = Vector2.ZERO
 		held.employeeIcon.z_index -= 1
 		held = null

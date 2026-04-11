@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 AudioPlayer="*uid://c07gvv5ykuvfa"
 SaveManager="*uid://csn24e8ngbe7e"
+ButtonPress="*uid://g35sytuxgnwi"
 
 [debug]
 

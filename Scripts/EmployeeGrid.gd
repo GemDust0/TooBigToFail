@@ -151,6 +151,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("left_click"):
 			var cursor_grid_pos: Vector2i = get_cursor_grid_pos()
 			if cursor_grid_pos != Vector2i(-1, -1) && grid[cursor_grid_pos].employee != null:
+				ButtonPress.play_sound(0.1, 1.1, 0.07)
 				held = grid[cursor_grid_pos].employee
 				held.global_position = get_global_mouse_position() - held.size/2
 				held.z_index += 1
@@ -170,10 +171,12 @@ func _input(event: InputEvent) -> void:
 				money_produced.emit(sell_value)
 				last_change = Time.get_ticks_msec()
 			elif cursor_grid_pos != Vector2i(-1, -1):
+				ButtonPress.play_sound(0.1, 1.1, 0.07)
 				grid[held.grid_pos].switch_employee(grid[cursor_grid_pos], cursor_grid_pos)
 				check_grid_for_relics()
 				last_change = Time.get_ticks_msec()
 			else:
+				ButtonPress.play_sound(0.05, 0.6, 0.07)
 				held.position = Vector2.ZERO
 			held = null
 			sell_area.hide()

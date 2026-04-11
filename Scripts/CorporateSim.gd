@@ -25,6 +25,9 @@ func _enter_tree() -> void:
 	instance = self
 
 func _ready() -> void:
+	ButtonPress.bind_button($UI/TargetReached/ButtonMargin/ButtonMargin/Confirm)
+	ButtonPress.bind_button($UI/RelicUnlock/ButtonMargin/VBoxContainer/ButtonMargin/ButtonMargin/RelicConfirm)
+	ButtonPress.bind_button(%HandInTargetButton)
 	SaveManager.save_node = self
 	if SaveManager.loaded:
 		money = 0

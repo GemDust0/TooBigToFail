@@ -63,4 +63,5 @@ func _on_timer_timeout() -> void:
 	elif character in [".", "?", "!", ","]:
 		period_timer.start()
 	else:
+		ButtonPress.play_sound(0.1, 0.6)
 		character_timer.start()

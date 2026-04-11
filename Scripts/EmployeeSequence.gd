@@ -12,6 +12,7 @@ var code_index: int = 0
 @onready var transition_object: TransitionObject = $TransitionObject
 
 func _ready() -> void:
+	ButtonPress.bind_button($Submit)
 	SaveManager.save_node = self
 	if SaveManager.loaded:
 		scores = SaveManager.loaded_file.get_var()
@@ -26,11 +27,13 @@ func _ready() -> void:
 		else:
 			performanceIcon.texture = faces[2]
 		codeEditor.change_code(codeArray[code_index - 1].replace("[\\n]", "\n").replace("[\\t]", "\t"))
+		codeEditor.play_sound = false
 		codeEditor.inputNode.text = SaveManager.loaded_file.get_var()
 		codeEditor.inputNode.set_caret_line(SaveManager.loaded_file.get_64())
 		codeEditor.inputNode.set_caret_column(SaveManager.loaded_file.get_64())
 		codeEditor._on_input_text_changed()
 		codeEditor.focus()
+		codeEditor.play_sound = true
 	else:
 		_on_submit_pressed()
 

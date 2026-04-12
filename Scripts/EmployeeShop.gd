@@ -36,9 +36,11 @@ func add_slot(locked: bool = false) -> void:
 
 func restock(ignore_cost: bool=false) -> void:
 	if CorporateSim.instance.money < 50 && !ignore_cost:
+		ButtonPress.play_sound(0.05, 0.6, 0.07)
 		return
 	elif !ignore_cost:
 		CorporateSim.instance.add_money(-50)
+	ButtonPress.play_sound(0.1, 1.1, 0.07)
 	for slot: ShopSlot in slots:
 		if slot.locked:
 			break
@@ -139,6 +141,8 @@ func _input(event: InputEvent) -> void:
 				grid.description.change_show_locked(false, self)
 		else:
 			grid.description.change_show_locked(false, self)
+	elif event.is_action_pressed("R"):
+		restock()
 
 func upgrade_shop() -> void:
 	shop_level += 1

@@ -73,6 +73,8 @@ func add_employee(pos: Vector2i, employee: Employee, check_relics:bool=true, ran
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
 		if get_employee_count("Amateur Developer") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
+		if get_employee_count("Experienced Developer") > 3 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
 		if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
 		check_grid_for_relics()
@@ -98,6 +100,10 @@ const patterns: Dictionary[String, Array] = {
 		["Rubber Ducky", "Rubber Ducky", "Rubber Ducky"],
 		["Rubber Ducky", "Developer", "Rubber Ducky"],
 		["Rubber Ducky", "Rubber Ducky", "Rubber Ducky"]
+	],
+	"Analysis Squared":[
+		["Analyst", "Analyst"],
+		["Analyst", "Analyst"]
 	]
 }
 
@@ -106,6 +112,8 @@ func check_grid_for_relics() -> void:
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/InternTogetherStrong.tscn").instantiate())
 	if !CorporateSim.instance.relic_inventory.has_relic("Rubber Ducking") && check_for_pattern(patterns["Rubber Ducking"]):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/RubberDucking.tscn").instantiate())
+	if !CorporateSim.instance.relic_inventory.has_relic("Analysis Squared") && check_for_pattern(patterns["Analysis Squared"]):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/AnalysisSquared.tscn").instantiate())
 
 func check_for_pattern(pattern: Array) -> bool:
 	for key: Vector2i in grid.keys():

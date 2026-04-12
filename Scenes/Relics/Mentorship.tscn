@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://chd4f2hpy0gd6"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_y47yk"]
+
+[node name="Mentorship" unique_id=362028674 instance=ExtResource("1_y47yk")]
+id = "Mentorship"
+description = "Experienced developers increase production value of all intern and amateur developers by 1.2x"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c8li5lc1nbb8w"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_cbypi"]
+
+[node name="AnalysisSquared" unique_id=362028674 instance=ExtResource("1_cbypi")]
+id = "Analysis Squared"
+description = "Analysts analyze twice as effectively"

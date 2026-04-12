@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://xdv240crh3kg"]
 
 [ext_resource type="PackedScene" uid="uid://bkds4gjqq4ydo" path="res://Scenes/Employee.tscn" id="1_djk7h"]
+[ext_resource type="Script" uid="uid://b2rumm8cisypv" path="res://Scripts/Synergy.gd" id="2_ntb5s"]
+
+[sub_resource type="Resource" id="Resource_ts122"]
+script = ExtResource("2_ntb5s")
+type = 2
+effect = 1.2
+affects = Array[String](["Intern Developer", "Amateur Developer"])
+invertArea = true
+relicReq = "Mentorship"
+visible = false
+metadata/_custom_type_script = "uid://b2rumm8cisypv"
 
 [node name="ExperiencedDeveloper" unique_id=854379618 instance=ExtResource("1_djk7h")]
 production_value = 150
@@ -8,3 +19,4 @@ production_time = 3.0
 rarity = "Rare"
 id = "Experienced Developer"
 description = "Produces 150 coins every 3 seconds"
+synergies = Array[ExtResource("2_ntb5s")]([SubResource("Resource_ts122")])

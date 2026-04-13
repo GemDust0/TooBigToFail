@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dh7qjdn0jx06t"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_os3od"]
+
+[node name="RemasterInRust" unique_id=362028674 instance=ExtResource("1_os3od")]
+id = "Remaster In Rust"
+description = "Master developers now multiply production value of nearby developers by 1.75x"

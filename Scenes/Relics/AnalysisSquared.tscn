@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://c8li5lc1nbb8w"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_cbypi"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_enodx"]
 
 [node name="AnalysisSquared" unique_id=362028674 instance=ExtResource("1_cbypi")]
+self_modulate = Color(0.11372549, 0.7490196, 0.11372549, 1)
+texture = ExtResource("2_enodx")
 id = "Analysis Squared"
 description = "Analysts analyze twice as effectively"

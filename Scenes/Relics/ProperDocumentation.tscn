@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bqvek2601u7sg"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_fv0mv"]
+[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_0a8ij"]
 
 [node name="ProperDocumentation" unique_id=362028674 instance=ExtResource("1_fv0mv")]
+self_modulate = Color(0.41568628, 0, 1, 1)
+texture = ExtResource("2_0a8ij")
 id = "Proper Documentation"
 description = "All developers now work 2x faster"

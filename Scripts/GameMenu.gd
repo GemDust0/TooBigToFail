@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if !TransitionObject.fading && event.is_action_pressed("esc"):
+		ButtonPress.play_sound(0.1, 1.1, 0.07)
 		if is_open:
 			close()
 		else:

@@ -59,6 +59,8 @@ func _ready() -> void:
 		target_label.text = "Target: %s" % targets[0]
 		grid.create_grid(5)
 		grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
+		#for i: String in Relic.lookup.values():
+			#give_relic(load(i).instantiate())
 	#money = 100000
 	add_money(100000000000)
 

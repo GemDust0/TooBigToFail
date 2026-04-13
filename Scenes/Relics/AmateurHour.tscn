@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://4qeufuwr5kka"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_vt0oc"]
+[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_12ngt"]
 
 [node name="AmateurHour" unique_id=362028674 instance=ExtResource("1_vt0oc")]
+self_modulate = Color(0.11372549, 0.7490196, 0.11372549, 1)
+texture = ExtResource("2_12ngt")
 id = "Amateur Hour"
 description = "Amateur Developers production value x1.5"

@@ -8,9 +8,6 @@ var save_node: Node = null
 var loaded: bool = false
 var save_file: FileAccess
 
-func _ready() -> void:
-	attempt_load()
-
 func save() -> void:
 	var settings_file: FileAccess = FileAccess.open(settings_path, FileAccess.WRITE)
 	settings_file.store_float(AudioPlayer.volume_db)
@@ -48,6 +45,7 @@ func save_corporate_sim() -> void:
 		else:
 			save_file.store_pascal_string(slot.employee.id)
 	save_file.store_64(save_node.shop.shop_level)
+	save_file.close()
 	
 func save_employee_sequence() -> void:
 	save_file.store_pascal_string("E")

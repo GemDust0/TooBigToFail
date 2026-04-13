@@ -48,8 +48,10 @@ func _ready() -> void:
 			if id == "locked":
 				slot.locked = true
 			elif id == "":
+				slot.locked = false
 				slot.set_employee(null)
 			else:
+				slot.locked = false
 				slot.set_employee(load(Employee.lookup[id]).instantiate(), money)
 		shop.shop_level = SaveManager.loaded_file.get_64()
 	else:

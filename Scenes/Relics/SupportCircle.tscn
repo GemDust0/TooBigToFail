@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://kqyy5utoqlxc"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_3578c"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_qis3e"]
+
+[node name="SupportCircle" unique_id=362028674 instance=ExtResource("1_3578c")]
+self_modulate = Color(0.11372549, 0.7490196, 0.11372549, 1)
+texture = ExtResource("2_qis3e")
+id = "Support Circle"
+description = "IT Support now supports twice as supportively"

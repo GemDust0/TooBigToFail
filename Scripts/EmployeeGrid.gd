@@ -107,6 +107,11 @@ const patterns: Dictionary[String, Array] = {
 		["Rubber Ducky", "Developer", "Rubber Ducky"],
 		["Rubber Ducky", "Rubber Ducky", "Rubber Ducky"]
 	],
+	"Support Circle":[
+		["IT Support", "IT Support", "IT Support"],
+		["IT Support", "!", "IT Support"],
+		["IT Support", "IT Support", "IT Support"]
+	],
 	"Analysis Squared":[
 		["Analyst", "Analyst"],
 		["Analyst", "Analyst"]
@@ -120,18 +125,28 @@ func check_grid_for_relics() -> void:
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/RubberDucking.tscn").instantiate())
 	if !CorporateSim.instance.relic_inventory.has_relic("Analysis Squared") && check_for_pattern(patterns["Analysis Squared"]):
 		CorporateSim.instance.give_relic(load("res://Scenes/Relics/AnalysisSquared.tscn").instantiate())
+	if !CorporateSim.instance.relic_inventory.has_relic("Support Circle") && check_for_pattern(patterns["Support Circle"]):
+		CorporateSim.instance.give_relic(load("res://Scenes/Relics/SupportCircle.tscn").instantiate())
 
 func check_for_pattern(pattern: Array) -> bool:
 	for key: Vector2i in grid.keys():
 		if key[0] > (columns - pattern.size()) || key[1] > (columns - pattern[0].size()):
 			continue
 		var employee: Employee = grid[key].employee
-		if pattern[0][0] == "X" || (employee == null && pattern[0][0] == "") || (employee != null && (employee.id == pattern[0][0] || employee.type == pattern[0][0] || employee.rarity == pattern[0][0])):
+		var curMatch: String = pattern[0][0]
+		var invert: bool = curMatch.substr(0, 1) == "!"
+		if invert:
+			curMatch = curMatch.substr(1)
+		if !invert == (curMatch == "X" || (employee == null && curMatch == "") || (employee != null && (employee.id == curMatch || employee.type == curMatch || employee.rarity == curMatch))):
 			var is_match: bool = true
 			for row: int in range(pattern.size()):
 				for col: int in range(pattern[0].size()):
 					employee = grid[key + Vector2i(row, col)].employee
-					if !(pattern[row][col] == "X" || (employee == null && pattern[row][col] == "") || (employee != null && (employee.id == pattern[row][col] || employee.type == pattern[row][col] || employee.rarity == pattern[0][0]))):
+					curMatch = pattern[row][col]
+					invert = curMatch.substr(0, 1) == "!"
+					if invert:
+						curMatch = curMatch.substr(1)
+					if invert == (curMatch == "X" || (employee == null && curMatch == "") || (employee != null && (employee.id == curMatch || employee.type == curMatch || employee.rarity == curMatch))):
 						is_match = false
 						break
 				if !is_match:

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://dh7qjdn0jx06t"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_os3od"]
+[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_itfes"]
 
 [node name="RemasterInRust" unique_id=362028674 instance=ExtResource("1_os3od")]
+self_modulate = Color(1, 0.7764706, 0.09803922, 1)
+texture = ExtResource("2_itfes")
 id = "Remaster In Rust"
 description = "Master developers now multiply production value of nearby developers by 1.75x"

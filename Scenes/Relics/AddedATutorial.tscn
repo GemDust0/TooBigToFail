@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://sme2i4djgkqd"]
+
+[ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_kmecy"]
+[ext_resource type="Texture2D" uid="uid://b1evsxv6dit5" path="res://Assets/ITIcon.png" id="2_7r3xx"]
+
+[node name="AddedATutorial" unique_id=362028674 instance=ExtResource("1_kmecy")]
+self_modulate = Color(0.41568628, 0, 1, 1)
+texture = ExtResource("2_7r3xx")
+id = "Added A Tutorial"
+description = "QA Testers no longer get stuck on the first level, so they no longer clog up developers' time with false bug reports."

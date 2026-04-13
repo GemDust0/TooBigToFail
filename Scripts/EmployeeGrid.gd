@@ -77,6 +77,8 @@ func add_employee(pos: Vector2i, employee: Employee, check_relics:bool=true, ran
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mentorship.tscn").instantiate())
 		if get_employee_count("Senior Developer") > 3 && !CorporateSim.instance.relic_inventory.has_relic("Proper Documentation"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/ProperDocumentation.tscn").instantiate())
+		if get_employee_count("QA Tester") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Added A Tutorial"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AddedATutorial.tscn").instantiate())
 		if get_employee_count("Master Developer") > 2 && !CorporateSim.instance.relic_inventory.has_relic("Remaster In Rust"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/RemasterInRust.tscn").instantiate())
 		if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):

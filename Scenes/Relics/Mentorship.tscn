@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://chd4f2hpy0gd6"]
 
 [ext_resource type="PackedScene" uid="uid://dqg0bvky61dxp" path="res://Scenes/Relic.tscn" id="1_y47yk"]
+[ext_resource type="Texture2D" uid="uid://yso1bpqixddq" path="res://Assets/DeveloperIcon.png" id="2_hdtof"]
 
 [node name="Mentorship" unique_id=362028674 instance=ExtResource("1_y47yk")]
+self_modulate = Color(0.08627451, 0.27450982, 0.8509804, 1)
+texture = ExtResource("2_hdtof")
 id = "Mentorship"
 description = "Experienced developers increase production value of all intern and amateur developers by 1.2x"

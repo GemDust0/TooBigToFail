@@ -12,6 +12,13 @@ func _ready() -> void:
 	ButtonPress.bind_button($MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer2/MarginContainer/MarginContainer/Return)
 	ButtonPress.bind_button($MenuLayer/MenuGrayout/MenuContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/SaveExit)
 
+func _input(event: InputEvent) -> void:
+	if !TransitionObject.fading && event.is_action_pressed("esc"):
+		if is_open:
+			close()
+		else:
+			open()
+
 func open() -> void:
 	%MusicVolumeSpinBox.value = AudioPlayer.volume_linear / AudioPlayer.max_volume * 100
 	%SFXVolumeSpinBox.value = db_to_linear(AudioPlayer.cur_sfx_volume) / AudioPlayer.max_sfx_volume * 100

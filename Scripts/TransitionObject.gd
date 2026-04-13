@@ -1,5 +1,7 @@
 class_name TransitionObject extends ColorRect
 
+static var fading: bool = false
+
 @export var should_fade_in: bool = true
 @export var fade_in_delay: float = 0.5
 
@@ -10,6 +12,7 @@ func _ready() -> void:
 		fade_in()
 
 func change_scene(scene: PackedScene) -> void:
+	fading = true
 	get_tree().paused = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	animation_player.play("fade_out")
@@ -17,8 +20,10 @@ func change_scene(scene: PackedScene) -> void:
 	get_tree().paused = false
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	get_tree().change_scene_to_packed(scene)
+	fading = false
 
 func fade_in() -> void:
+	fading = true
 	get_tree().paused = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	color.a = 1.0
@@ -27,3 +32,4 @@ func fade_in() -> void:
 	await animation_player.animation_finished
 	get_tree().paused = false
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	fading = false

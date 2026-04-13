@@ -16,6 +16,7 @@ LineEdit/styles/normal = SubResource("StyleBoxEmpty_wd3g4")
 LineEdit/styles/read_only = SubResource("StyleBoxEmpty_d6vgs")
 
 [node name="GameMenu" type="Control" unique_id=873510849]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +87,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=56147456]
-process_mode = 3
 layer = 2
 visible = false
 

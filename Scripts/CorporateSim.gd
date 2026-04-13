@@ -31,7 +31,7 @@ func _ready() -> void:
 	SaveManager.save_node = self
 	if SaveManager.loaded:
 		money = 0
-		add_money(SaveManager.loaded_file.get_64())
+		add_money(SaveManager.loaded_file.get_64(), false)
 		targets = SaveManager.loaded_file.get_var()
 		target_label.text = "Target: %s" % targets[0]
 		grid.columns = SaveManager.loaded_file.get_64()
@@ -54,15 +54,15 @@ func _ready() -> void:
 		shop.shop_level = SaveManager.loaded_file.get_64()
 	else:
 		money = 250
-		#money = 100000
-		#money = 100000000000
 		target_label.text = "Target: %s" % targets[0]
 		grid.create_grid(5)
 		grid.add_employee(Vector2i(2, 2), load("res://Scenes/Employees/InternDeveloper.tscn").instantiate())
+	#money = 100000
+	add_money(100000000000)
 
-func add_money(amount: int) -> void:
+func add_money(amount: int, give_relics: bool=true) -> void:
 	money += amount
-	if !relic_inventory.has_relic("Government Subsidies") && money < ShopSlot.get_cost("Common") && grid.get_employee_count("") == grid.grid.size():
+	if give_relics && !relic_inventory.has_relic("Government Subsidies") && money < ShopSlot.get_cost("Common") && grid.get_employee_count("") == grid.grid.size():
 		give_relic(load("res://Scenes/Relics/GovernmentSubsidies.tscn").instantiate())
 		start_subsidy_timer()
 	%HandInTargetButton.disabled = (money < targets[0]) || $UI/TargetReached.visible

@@ -73,8 +73,10 @@ func add_employee(pos: Vector2i, employee: Employee, check_relics:bool=true, ran
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/ManagementOverhaul.tscn").instantiate())
 		if get_employee_count("Amateur Developer") > 5 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
-		if get_employee_count("Experienced Developer") > 3 && !CorporateSim.instance.relic_inventory.has_relic("Amateur Hour"):
-			CorporateSim.instance.give_relic(load("res://Scenes/Relics/AmateurHour.tscn").instantiate())
+		if get_employee_count("Experienced Developer") > 3 && !CorporateSim.instance.relic_inventory.has_relic("Mentorship"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/Mentorship.tscn").instantiate())
+		if get_employee_count("Senior Developer") > 3 && !CorporateSim.instance.relic_inventory.has_relic("Proper Documentation"):
+			CorporateSim.instance.give_relic(load("res://Scenes/Relics/ProperDocumentation.tscn").instantiate())
 		if !CorporateSim.instance.relic_inventory.has_relic("Cats And Dogs") && has_employee("Cat") && has_employee("Dog"):
 			CorporateSim.instance.give_relic(load("res://Scenes/Relics/CatsAndDogs.tscn").instantiate())
 		check_grid_for_relics()
@@ -243,6 +245,8 @@ func employee_production(employee: Employee) -> void:
 				CorporateSim.instance.give_relic(load("res://Scenes/Relics/TurningLosses.tscn").instantiate())
 	if CorporateSim.instance.relic_inventory.has_relic("Employee Stability"):
 		production_worth *= 2
+	if employee.type == "Developer" && CorporateSim.instance.relic_inventory.has_relic("Proper Documentation"):
+		speed_mult *= 2
 	money_produced.emit(production_worth)
 	employee.create_production_text(production_worth)
 	employee.start_production(speed_mult)

@@ -62,7 +62,7 @@ func _ready() -> void:
 		#for i: String in Relic.lookup.values():
 			#give_relic(load(i).instantiate())
 	#money = 100000
-	add_money(100000000000)
+	#add_money(100000000000)
 
 func add_money(amount: int, give_relics: bool=true) -> void:
 	money += amount

@@ -22,7 +22,6 @@ func _ready() -> void:
 		dialogue_index = SaveManager.loaded_file.get_64()
 	label.text = dialogue[dialogue_index]
 	name_label.text = " %s " % speakers[dialogue_index]
-	grab_focus()
 
 func stop_timers() -> void:
 	character_timer.stop()

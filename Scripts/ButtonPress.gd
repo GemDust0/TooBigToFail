@@ -1,7 +1,7 @@
 extends AudioStreamPlayer
 
 func _ready() -> void:
-	stream = AudioStreamWAV.load_from_file("res://Assets/380145__yottasounds__computer-keyboard-single-key-type-5-shift.wav")
+	stream = ResourceLoader.load("res://Assets/380145__yottasounds__computer-keyboard-single-key-type-5-shift.wav")
 	process_mode = ProcessMode.PROCESS_MODE_ALWAYS
 
 func play_sound(variation: float=0.1, base: float=1.0, start_time:float=0.05) -> void:

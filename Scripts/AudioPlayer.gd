@@ -8,7 +8,7 @@ var cur_sfx_volume: float = linear_to_db(1)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	stream = AudioStreamMP3.load_from_file("res://Assets/gabrieleromanoy-relax-synth-275097.mp3")
+	stream = ResourceLoader.load("res://Assets/gabrieleromanoy-relax-synth-275097.mp3")
 	stream.loop = true
 	volume_linear = default_volume
 	play()
